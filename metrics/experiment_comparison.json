@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-04-07T12:06:07.428833+00:00",
-  "git_commit": "224c6170b1ca1162e39a4fbab86365523b6d743b",
+  "generated_at_utc": "2026-04-07T13:21:17.364648+00:00",
+  "git_commit": "456289c57a504a2b532d5edbb601a04fd2e953e3",
   "profiles": {
     "standard": {
       "exit_code": 0,
-      "wall_time_seconds": 4.918,
+      "wall_time_seconds": 6.726,
       "train_metrics": {
         "accuracy": 0.776,
         "roc_auc": 0.795657142857143,
@@ -12,13 +12,17 @@
         "n_val": 250,
         "seed": 42,
         "data_provenance": "uci-asc:SouthGermanCredit.asc",
-        "pipeline_profile": "standard"
+        "pipeline_profile": "standard",
+        "git_commit": "456289c57a50",
+        "params_yaml_sha16": "2007d8c2f0d65a1c",
+        "dvc_lock_sha16": "b3add8eb1426b122",
+        "stress_bias": "off"
       },
       "gates_run": false
     },
     "governed": {
       "exit_code": 0,
-      "wall_time_seconds": 17.751,
+      "wall_time_seconds": 20.912,
       "train_metrics": {
         "accuracy": 0.776,
         "roc_auc": 0.795657142857143,
@@ -26,7 +30,11 @@
         "n_val": 250,
         "seed": 42,
         "data_provenance": "uci-asc:SouthGermanCredit.asc",
-        "pipeline_profile": "governed"
+        "pipeline_profile": "governed",
+        "git_commit": "456289c57a50",
+        "params_yaml_sha16": "2007d8c2f0d65a1c",
+        "dvc_lock_sha16": "b3add8eb1426b122",
+        "stress_bias": "off"
       },
       "fairness_gate": {
         "equalized_odds_difference": 0.6169354838709677,
@@ -36,7 +44,7 @@
       },
       "shap_gate": {
         "top_feature": "laufkont",
-        "top_mean_abs_shap": 0.09979873300061229,
+        "top_mean_abs_shap": 0.099796332029552,
         "min_required": 0.0,
         "gate_passed": true
       },

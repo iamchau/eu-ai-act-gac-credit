@@ -121,7 +121,7 @@ The **standard** profile optimizes for **training and release velocity** under a
 **Sub-RQ1 (evaluative thread — expect more pages):**
 
 - [ ] `metrics/experiment_comparison.json` — standard vs governed under shared controls  
-- [ ] **Blocking demo:** exported `fairness_gate.json` with `gate_passed: false` after threshold tightening (see [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md)), **or** documented stress failure  
+- [ ] **Blocking demo:** `metrics/fairness_gate_subrq1_threshold_demo_fail.json` (committed) **or** your own export with `gate_passed: false` after threshold tightening (see [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md)); **or** documented stress failure  
 - [ ] One short paragraph: **not** a sampled “approval rate” from industry  
 
 **Sub-RQ2 (narrow operational thread — do not oversell):**

@@ -146,7 +146,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 | Gate B | `metrics/shap_gate.json`, `artifacts/shap_report.md` (after run)
 | Gate C (Sub-RQ2) | `metrics/human_oversight_latency.json` + workflow URL
 | Reproducibility | MLflow tags (`git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`); `dvc.lock`
-| Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + exported fairness JSON after threshold change (prefer **one** clean `gate_passed: false`) |
+| Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + `metrics/fairness_gate_subrq1_threshold_demo_fail.json` (**`gate_passed: false`**) or your own export after threshold change |
 
 **Minimum Sub-RQ1 evidence bundle:** (1) `experiment_comparison.json` for standard vs governed under shared controls; (2) **either** exported failing `fairness_gate.json` from threshold demo **or** stress run with documented gate failure.
 

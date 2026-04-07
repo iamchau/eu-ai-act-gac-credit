@@ -167,3 +167,15 @@
 - **§3 map:** Self-row for this file.
 
 **Verdict:** Charter is **examiner-safe** on legal hierarchy and **implementation** truth.
+
+---
+
+## 2026-04-07 — Sub-RQ1 threshold demo executed + P3 JSON refreshed
+
+**Approved**
+
+- **`max_equalized_odds_difference` 0.70 → 0.55** → fairness gate **failed** (EOD ~0.617 > 0.55); archived **[`metrics/fairness_gate_subrq1_threshold_demo_fail.json`](../metrics/fairness_gate_subrq1_threshold_demo_fail.json)**.  
+- **Reverted** to **0.70**; **`scripts/compare_profiles.py`** re-run — **`experiment_comparison.json`** updated (git commit at generation time recorded in file).  
+- **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8**, **[SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md)**, **[DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md)** — pointers to archived fail JSON.
+
+**Verdict:** Sub-RQ1 **blocking** demonstration is now **artifact-backed** in-repo, not chat-only.

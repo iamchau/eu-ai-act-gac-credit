@@ -20,6 +20,8 @@ cd C:\Users\Chau_\Projects\eu-ai-act-gac-credit
 
 6. **Revert** `max_equalized_odds_difference` to **0.70** for your default baseline runs.
 
+7. **Committed thesis evidence (optional but recommended):** Copy the failing gate output to `metrics/fairness_gate_subrq1_threshold_demo_fail.json` and commit it so the **blocking** outcome is preserved in git (this repo includes that file after the demo was run).
+
 ## Optional: stress modes (`STRESS_BIAS`)
 
 See [stress_experiment.md](stress_experiment.md). Use **`STRESS_MODE=remove_rare`** for a **biased training** narrative; if EOD does not move enough for your story, prefer the **threshold** demo above.

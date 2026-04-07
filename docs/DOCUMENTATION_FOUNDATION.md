@@ -30,6 +30,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | **`mlruns/`** | Gitignored; may appear if you switch tracking URI | That old runs are auto-migrated to SQLite |
 | **Gate C** | Implemented by **workflows** + Environment, **not** by reading `gates.human_oversight.enabled_in_ci` in Python | That `enabled_in_ci` changes runtime (it is a **documentation flag**) |
 | **P3 comparison metrics** | `metrics/experiment_comparison.json` has its own **`git_commit`** | That `metrics/train_metrics.json` always matches without re-running `scripts/compare_profiles.py` — see [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 |
+| **Sub-RQ1 demo (archived fail)** | `metrics/fairness_gate_subrq1_threshold_demo_fail.json` — threshold demo with `gate_passed: false` | That `metrics/fairness_gate.json` is always the failing snapshot (it reflects **last** run at 0.70 baseline after revert) |
 | **`dvc.yaml`** | Uses **Windows** `.venv\Scripts\python.exe` in `cmd` | Same path on Linux/macOS — adjust to `.venv/bin/python` per [PROJECT_PLAN.md](../PROJECT_PLAN.md) blockers |
 
 ---

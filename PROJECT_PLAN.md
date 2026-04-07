@@ -1,6 +1,6 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (documentation foundation charter)
+**Last updated:** 2026-04-07 (Sub-RQ1 demo evidence + P3 JSON regenerated)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
 
@@ -40,21 +40,21 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Sub-RQ2 + Discussion (2026-04-07):** [SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md) (optional Sub-RQ2 wordings); [THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) §3b–3c (Sub-RQ relationship, velocity vs governance), Art. 14 one-liner
 - **Thesis documentation anchor (2026-04-07):** [THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) — **≥50 pages** budget, journey-stage anchors, table/figure checklist, Word workflow; [figures/README.md](docs/figures/README.md); §10 [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)
 - **Documentation foundation (2026-04-07):** [DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) — authority order, deprecations, full `docs/` map, maintenance triggers
+- **Sub-RQ1 threshold demo (2026-04-07):** Tightened `max_equalized_odds_difference` **0.70 → 0.55** → gate **failed** → archived [`metrics/fairness_gate_subrq1_threshold_demo_fail.json`](metrics/fairness_gate_subrq1_threshold_demo_fail.json); threshold **reverted** to `0.70`; `python scripts/compare_profiles.py` → updated [`metrics/experiment_comparison.json`](metrics/experiment_comparison.json)
 
 ---
 
 ## Next (priority order)
 
-1. **Sub-RQ1 (once):** Run [docs/SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md) (tighten fairness threshold → gate fails) → export metrics → **revert** threshold to `0.70`.
-2. **Thesis writing:** Follow [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) (page/table/figure plan); then [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) + [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md); [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) + `experiment_comparison.json` + `human_oversight_latency.json` (Sub-RQ2: **7 s**). Export figures into [docs/figures/](docs/figures/) per [figures/README.md](docs/figures/README.md).
-3. **Git identity (optional):** `git config user.email "your@email"` if you still use a placeholder.
-4. **Optional:** `python scripts/compare_profiles.py` after `params.yaml` changes; commit updated JSON.
+1. **Thesis writing (Word):** [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) → [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) + [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md); cite `experiment_comparison.json`, `fairness_gate_subrq1_threshold_demo_fail.json`, `human_oversight_latency.json` (Sub-RQ2 sample **7 s**, run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560)); figures → [docs/figures/](docs/figures/).
+2. **Git identity (optional):** `git config user.email "your@email"` if you still use a placeholder.
+3. **After `params.yaml` changes:** Re-run `python scripts/compare_profiles.py` and commit `experiment_comparison.json`.
 
 ---
 
 ## Current focus
 
-- **Draft thesis evaluation** (DSR + Sub-RQ1 / Sub-RQ2) using committed metrics and the run link above.
+- **Write the thesis** (≥50 pages per program); evidence JSON is in `metrics/` and linked from [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) §8.
 
 ---
 
