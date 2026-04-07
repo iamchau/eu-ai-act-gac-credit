@@ -53,7 +53,7 @@ Tracking: `params.yaml` → `mlflow.tracking_uri` is **`sqlite:///./mlflow.db`**
 
 **Thesis writing:** [docs/DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) (charter) → [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) (**≥50 pages**, tables/figures plan, anchors) → [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) · [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md) · [docs/THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md) · [docs/SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md).
 
-**Plan & status:** [PROJECT_PLAN.md](PROJECT_PLAN.md) · **Review log:** [docs/DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md).
+**Plan & status:** [PROJECT_PLAN.md](PROJECT_PLAN.md) · **Journey checklist (detailed):** [docs/PROJECT_JOURNEY.md](docs/PROJECT_JOURNEY.md) · **Review log:** [docs/DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md).
 
 ## Serving (MLOps — Docker)
 

@@ -1,30 +1,32 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (MLOps serving in scope; CI Docker, /ready, rate limit, RUNBOOK)
+**Last updated:** 2026-04-07 (PROJECT_JOURNEY checklist; MLOps in scope; CI Docker, /ready, rate limit, RUNBOOK)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
+
+**Detailed journey (tickable tracks A–F):** [docs/PROJECT_JOURNEY.md](docs/PROJECT_JOURNEY.md) — use for week-to-week visibility; keep this file as the executive summary.
 
 ---
 
 ## Phases (high level)
 
 
-| Phase | Goal                                                          | Status          |
-| ----- | ------------------------------------------------------------- | --------------- |
-| P0    | Repo + Python stack + MLflow + DVC baseline                   | **Done**        |
-| P1    | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**        |
-| P2    | Human-in-the-loop gate (GitHub Actions) + latency measurement | **Done** (CI)   |
-| P3    | Standard vs governed experiment + thesis write-up             | **In progress** |
-| **MLOps** | Serving API, Docker, CI image; **`/metrics`** + **registry push** (remaining) | **In progress** |
+| Phase     | Goal                                                                          | Status          |
+| --------- | ----------------------------------------------------------------------------- | --------------- |
+| P0        | Repo + Python stack + MLflow + DVC baseline                                   | **Done**        |
+| P1        | Fairness gate (Fairlearn) + SHAP gate + metrics in CI                         | **Done**        |
+| P2        | Human-in-the-loop gate (GitHub Actions) + latency measurement                 | **Done** (CI)   |
+| P3        | Standard vs governed experiment + thesis write-up                             | **In progress** |
+| **MLOps** | Serving API, Docker, CI image; `**/metrics`** + **registry push** (remaining) | **In progress** |
 
 
 ---
 
 ## MLOps serving — status
 
-**In scope (not optional):** Train writes `**artifacts/model.joblib`** + `**artifacts/feature_schema.json**`. `**docker compose up --build**` mounts `./artifacts`. FastAPI **[serving/app.py](serving/app.py):** **`/health`**, **`/ready`**, **`/version`**, **`/predict`**; configurable via **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, **`RATE_LIMIT_PREDICT`**, JSON access logs (**`LOG_JSON_ACCESS`**). **[scripts/smoke_serving.py](scripts/smoke_serving.py)** smoke test. **[.github/workflows/docker-build.yml](.github/workflows/docker-build.yml)** CI train → Docker image artefact; **[docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md)**. **[docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)** = full catalog; **[docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md)** = analysis + **§8** career note; README **Serving**; manuscript §5.4.
+**In scope (not optional):** Train writes `**artifacts/model.joblib`** + `**artifacts/feature_schema.json`**. `**docker compose up --build**` mounts `./artifacts`. FastAPI **[serving/app.py](serving/app.py):** `**/health`**, `**/ready**`, `**/version**`, `**/predict**`; configurable via `**SERVING_API_KEY**`, `**MAX_BODY_BYTES**`, `**RATE_LIMIT_PREDICT**`, JSON access logs (`**LOG_JSON_ACCESS**`). **[scripts/smoke_serving.py](scripts/smoke_serving.py)** smoke test. **[.github/workflows/docker-build.yml](.github/workflows/docker-build.yml)** CI train → Docker image artefact; **[docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md)**. **[docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)** = full catalog; **[docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md)** = analysis + **§8** career note; README **Serving**; manuscript §5.4.
 
-**Remaining (to complete):** minimal **`/metrics`**, container **registry push** — [ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) **§7**.
+**Remaining (to complete):** minimal `**/metrics`**, container **registry push** — [ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) **§7**.
 
 ---
 
@@ -49,6 +51,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Sub-RQ2 + Discussion (2026-04-07):** [SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md) (optional Sub-RQ2 wordings); [THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) §3b–3c (Sub-RQ relationship, velocity vs governance), Art. 14 one-liner
 - **Thesis documentation anchor (2026-04-07):** [THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) — **≥50 pages** budget, journey-stage anchors, table/figure checklist, Word workflow; [figures/README.md](docs/figures/README.md); §10 [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)
 - **Documentation foundation (2026-04-07):** [DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) — authority order, deprecations, full `docs/` map, maintenance triggers
+- **Project journey (2026-04-07):** [docs/PROJECT_JOURNEY.md](docs/PROJECT_JOURNEY.md) — tickable tracks (evidence, thesis, MLOps, submission, hygiene); pairs with this file
 - **Sub-RQ1 threshold demo (2026-04-07):** Tightened `max_equalized_odds_difference` **0.70 → 0.55** → gate **failed** → archived `[metrics/fairness_gate_subrq1_threshold_demo_fail.json](metrics/fairness_gate_subrq1_threshold_demo_fail.json)`; threshold **reverted** to `0.70`; `python scripts/compare_profiles.py` → updated `[metrics/experiment_comparison.json](metrics/experiment_comparison.json)`
 - **Thesis manuscript (2026-04-07):** [docs/thesis/MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — full draft (Intro–Conclusion, appendices); [docs/thesis/README.md](docs/thesis/README.md) — Pandoc → Word
 - **MLOps serving (2026-04-07):** [serving/](serving/) FastAPI, [Dockerfile](Dockerfile), [docker-compose.yml](docker-compose.yml), [requirements-serving.txt](requirements-serving.txt); [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md); README **Serving**; manuscript §5.4
@@ -63,7 +66,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 1. **Thesis writing (Word):** [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) → [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) + [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md); cite `experiment_comparison.json`, `fairness_gate_subrq1_threshold_demo_fail.json`, `human_oversight_latency.json` (Sub-RQ2 sample **7 s**, run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560)); figures → [docs/figures/](docs/figures/).
 2. **Git identity (optional):** `git config user.email "your@email"` if you still use a placeholder.
 3. **After `params.yaml` changes:** Re-run `python scripts/compare_profiles.py` and commit `experiment_comparison.json`.
-4. **MLOps (complete remaining):** minimal **`/metrics`**, container **registry push** — [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) §7.
+4. **MLOps (complete remaining):** minimal `**/metrics`**, container **registry push** — [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) §7.
 
 ---
 
