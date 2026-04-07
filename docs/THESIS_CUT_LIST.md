@@ -1,6 +1,6 @@
 # Thesis writing — what to cut or tighten (Dr. Voss)
 
-Use this as an **editorial checklist** alongside [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md). Goal: fewer tool names, sharper compliance story.
+Use this as an **editorial checklist** alongside [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md). **Doc precedence:** [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md). Goal: fewer tool names, sharper compliance story.
 
 ---
 
