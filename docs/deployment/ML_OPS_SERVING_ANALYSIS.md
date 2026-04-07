@@ -81,14 +81,14 @@
 | ------------------------------------ | ---------------------------------- |
 | Serving files + README + thesis §5.4 | **~2–4 h**                         |
 | First-time Docker install + debug    | **variable** (user machine)        |
-| Optional items in **§7**             | **~1–4 h** each, depending on item |
+| Remaining **§7** backlog items       | **~1–4 h** each, depending on item |
 
 
 ---
 
-## 7. Future / optional extensions (backlog)
+## 7. Future extensions (backlog)
 
-**Implemented elsewhere:** [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) (includes **B5** CI Docker, **C7** `/ready`, **C9** rate limit).
+**Committed project scope:** items below are **planned completion work** (not out-of-scope extras). **Implemented elsewhere:** [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) (includes **B5** CI Docker, **C7** `/ready`, **C9** rate limit).
 
 **Still open (not implemented):**
 
@@ -97,7 +97,7 @@
 | **Minimal `/metrics`** | Process stats; not full Prometheus |
 | **Container registry push** (GHCR, etc.) | Needs secrets + policy decision |
 
-**Relationship to §4:** Backlog items are **may-add**; §4 lists what we are **not** claiming as full production scope.
+**Relationship to §4:** Backlog items are **planned completion work**; §4 still lists what we are **not** claiming as full production scope.
 
 ---
 
@@ -115,7 +115,7 @@ This slice is **not** bank-regulated production and **does not** substitute for 
 
 **Interview-safe one-liner:** *“Research repo with governed training and CI gates; I added a containerised scoring API to practise deployment-shaped MLOps—not production banking stack, but the same building blocks at student scope.”*
 
-Optional backlog ([§7](#7-future--optional-extensions-backlog) and [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md)) deepens that signal without changing thesis RQs.
+The backlog ([§7](#7-future-extensions-backlog) and [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md)) deepens that signal without changing thesis RQs.
 
 ---
 

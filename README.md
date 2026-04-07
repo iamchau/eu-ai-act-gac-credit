@@ -55,7 +55,7 @@ Tracking: `params.yaml` → `mlflow.tracking_uri` is **`sqlite:///./mlflow.db`**
 
 **Plan & status:** [PROJECT_PLAN.md](PROJECT_PLAN.md) · **Review log:** [docs/DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md).
 
-## Serving (optional — Docker)
+## Serving (MLOps — Docker)
 
 Illustrative **scoring API** for CV/thesis discussion; not bank production. **`artifacts/`** is **gitignored** — train first so **`model.joblib`** and **`feature_schema.json`** exist, then run the container with a **volume** mount.
 

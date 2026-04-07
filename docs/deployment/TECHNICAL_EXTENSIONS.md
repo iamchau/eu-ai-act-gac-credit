@@ -36,7 +36,7 @@
 
 ---
 
-## Planned / backlog (optional)
+## Planned / backlog (to complete)
 
 | ID | Extension | Notes |
 |----|-----------|--------|

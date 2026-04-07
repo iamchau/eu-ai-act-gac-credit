@@ -55,7 +55,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | [stress_experiment.md](stress_experiment.md) | Stress / bias training path |
 | [GITHUB_SETUP.md](GITHUB_SETUP.md), [GATE_C_RUNBOOK.md](GATE_C_RUNBOOK.md) | GitHub / Gate C operations |
 | [DR_VOSS_REVIEW_LOG.md](DR_VOSS_REVIEW_LOG.md) | Implementation & doc review trail |
-| [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md) | Optional Docker/scoring API slice — constraints, flows, thesis fit; **§8** career/portfolio (non-thesis) |
+| [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md) | MLOps Docker/scoring API — constraints, flows, thesis fit; **§8** career/portfolio (non-thesis) |
 | [deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md) | **Catalog:** implemented serving extensions + backlog |
 | [deployment/RUNBOOK.md](deployment/RUNBOOK.md) | Serving: local, Docker, Docker Compose, **`docker load`** from CI artefact |
 | [figures/README.md](figures/README.md) | Thesis figure exports |
