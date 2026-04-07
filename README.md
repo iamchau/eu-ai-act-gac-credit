@@ -18,9 +18,9 @@ Design Science Research (DSR) thesis artifact: MLOps pipeline with fairness (Fai
 |------|---------|
 | `docs/` | Thesis source; **[docs/thesis/MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md)** (draft thesis); [docs/figures/](docs/figures/) for figures |
 | `src/` | Training, evaluation, gate scripts |
-| `serving/` | Optional FastAPI scoring API — see **Serving** below |
+| `serving/` | MLOps FastAPI scoring API — see **Serving** below |
 | `scripts/` | `compare_profiles.py` (P3); `smoke_serving.py` (serving health check) |
-| `.github/workflows/` | GitHub Actions (CI matrix, governed deploy / Gate C) |
+| `.github/workflows/` | GitHub Actions (CI matrix, `docker-build`, governed deploy / Gate C) |
 | `pipelines/` | Placeholder (reserved); workflows live under `.github/workflows/` |
 | `data/` | Raw data (gitignored); DVC-tracked artifacts |
 
@@ -69,7 +69,7 @@ Illustrative **scoring API** for CV/thesis discussion; not bank production. **`a
 
 | Variable | Role |
 |----------|------|
-| `SERVING_API_KEY` | If set, `POST /predict` requires header `X-API-Key` (same value). `/health` and `/version` stay open. |
+| `SERVING_API_KEY` | If set, `POST /predict` requires header `X-API-Key` (same value). `/health`, `/ready`, and `/version` stay open. |
 | `MAX_BODY_BYTES` | Max `Content-Length` for `POST /predict` (default **1048576**). **413** if larger. |
 | `RATE_LIMIT_PREDICT` | Per-IP limit for `POST /predict` (default **`120/minute`**; **`off`** = effectively unlimited). |
 | `LOG_JSON_ACCESS` | `1` (default): one JSON access log line per request to stdout (no request body logged). Set `0` to disable. |
