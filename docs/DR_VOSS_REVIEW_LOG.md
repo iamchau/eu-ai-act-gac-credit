@@ -179,3 +179,18 @@
 - **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8**, **[SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md)**, **[DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md)** — pointers to archived fail JSON.
 
 **Verdict:** Sub-RQ1 **blocking** demonstration is now **artifact-backed** in-repo, not chat-only.
+
+---
+
+## 2026-04-07 — Thesis manuscript (`MANUSCRIPT.md`)
+
+**Approved**
+
+- **[thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md)** — Full draft: abstract, Ch.1–8, references scaffold, appendices (params, compliance pointer, metric JSON); numbers aligned to **`metrics/experiment_comparison.json`**, **`fairness_gate_subrq1_threshold_demo_fail.json`**, **`human_oversight_latency.json`**.  
+- **[thesis/README.md](thesis/README.md)** — Pandoc export to `.docx`.
+
+**Conditions**
+
+- Student **expands** Chapter 2–3 and references to meet **faculty** page and citation rules; **replace** bracketed metadata; **add** figures from [figures/README.md](figures/README.md).
+
+**Verdict:** Thesis is **writable** from the repo; **length** and **legal** citations remain student/supervisor work.

@@ -56,6 +56,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | [GITHUB_SETUP.md](GITHUB_SETUP.md), [GATE_C_RUNBOOK.md](GATE_C_RUNBOOK.md) | GitHub / Gate C operations |
 | [DR_VOSS_REVIEW_LOG.md](DR_VOSS_REVIEW_LOG.md) | Implementation & doc review trail |
 | [figures/README.md](figures/README.md) | Thesis figure exports |
+| [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) | **Thesis draft** (chapters 1–8 + appendices); export via [thesis/README.md](thesis/README.md) |
 
 ---
 
@@ -63,7 +64,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 
 | Reader | Start |
 |--------|--------|
-| **Thesis author (writing)** | [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) (this charter) → [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) → [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) → snippets & citations |
+| **Thesis author (writing)** | [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) (this charter) → [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) → [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) → [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) (draft) → snippets & citations |
 | **Engineer (running code)** | [README.md](../README.md) → [compare_pipelines.md](compare_pipelines.md) |
 | **Examiner traceability** | [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 + committed `metrics/*.json` |
 

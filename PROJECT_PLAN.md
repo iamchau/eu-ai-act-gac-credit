@@ -1,6 +1,6 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (Sub-RQ1 demo evidence + P3 JSON regenerated)
+**Last updated:** 2026-04-07 (thesis MANUSCRIPT.md draft added)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
 
@@ -41,6 +41,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Thesis documentation anchor (2026-04-07):** [THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) — **≥50 pages** budget, journey-stage anchors, table/figure checklist, Word workflow; [figures/README.md](docs/figures/README.md); §10 [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)
 - **Documentation foundation (2026-04-07):** [DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) — authority order, deprecations, full `docs/` map, maintenance triggers
 - **Sub-RQ1 threshold demo (2026-04-07):** Tightened `max_equalized_odds_difference` **0.70 → 0.55** → gate **failed** → archived [`metrics/fairness_gate_subrq1_threshold_demo_fail.json`](metrics/fairness_gate_subrq1_threshold_demo_fail.json); threshold **reverted** to `0.70`; `python scripts/compare_profiles.py` → updated [`metrics/experiment_comparison.json`](metrics/experiment_comparison.json)
+- **Thesis manuscript (2026-04-07):** [docs/thesis/MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — full draft (Intro–Conclusion, appendices); [docs/thesis/README.md](docs/thesis/README.md) — Pandoc → Word
 
 ---
 
@@ -54,7 +55,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 
 ## Current focus
 
-- **Write the thesis** (≥50 pages per program); evidence JSON is in `metrics/` and linked from [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) §8.
+- **Revise and expand** [docs/thesis/MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) (draft thesis) to meet faculty page count and literature depth; export to Word per [docs/thesis/README.md](docs/thesis/README.md); evidence JSON in `metrics/` ([THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) §8).
 
 ---
 

@@ -8,6 +8,8 @@ Use this file as the **single map** between **project work** (code, runs, CI) an
 
 **Canonical precedence & deprecations:** [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md).
 
+**Draft thesis file:** [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) (expand literature and figures to reach programme page count).
+
 ---
 
 ## Dr. Voss — compliance guardrails (length is not a substitute for rigor)
