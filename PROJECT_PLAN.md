@@ -1,6 +1,6 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (gitignore Word export; `verify_thesis_metrics.py` + multi-file `fix_manuscript_inline_md.py`; PROJECT_PLAN inline-code cleanup)
+**Last updated:** 2026-04-07 (P3 maintenance: `fix_manuscript_inline_md.py` on PROJECT_PLAN + MANUSCRIPT; `verify_thesis_metrics.py` OK)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
 
@@ -69,6 +69,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Foundation alignment (2026-04-07):** [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) — **§7** Results bullet (reader note, §6.4); **§8** “Chapter 6 rule” + evidence table **MLOps** row (`/metrics`, GHCR); [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) **§6.4** ties to Chapter 6 lead-in
 - **Documentation charter (2026-04-07):** [DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) — **§1** paragraph + **§2** table row (Results discipline); **§5** maintenance row; [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) **§6.3** list formatting fix
 - **Repo hygiene (2026-04-07):** [.gitignore](.gitignore) — `thesis-draft.docx`, `~$*.docx`; [scripts/verify_thesis_metrics.py](scripts/verify_thesis_metrics.py) — JSON sanity check for thesis; [scripts/fix_manuscript_inline_md.py](scripts/fix_manuscript_inline_md.py) — optional path args; [PROJECT_PLAN.md](PROJECT_PLAN.md) — **`…`** inline-code normalization
+- **Markdown hygiene (maintenance):** [PROJECT_PLAN.md](PROJECT_PLAN.md) + [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — rerun automated **`…`** normalization; thesis metrics JSON verify pass
 
 ---
 
@@ -104,3 +105,4 @@ This file is the **single overview** for scope, what is done, and what comes nex
 2. Edit **Current focus** to one short line.
 3. Bump **Last updated** to today’s date.
 4. Optional: add MLflow run id / git commit next to completed items for audit trail.
+
