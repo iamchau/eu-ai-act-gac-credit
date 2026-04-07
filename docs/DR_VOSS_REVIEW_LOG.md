@@ -143,3 +143,14 @@
 - **params.yaml:** `gates.human_oversight.enabled_in_ci` clarified as **documentation-only** (Gate C is workflow-driven).
 
 **Verdict:** Reduces silent **thesis↔metrics** mismatch when students re-train without re-running **`compare_profiles.py`**.
+
+---
+
+## 2026-04-07 — Documentation foundation (charter)
+
+**Approved**
+
+- **[DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md)** — Single **precedence** table (code → thesis spine → hub); **deprecations** (MLflow, Gate C flag, metrics/git); **full doc map**; **maintenance triggers**; reader entry points.  
+- **Wired** into [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §10, [README.md](../README.md), [AGENTS.md](../AGENTS.md), [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md), [THESIS_EVAL_NOTES.md](THESIS_EVAL_NOTES.md), [figures/README.md](figures/README.md), [PROJECT_PLAN.md](../PROJECT_PLAN.md).
+
+**Verdict:** Thesis documentation has an explicit **foundation**; conflicts resolve by **procedure**, not guesswork.

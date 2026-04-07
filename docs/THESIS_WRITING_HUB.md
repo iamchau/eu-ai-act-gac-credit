@@ -6,6 +6,8 @@ Use this file as the **single map** between **project work** (code, runs, CI) an
 
 **Scope of this hub:** Page/figure **planning** and **workflow**—not a second copy of RQs or legal mapping (those stay in [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)). If this file and the foundation **conflict**, **foundation wins**—then fix this hub.
 
+**Canonical precedence & deprecations:** [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md).
+
 ---
 
 ## Dr. Voss — compliance guardrails (length is not a substitute for rigor)
@@ -61,15 +63,16 @@ Your program may use **page** or **word** limits. **50 pages** in Word usually m
 
 ## 3. Documentation reading order (thesis author)
 
-1. [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) — spine: RQs, DSR, scope, evidence index  
-2. [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) — **this file**: pages, figures, journey  
-3. [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) — paste-ready paragraphs and tables  
-4. [COMPLIANCE_MATRIX.md](COMPLIANCE_MATRIX.md) — Act ↔ controls (scaffold → EUR-Lex in thesis)  
-5. [compare_pipelines.md](compare_pipelines.md) — standard vs governed  
-6. [human_oversight.md](human_oversight.md) — Gate C / Sub-RQ2 definition  
-7. [THESIS_EVAL_NOTES.md](THESIS_EVAL_NOTES.md) — evaluation checklist  
-8. [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) / [stress_experiment.md](stress_experiment.md) — demos  
-9. [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md) — legal primary source  
+1. [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) — charter: precedence, deprecations, full doc map  
+2. [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) — spine: RQs, DSR, scope, evidence index  
+3. [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) — **this file**: pages, figures, journey  
+4. [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) — paste-ready paragraphs and tables  
+5. [COMPLIANCE_MATRIX.md](COMPLIANCE_MATRIX.md) — Act ↔ controls (scaffold → EUR-Lex in thesis)  
+6. [compare_pipelines.md](compare_pipelines.md) — standard vs governed  
+7. [human_oversight.md](human_oversight.md) — Gate C / Sub-RQ2 definition  
+8. [THESIS_EVAL_NOTES.md](THESIS_EVAL_NOTES.md) — evaluation checklist  
+9. [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) / [stress_experiment.md](stress_experiment.md) — demos  
+10. [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md) — legal primary source  
 
 ---
 

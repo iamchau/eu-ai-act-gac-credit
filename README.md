@@ -2,6 +2,10 @@
 
 Design Science Research (DSR) thesis artifact: MLOps pipeline with fairness (Fairlearn), explainability (SHAP), and human-oversight gates (CI/CD), evaluated against a standard performance-only pipeline.
 
+## Documentation
+
+**Charter** (precedence, deprecations, full thesis-doc map): [docs/DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md). Use it to resolve **any** conflict between README text and thesis docs—then fix the weaker document.
+
 ## Stack (target)
 
 - Python, MLflow, DVC  
@@ -45,7 +49,7 @@ Tracking: `params.yaml` → `mlflow.tracking_uri` is **`sqlite:///./mlflow.db`**
 
 **Foundation:** MLflow **SQLite** store (`mlflow.db`); run context (**git**, **params**, **dvc.lock** digests) on each train. Lockfile: [requirements.lock.txt](requirements.lock.txt). **Compliance map:** [docs/COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md). **Sub-RQ1 policy demo:** [docs/SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md).
 
-**Thesis writing (start here):** [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) — **≥50 pages**, tables/figures plan, journey-stage anchors. Then: [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) · [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md) · [docs/THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md) · [docs/SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md).
+**Thesis writing:** [docs/DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) (charter) → [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) (**≥50 pages**, tables/figures plan, anchors) → [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) · [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md) · [docs/THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md) · [docs/SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md).
 
 **Plan & status:** [PROJECT_PLAN.md](PROJECT_PLAN.md) · **Review log:** [docs/DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md).
 

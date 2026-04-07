@@ -1,5 +1,7 @@
 # Thesis figures (exports)
 
+**Documentation charter:** [../DOCUMENTATION_FOUNDATION.md](../DOCUMENTATION_FOUNDATION.md).
+
 Store **thesis-bound** visuals here so they stay next to the narrative docs. **Do not** commit large binary churn without need—your faculty may prefer figures only in Word; this folder is the **working** location for drafts and PNG/PDF exports.
 
 **Master checklist:** [THESIS_WRITING_HUB.md](../THESIS_WRITING_HUB.md) §5.

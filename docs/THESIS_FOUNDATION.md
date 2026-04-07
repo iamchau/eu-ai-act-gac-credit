@@ -180,6 +180,7 @@ Paste-ready text and checklists live outside this spine so the foundation stays 
 | [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md) | Optional **Sub-RQ2** wordings (latency default; traceability; oversight design; trade-offs) |
 | [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) | **≥50 pages**, journey **anchors**, table/figure plan, Word workflow, pre-submission pass; **subordinate** to this file for RQs/evidence |
 | [figures/README.md](figures/README.md) | Thesis **PNG/PDF**, **captions**, alt text, resolution |
+| [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) | **Authority order**, deprecations, maintenance triggers, full `docs/` index |
 
 ---
 
