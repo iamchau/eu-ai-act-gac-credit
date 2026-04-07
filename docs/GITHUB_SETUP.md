@@ -1,24 +1,24 @@
 # GitHub: remote, CI, and Gate C
 
-Do these once so **CI runs on push** and you can collect **`human_oversight_latency.json`**.
+## 1. Repo and remote (done if you followed the push)
 
-## 1. Create the repo and add `origin`
+**Repo:** [iamchau/eu-ai-act-gac-credit](https://github.com/iamchau/eu-ai-act-gac-credit)
 
-On GitHub: **New repository** (empty, no README). Then locally:
+Local (already applied in this project):
 
 ```bash
-cd /path/to/eu-ai-act-gac-credit
-git remote add origin https://github.com/YOUR_USER/YOUR_REPO.git
-git push -u origin master
+git remote add origin https://github.com/iamchau/eu-ai-act-gac-credit.git
+git branch -M main
+git push -u origin main
 ```
-
-(Use `main` instead of `master` if that is your default branch.)
 
 ## 2. Environment for Gate C
 
 **Settings** → **Environments** → **New environment** → name: **`model-governance`**.
 
 - Enable **Required reviewers** and add at least one reviewer (yourself is fine for a pilot).
+
+Without reviewers, the approval job may still run immediately; latency is smaller but still recorded.
 
 ## 3. Run governed deploy (latency sample)
 
@@ -33,3 +33,11 @@ Keep that JSON for Sub-RQ2 in the thesis.
 ## 4. CI matrix
 
 Every push/PR runs **standard** and **governed** jobs (see `.github/workflows/ci.yml`). Use run URLs and job durations from the Actions UI for the “velocity / overhead” discussion.
+
+## 5. Optional: GitHub CLI
+
+If you install the [GitHub CLI](https://cli.github.com/), you can trigger workflows from the terminal after `gh auth login`:
+
+```bash
+gh workflow run governed-deploy.yml
+```

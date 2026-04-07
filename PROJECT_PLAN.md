@@ -28,35 +28,35 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - Gate C: `governed_deploy.yml` — Environment `model-governance`, `metrics/human_oversight_latency.json` (see `docs/human_oversight.md`)
 - CI matrix: `ci.yml` runs standard (train only) and governed (train + gates)
 - `docs/compare_pipelines.md` — standard vs governed comparison table
-- **`scripts/compare_profiles.py`** + **`metrics/experiment_comparison.json`** — local P3 tabulation (same seed)
-- **`docs/GITHUB_SETUP.md`** — remote, Environment, governed-deploy
-- **`docs/THESIS_EVAL_NOTES.md`** — limitations + artifact checklist for writing
+- `scripts/compare_profiles.py` + `metrics/experiment_comparison.json` — local P3 tabulation (same seed)
+- `docs/GITHUB_SETUP.md` — remote, Environment, governed-deploy
+- `docs/THESIS_EVAL_NOTES.md` — limitations + artifact checklist for writing
+- **GitHub:** `origin` → `https://github.com/iamchau/eu-ai-act-gac-credit.git`, branch **`main`**, pushed
 
 ---
 
 ## Next (priority order)
 
-1. **GitHub (you):** follow `docs/GITHUB_SETUP.md` — add `origin`, push, create Environment **`model-governance`**, run **`governed_deploy`**, save **`human_oversight_latency.json`**.
-2. **Git identity (you):** replace placeholder email if needed: `git config user.email "…"`.
-3. **Thesis writing:** use `docs/THESIS_EVAL_NOTES.md` + paste tables from `experiment_comparison.json`; add MLflow run links from UI.
-4. **Optional:** re-run `python scripts/compare_profiles.py` after any `params.yaml` change; commit the new JSON for traceability.
+1. **Gate C sample (you):** In GitHub: create Environment **`model-governance`** (optional reviewers) → **Actions** → **governed-deploy** → Run workflow → download **`human-oversight-latency-*`** artifact → keep `human_oversight_latency.json` for Sub-RQ2. Details: [docs/GITHUB_SETUP.md](docs/GITHUB_SETUP.md).
+2. **Git identity (you):** If needed: `git config user.email "your@email"` (global or repo).
+3. **Thesis writing:** Use [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) + tables from `experiment_comparison.json`; cite MLflow run URLs from the UI.
+4. **Optional:** After `params.yaml` changes, run `python scripts/compare_profiles.py` and commit updated JSON.
 
 ---
 
 ## Current focus
 
-- **Push to GitHub** and collect **one** Gate C latency artifact; finish thesis chapters using **`experiment_comparison.json`** + eval notes.
+- **Collect one Gate C latency artifact** on GitHub, then **draft thesis evaluation** using `experiment_comparison.json` + eval notes.
 
 ---
 
 ## Blockers / decisions
 
-| Item                              | Owner | Notes                                                                                         |
-| --------------------------------- | ----- | --------------------------------------------------------------------------------------------- |
-| Git remote + push                 | You   | See `docs/GITHUB_SETUP.md`                                                                    |
-| Fairness threshold `0.70`         | You   | Document sensitivity; tighten after mitigation experiments                                    |
-| `dvc.yaml` uses Windows venv path | You   | On Linux/Mac, change `cmd` to `.venv/bin/python src/...`                                      |
-| Environment `model-governance`    | You   | Add reviewers in repo Settings for real Gate C waits                                          |
+| Item                              | Owner | Notes                                                      |
+| --------------------------------- | ----- | ---------------------------------------------------------- |
+| Environment `model-governance`    | You   | Create in repo Settings; add reviewers for real approval waits |
+| Fairness threshold `0.70`         | You   | Document sensitivity; tighten after mitigation experiments |
+| `dvc.yaml` uses Windows venv path | You   | On Linux/Mac, change `cmd` to `.venv/bin/python src/...`   |
 
 ---
 
