@@ -1,6 +1,7 @@
 # Agent context — EU AI Act GaC thesis
 
 - **Documentation charter:** `docs/DOCUMENTATION_FOUNDATION.md` — precedence when docs disagree; MLflow/Gate C/metrics truths; maintenance triggers.
+- **Thesis writing voice:** `.cursor/rules/thesis-excellence-mentor.mdc` — examiner-grade structure and prose when editing `docs/thesis/**` and `docs/THESIS_*.md` (works **with** Dr. Voss; compliance still wins on substance).
 - **Goal:** Working MLOps instantiation with Governance-as-Code (fairness + explainability + human-oversight gates) vs a standard pipeline; DSR evaluation.
 - **Data:** South German Credit Dataset (sensitive attributes for bias testing).
 - **Non-goals:** Do not invent EU article text; cite or quote official sources when making legal claims.

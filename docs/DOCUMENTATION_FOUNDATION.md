@@ -62,6 +62,8 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 
 ## 4. Who starts where?
 
+**Cursor:** For thesis **prose quality** (structure, examiner psychology), the **Thesis Excellence Mentor** rule applies when editing `docs/thesis/**` and thesis Markdown—alongside **Dr. Voss** (compliance); see `.cursor/rules/thesis-excellence-mentor.mdc`.
+
 | Reader | Start |
 |--------|--------|
 | **Thesis author (writing)** | [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) (this charter) → [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) → [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) → [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) (draft) → snippets & citations |
