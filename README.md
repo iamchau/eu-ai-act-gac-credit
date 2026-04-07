@@ -44,7 +44,7 @@ Tracking: MLflow UI → `mlruns/` (see `params.yaml` → `mlflow.tracking_uri`).
 
 **Foundation:** MLflow **SQLite** store (`mlflow.db`); run context (**git**, **params**, **dvc.lock** digests) on each train. Lockfile: [requirements.lock.txt](requirements.lock.txt). **Compliance map:** [docs/COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md). **Sub-RQ1 policy demo:** [docs/SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md).
 
-**Thesis writing:** [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) (positioning, RQ answers, limitations) · [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md) · [docs/THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md).
+**Thesis writing:** [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) (positioning, RQ answers, limitations) · [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md) · [docs/THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md) · [docs/SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md) (optional Sub-RQ2 focus).
 
 **Plan & status:** [PROJECT_PLAN.md](PROJECT_PLAN.md) · **Review log:** [docs/DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md).
 

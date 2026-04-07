@@ -76,3 +76,15 @@
 - **[THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md):** §1b Norway/Annex III; §1c RQ one-liners; §2.4 Sub-RQ2 scope; §5 evidence checklist.
 
 **Verdict:** Reduces examiner risk from **informal proposal phrasing** and **misread Sub-RQ2** as banking latency.
+
+---
+
+## 2026-04-07 — Sub-RQ2 alternatives + Discussion stubs
+
+**Approved**
+
+- **[SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md)** — Default **latency** Sub-RQ2 plus optional **traceability**, **oversight-as-design**, and **trade-offs** wordings; evidence notes; **do not** stack without faculty approval.  
+- **[THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md)** — **Art. 14** functional-analogue one-liner; **§3b** Sub-RQ relationship; **§3c** velocity vs governance; evidence checklist points to alternatives doc.  
+- **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)** — Core-claim **note** if Sub-RQ2 is swapped; §2 link; §10 index.
+
+**Verdict:** Supervisory choice on Sub-RQ2 is **documented**; default repo thesis remains **latency**-aligned.

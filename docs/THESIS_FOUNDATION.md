@@ -10,6 +10,8 @@ Use this as the **single spine** for writing. If a paragraph does not connect to
 
 **Core claim (defendable):** You **design and evaluate** a **GaC MLOps instantiation** (automated fairness + explainability + human-oversight **gates** in CI/CD) for **high-risk credit scoring**, and you **measure** (i) **policy effectiveness** vs a **standard** pipeline and (ii) **human-in-the-loop latency** in a **controlled CI proxy**.
 
+**Note:** If you adopt an **alternative Sub-RQ2** (traceability, oversight-as-design, or trade-offs), replace clause **(ii)** consistently in the Introduction, Results, and evidence index—see [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md).
+
 **Do not claim:** That a Norwegian bank has adopted this system, that EU law is “fully implemented” in code, or that one dataset proves regulatory acceptance.
 
 ---
@@ -73,6 +75,8 @@ Use these **instead of** the informal proposal sentences so examiners do not quo
 #### Sub-RQ parity (for Discussion one paragraph)
 
 Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries the main **evaluative** comparison (standard vs governed + blocking demo); Sub-RQ2 is a **narrow** operational measure of **one** instantiation’s handoff delay. **State that** so Sub-RQ2 is not read as weak banking evidence or as inflated latency science.
+
+**Optional Sub-RQ2 formulations** (latency default; traceability / design / trade-offs): [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md).
 
 ---
 
@@ -167,9 +171,10 @@ Paste-ready text and checklists live outside this spine so the foundation stays 
 
 | Document | Use |
 |----------|-----|
-| [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) | **Thesis-ready RQ one-liners**; Norway/Annex III paragraph; **operationalization** tables; Sub-RQ2 **in/out of scope**; **evidence checklist**; answer sketches; **single** limitations block |
+| [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) | **Thesis-ready RQ one-liners**; Norway/Annex III paragraph; **operationalization** tables; Sub-RQ2 **in/out of scope**; **evidence checklist**; answer sketches; **§3b–3c** Discussion (Sub-RQ relationship, velocity vs governance); **Art. 14** analogue sentence; **single** limitations block |
 | [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md) | **EUR-Lex** link and citation discipline for Regulation (EU) 2024/1689 |
 | [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md) | What to **remove**, **tighten**, and **keep** in the main thesis text |
+| [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md) | Optional **Sub-RQ2** wordings (latency default; traceability; oversight design; trade-offs) |
 
 ---
 

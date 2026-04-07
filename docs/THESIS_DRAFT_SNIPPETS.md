@@ -86,6 +86,21 @@ Compared to the **standard** profile, the **governed** profile adds automated fa
 
 Human-in-the-loop is modeled as a **required reviewer** on a protected GitHub **Environment** before a deploy-style job. **Latency** in this proxy is the **automation-to-approval-job** interval (on the order of **seconds** in sample runs—replace with your measured value and cite `human_oversight_latency.json` and workflow URL). This measures **CI orchestration delay**, not end-to-end credit decision time or legal signing workflows.
 
+**Art. 14 (functional analogue — one sentence, Methodology or Sub-RQ2):**  
+The GitHub Environment approval is a **technical analogue** for “human oversight before release” in this DSR artifact; it is **not** a claim that the setup satisfies Article 14 of Regulation (EU) 2024/1689 as a legal matter—verify wording against [EUR-Lex](EU_AI_ACT_CITATIONS.md) and your supervisor.
+
+---
+
+### 3b. Discussion — how the Sub-RQs relate (paste paragraph)
+
+Sub-RQ1 and Sub-RQ2 answer **different** questions and are **not** equally general. Sub-RQ1 addresses whether the **governed** pipeline **differs** from the **standard** path under controlled conditions and whether policy can **block** release when operational criteria fail. Sub-RQ2 addresses **orchestration overhead** for inserting a **human gate** in **this** CI design—not the latency of a real credit decision in a bank, reviewer judgment time, or legal signing. Together they support a **complementary** reading: **effectiveness** of automated gates (Sub-RQ1) and **cost** of the human handoff in the proxy (Sub-RQ2).
+
+---
+
+### 3c. Discussion — velocity vs governance trade-off (optional paragraph)
+
+The **standard** profile optimizes for **training and release velocity** under a performance-only objective. The **governed** profile adds **fairness and SHAP** checks and a **mandatory** human step before a deploy-style job, trading **some** automation speed and **some** CI orchestration delay for **observable** policy enforcement. This trade-off is **instantiation-specific**; production systems would add organizational review time not captured here.
+
 ---
 
 ## 4. Limitations — single consolidated block
@@ -113,7 +128,8 @@ Human-in-the-loop is modeled as a **required reviewer** on a protected GitHub **
 - [ ] `metrics/human_oversight_latency.json` + **workflow run URL**  
 - [ ] State **n** (one run vs several) and that the measure is **automation → approval job**, not banking workflow  
 - [ ] **Optional:** One sentence that Sub-RQ1 and Sub-RQ2 are **complementary** (effectiveness vs handoff delay), not equally general claims  
+- [ ] If changing Sub-RQ2 focus (traceability, design, trade-offs): see [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md) and update Introduction + [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §1 / §8  
 
 ---
 
-*Cross-reference: [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md), [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md).*
+*Cross-reference: [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md), [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md), [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md).*
