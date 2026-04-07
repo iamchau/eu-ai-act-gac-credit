@@ -1,0 +1,11 @@
+%% Figure 2 — Conceptual: ci.yml matrix (standard vs governed jobs)
+%% Thesis caption: CI proxy; not a bank deployment.
+
+flowchart TB
+  subgraph TR["Trigger: push / PR"]
+    M[matrix: pipeline.profile]
+  end
+  M --> S[Job: standard — train only]
+  M --> G[Job: governed — train + Gate A + Gate B]
+  S --> OS[Metrics / MLflow]
+  G --> OG[Metrics + gates / MLflow]

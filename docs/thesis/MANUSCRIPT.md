@@ -138,7 +138,7 @@ The study follows a **DSR** path: build the instantiation, compare **standard** 
 
 **Primary source:** UCI Machine Learning Repository, **South German Credit (UPDATE)** (`SouthGermanCredit.asc`), dataset ID 573. **Provenance** string logged to MLflow: `uci-asc:SouthGermanCredit.asc`. If local raw files are missing, the training script may fall back to OpenML `credit-g`; the thesis reports the provenance recorded for the runs cited here.
 
-**Binding for Chapter 6 (P3):** Tables and metrics for the **standard vs governed** comparison **must** match `**metrics/experiment_comparison.json`**—including its `**git_commit**`, `**data_provenance**`, and embedded metrics. For the committed file cited in Section 6.1, lineage is `**uci-asc:SouthGermanCredit.asc**` (aligned with CI and `scripts/compare_profiles.py`). A different local raw path does not override the cited JSON unless you regenerate and recommit that file.
+**Binding for Chapter 6 (P3):** Tables and metrics for the **standard vs governed** comparison **must** match **`metrics/experiment_comparison.json`**—including its **`git_commit`**, **`data_provenance`**, and embedded metrics. For the committed file cited in Section 6.1, lineage is **`uci-asc:SouthGermanCredit.asc`** (aligned with CI and `scripts/compare_profiles.py`). A different local raw path does not override the cited JSON unless you regenerate and recommit that file.
 
 **Split:** 75% train / 25% validation, `random_state=42`, stratified on the target. **Sensitive column** for fairness: `famges` (fallback `personal_status` if absent).
 
@@ -151,11 +151,11 @@ The study follows a **DSR** path: build the instantiation, compare **standard** 
 
 ## 4.4 Gate roles and evidence binding
 
-For **Sub-RQ1**, the **fairness** gate (Gate A) carries the **demonstrated blocking** story: the archived threshold-tightening run (`metrics/fairness_gate_subrq1_threshold_demo_fail.json`) records `**gate_passed: false`** when the fairness budget is tighter than the observed equalized-odds difference on the validation split.
+For **Sub-RQ1**, the **fairness** gate (Gate A) carries the **demonstrated blocking** story: the archived threshold-tightening run (`metrics/fairness_gate_subrq1_threshold_demo_fail.json`) records **`gate_passed: false`** when the fairness budget is tighter than the observed equalized-odds difference on the validation split.
 
-The **SHAP** gate (Gate B) **mandates** an explainability artefact (`artifacts/shap_report.md`) and metrics (`metrics/shap_gate.json`). With the baseline `**min_top_mean_abs_shap: 0.0`** in `params.yaml`, Gate B **documents** SHAP-based attribution for the validation set and **passes** under normal runs; it does **not** provide a second independent numeric failure mode in this baseline configuration (raising `min_top_mean_abs_shap` would be required to make SHAP-driven failure likely). Optional **stress** / bias-injection runs target **fairness** outcomes; see `docs/stress_experiment.md`.
+The **SHAP** gate (Gate B) **mandates** an explainability artefact (`artifacts/shap_report.md`) and metrics (`metrics/shap_gate.json`). With the baseline **`min_top_mean_abs_shap: 0.0`** in `params.yaml`, Gate B **documents** SHAP-based attribution for the validation set and **passes** under normal runs; it does **not** provide a second independent numeric failure mode in this baseline configuration (raising `min_top_mean_abs_shap` would be required to make SHAP-driven failure likely). Optional **stress** / bias-injection runs target **fairness** outcomes; see `docs/stress_experiment.md`.
 
-**Evidence binding:** Claims in Chapter 6 that rest on the profile comparison **must** align with `**metrics/experiment_comparison.json`** (Sections 4.2 and 4.4). On-disk `metrics/fairness_gate.json` from a **later** local run may differ; the **thesis table** is tied to the embedded objects inside `experiment_comparison.json` unless you state otherwise.
+**Evidence binding:** Claims in Chapter 6 that rest on the profile comparison **must** align with **`metrics/experiment_comparison.json`** (Sections 4.2 and 4.4). On-disk `metrics/fairness_gate.json` from a **later** local run may differ; the **thesis table** is tied to the embedded objects inside `experiment_comparison.json` unless you state otherwise.
 
 ## 4.5 Ethics and limitations (methods)
 
@@ -173,7 +173,7 @@ The **SHAP** gate (Gate B) **mandates** an explainability artefact (`artifacts/s
 
 - **Python 3.12** (CI); scikit-learn logistic regression; **MLflow** tracking (`sqlite:///./mlflow.db`); **DVC** for pipeline stages; **Fairlearn** (equalized odds difference); **SHAP** (mean |SHAP| on validation).  
 - **CI:** `.github/workflows/ci.yml` matrix **standard** vs **governed**.  
-- **Gate C:** `.github/workflows/governed_deploy.yml`; Environment `**model-governance`**; latency written to `metrics/human_oversight_latency.json`.
+- **Gate C:** `.github/workflows/governed_deploy.yml`; Environment **`model-governance`**; latency written to `metrics/human_oversight_latency.json`.
 
 ## 5.2 Gates
 
@@ -181,7 +181,7 @@ The **SHAP** gate (Gate B) **mandates** an explainability artefact (`artifacts/s
 | Gate              | Script                       | Pass criterion (baseline)                                                               |
 | ----------------- | ---------------------------- | --------------------------------------------------------------------------------------- |
 | A Fairness        | `src/gate_fairness.py`       | `abs(equalized_odds_difference) ≤ max_equalized_odds_difference` (default **0.70**)     |
-| B SHAP            | `src/gate_shap.py`           | Top feature mean |SHAP| ≥ `min_top_mean_abs_shap` (**0.0** — artefact + pass; see §4.4) |
+| B SHAP            | `src/gate_shap.py`           | Top feature mean \|SHAP\| ≥ `min_top_mean_abs_shap` (**0.0** — artefact + pass; see §4.4) |
 | C Human oversight | GitHub Actions + Environment | Manual approval before second job; latency JSON                                         |
 
 
@@ -195,7 +195,7 @@ Each training run logs **git commit** (short), **params.yaml** SHA-16, and **dvc
 
 ## 5.4 MLOps scoring API (illustrative)
 
-The repository **includes** a **containerised** FastAPI service (`serving/`, Docker) exposing **`/health`** (liveness), **`/ready`** (readiness), **`/version`**, **`/metrics`** (minimal process stats), and **`/predict`** for the **same** sklearn pipeline as offline training; training also emits **`artifacts/feature_schema.json`** for a documented inference column contract. Continuous integration **builds** a Docker image after training, uploads a **tarball** artefact for every run, and **on `push` and `workflow_dispatch`** (not **`pull_request`**) also pushes the image to **GitHub Container Registry (GHCR)**—still **not** a production release or bank-grade operation. Optional controls (**API key** on predict, **request body limit**, **per-IP rate limit**, **structured access logs**) are **illustrative** operations hygiene—not bank security or compliance tooling. This supports **Primary RQ** “instantiation” and **Discussion** (traceable deployment-shaped artefact) but is **not** claimed as regulated production deployment: no service-level guarantees, no integration with core banking systems, and the model artefact remains **research-grade** on public data. Sub-RQ1 and Sub-RQ2 evidence remain tied to committed metrics and CI unless extended by explicit new experiments.
+The repository **includes** a **containerised** FastAPI service (`serving/`, Docker) exposing **`/health`** (liveness), **`/ready`** (readiness), **`/version`**, **`/metrics`** (minimal process stats), and **`/predict`** for the **same** sklearn pipeline as offline training; training also emits **`artifacts/feature_schema.json`** for a documented inference column contract. Continuous integration **builds** a Docker image after training, uploads a **tarball** artefact for every run, and **on** `push` **and** `workflow_dispatch` (not **`pull_request`**) also pushes the image to **GitHub Container Registry (GHCR)**—still **not** a production release or bank-grade operation. Optional controls (**API key** on predict, **request body limit**, **per-IP rate limit**, **structured access logs**) are **illustrative** operations hygiene—not bank security or compliance tooling. This supports **Primary RQ** “instantiation” and **Discussion** (traceable deployment-shaped artefact) but is **not** claimed as regulated production deployment: no service-level guarantees, no integration with core banking systems, and the model artefact remains **research-grade** on public data. Sub-RQ1 and Sub-RQ2 evidence remain tied to committed metrics and CI unless extended by explicit new experiments.
 
 ---
 
@@ -239,7 +239,7 @@ This demonstrates **executable** policy: **identical** code and data, **stricter
 
 From `metrics/human_oversight_latency.json` (workflow sample):
 
-- `**human_oversight_latency_seconds`:** 7  
+- **`human_oversight_latency_seconds`:** 7  
 - **Workflow run:** `https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560`
 
 This measures **GitHub-mediated** delay (gates complete → approval job start), including Environment approval wait when protection is enabled—not end-to-end bank processing.

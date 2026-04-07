@@ -119,7 +119,8 @@ Place exports and drafts under [figures/](figures/) (see [figures/README.md](fig
 5. **Track** page count in Word using the **same rules** your program uses (body-only vs everything). Aim **≥ 50** per that definition.  
 6. **References:** Zotero / EndNote; pin **EUR-Lex** snapshot date for the AI Act.  
 7. **Figures in Word:** Add **alt text** (accessibility); keep a **list of figures/tables** updated for the examiner PDF.  
-8. **Reproducibility line** in appendix: **git commit** (short SHA) matching the metrics you quote—see MLflow tags / `experiment_comparison.json`.
+8. **Reproducibility line** in appendix: **git commit** (short SHA) matching the metrics you quote—see MLflow tags / `experiment_comparison.json`.  
+9. **Track A — Appendix E** in [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md): walk every row against the **committed** repo before locking Results / PDF (see [PROJECT_JOURNEY.md](PROJECT_JOURNEY.md) §A).
 
 ---
 
@@ -127,6 +128,8 @@ Place exports and drafts under [figures/](figures/) (see [figures/README.md](fig
 
 - [ ] Page count meets program rule (**≥ 50** with tables/figures per their definition).  
 - [ ] Every RQ has an **answer paragraph** (snippets §3 + your numbers).  
+- [ ] **Chapter 6 rule** ([THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)): Results tables and numbers match **committed** JSON and the git SHA embedded in `experiment_comparison.json`—no manual metrics.  
+- [ ] **Appendix E** (Track A) in [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) verified against committed JSON and `params.yaml`.  
 - [ ] [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 evidence index matches **committed** JSON and run URLs.  
 - [ ] [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §9 Dr. Voss checklist complete.  
 - [ ] Appendices: `params.yaml` excerpt, gate JSON, optional MLflow screenshot.  

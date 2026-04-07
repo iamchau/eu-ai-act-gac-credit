@@ -37,13 +37,22 @@ Each figure in the thesis PDF should carry:
 
 ---
 
+## Source files (Mermaid)
+
+| File | Thesis figure | Export |
+|------|----------------|--------|
+| [Fig01_gac_architecture.mmd](Fig01_gac_architecture.mmd) | Figure 1 — standard vs governed + gates | `mmdc -i Fig01_gac_architecture.mmd -o Fig01_gac_architecture.png` (see header comment) |
+| [Fig02_ci_matrix.mmd](Fig02_ci_matrix.mmd) | Figure 2 — conceptual CI matrix | same |
+
+Same diagrams are duplicated for convenience in [thesis/MANUSCRIPT.md](../thesis/MANUSCRIPT.md) Appendix F (Figure 1).
+
 ## Suggested exports
 
 | Asset | How |
 |-------|-----|
-| Architecture | draw.io, PowerPoint, or Mermaid → PNG/PDF |
+| Architecture | `Fig01_gac_architecture.mmd` or draw.io, PowerPoint, or Mermaid → PNG/PDF |
 | MLflow | Screenshot of run with `git_commit`, `params_yaml_sha16` tags |
-| GitHub Actions | Screenshot of successful matrix workflow run |
+| GitHub Actions | Screenshot of successful matrix workflow run **or** `Fig02_ci_matrix.mmd` |
 | SHAP | Render from `artifacts/shap_report.md` or notebook |
 
 ---

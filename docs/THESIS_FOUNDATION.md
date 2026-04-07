@@ -129,7 +129,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 3. **Theoretical framework** — DSR (Hevner); GaC definition; **Norway / Annex III** context (short).  
 4. **Methodology** — DSR process; data; **standard vs governed**; gates; **evaluation metrics**; **limitations**.  
 5. **Instantiation** — Architecture (reference repo); Gate A/B/C; **tooling** (MLflow, DVC, Actions).  
-6. **Results** — **Sub-RQ1** (comparison + policy/threshold demo); **Sub-RQ2** (latency JSON + run URL); **stress** optional.  
+6. **Results** — **Committed** metrics only (manuscript **reader note** under “Results”); **Sub-RQ1** (comparison + policy/threshold demo); **Sub-RQ2** (latency JSON + run URL); **§6.4** integrated reading; **stress** optional.  
 7. **Discussion** — Design principles; trade-offs (velocity vs control); **what banks could adapt**; **limits**.  
 8. **Conclusion** — Answers to RQs; future work; **transposition** of EU rules in Norway (if required by your program).  
 9. **References** — **EUR-Lex** for Act; papers you actually cite.  
@@ -139,6 +139,8 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 
 ## 8. Evidence index (bind text to repo)
 
+**Chapter 6 rule:** The thesis **Results** chapter in [`MANUSCRIPT.md`](thesis/MANUSCRIPT.md) must **not** introduce numbers that are **not** in **committed** JSON (or the **git commit** recorded inside `experiment_comparison.json`). **Interpretation** belongs in **Discussion**; **reliability** of measures is **§4.8** of the manuscript.
+
 | Thesis claim | File / artifact |
 |--------------|-----------------|
 | Standard vs governed | `metrics/experiment_comparison.json`
@@ -147,7 +149,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 | Gate C (Sub-RQ2) | `metrics/human_oversight_latency.json` + workflow URL
 | Reproducibility | MLflow tags (`git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`); `dvc.lock`
 | Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + `metrics/fairness_gate_subrq1_threshold_demo_fail.json` (**`gate_passed: false`**) or your own export after threshold change |
-| MLOps scoring API (Primary RQ / discussion) | `serving/`, [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md); `/health`, `/ready`, `/version`, `/predict` when running |
+| MLOps scoring API (Primary RQ / discussion) | `serving/`, [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md); `/health`, `/ready`, `/version`, `/metrics`, `/predict` when running; CI **GHCR** push per [RUNBOOK.md](deployment/RUNBOOK.md) |
 | Train/serve feature contract | `artifacts/feature_schema.json` from `src/train.py`; catalog [docs/deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md) |
 | Docker image CI artefact | `.github/workflows/docker-build.yml` → downloadable `serving-image-<sha>.tar` (train → `docker build`); [docs/deployment/RUNBOOK.md](deployment/RUNBOOK.md) |
 

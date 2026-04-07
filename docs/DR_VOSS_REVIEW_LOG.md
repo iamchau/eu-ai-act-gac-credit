@@ -4,6 +4,130 @@
 
 ---
 
+## 2026-04-07 — DOCUMENTATION_FOUNDATION ↔ Chapter 6 evidence
+
+**Approved**
+
+- **§1:** **Chapter 6** Results discipline cross-linked to **THESIS_FOUNDATION §8** and manuscript **reader note**—**Word export** guardrail.
+- **§2 / §5:** Deprecations + **maintenance** triggers for Results edits and P3 regen.
+- **§6.3:** Markdown list **backticks** corrected (`human_oversight_latency_seconds`, `approval_epoch`).
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — THESIS_FOUNDATION §7–8 ↔ MANUSCRIPT Results discipline
+
+**Approved**
+
+- **§8:** **Chapter 6 rule** explicit—**no** orphan numbers in Results; **§4.8** pointer for reliability.
+- **§7 outline:** Results row matches **reader note** + **§6.4**.
+- **Evidence index:** MLOps row updated (**`/metrics`**, **GHCR**)—aligned with repo.
+- **§6.4:** First sentence **binds** to Chapter 6 lead-in.
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — Chapter 6 reader note + §4.5 deduplication
+
+**Approved**
+
+- **Chapter 6** lead-in: **Results-only** discipline—no new experiments smuggled in prose.
+- **§4.5:** Ethics + deployment; **Sub-RQ** overlap **removed**—forward to **§4.7–4.8** (avoids contradicting **§4.8**).
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — §1.4.1 signposting + §4.8 reliability scope
+
+**Approved**
+
+- **§1.4.1:** Clear **reading order** without duplicating claims.
+- **§4.8:** **Validation-only** fairness/SHAP; **n = 1** Sub-RQ2; **no** test-set / bootstrap story—**honest** bounds; stress path **pointed** to existing doc only.
+- **§7.3:** Cross-reference **§4.8**—limitations **not** scattered only in prose.
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — §3.4 evaluation, §6.4 integrated reading, Veale secondary cite
+
+**Approved**
+
+- **§3.4:** DSR **evaluation** unpacked—**no** new empirical claims; **not** legal conformity assessment.
+- **§6.4:** **Integrated reading** only—defers interpretation to Ch.7; **disciplined** Results section.
+- **Veale & Zuiderveen Borgesius (2021):** **Secondary** commentary on **draft** Act—explicitly subordinate to **EUR-Lex** primary text.
+- **§6.3:** Fixed stray backtick on **`human_oversight_latency_seconds`**.
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — Abstract + literature surveys + figures + Conclusion §8.1–8.2
+
+**Approved**
+
+- **Abstract:** Names **`compare_profiles`**, JSON binding, **7 s** + **epoch** semantics—aligned with Chapters 4–6; **no** new numbers.
+- **§2.6–2.7:** Jobin *et al.* (guidelines) + Mehrabi *et al.* (fairness survey) position **GaC** as **engineering** response—**not** duplicate ethics essay.
+- **§8.1 / §8.2:** Examiner-friendly **closure**; Appendix E/B pointers.
+- **Figures:** `.mmd` sources under **`docs/figures/`**—manual PNG export still required for Word.
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — Manuscript continuation (CI, compliance table, section renumber)
+
+**Approved**
+
+- **§4.6–4.7:** Distinguishes **`compare_profiles.py`** (thesis JSON) from **`ci.yml`** matrix; Sub-RQ2 **epoch** semantics stated—**no** over-claim on Environment config (disclosure if reviewers absent).
+- **§5.4 / §5.5 split:** CI + Gate C + `governed_deploy` vs **FastAPI** serving—**traceability** improved; **§5.5** limitations for API unchanged in substance.
+- **Appendix B:** Table B1 **author mapping**—still **EUR-Lex** verification required in PDF.
+
+**Verdict:** Proceed to Word export and figure renders.
+
+---
+
+## 2026-04-07 — Manuscript depth (literature, references, implications)
+
+**Approved (writing)**
+
+- **Chapter 2:** Expanded **fairness** (EO vs other metrics), **Fairlearn/SHAP** role, **MLOps** (Kreuzberger, Sculley, Polyzotis), **Act** high-level Article pointers, **Norway/EEA** scope—**no** new empirical claims beyond repo.
+- **Chapter 3:** Hevner + **Peffers** DSR process; **construct vs instantiation**; GaC vs DevOps clarified.
+- **Discussion:** **§7.4** qualified practice implications; **§7.5** velocity vs governance; **§7.6** future work.
+- **References:** APA-style **core** list (EUR-Lex AI Act, Hevner, Hardt, Lundberg, Bird/Fairlearn, Barocas *et al.*, UCI, MLOps surveys)—student must **reconcile** with faculty style (OSCOLA if required).
+- **Appendix F:** Mermaid for Figure 1; optional figure captions.
+
+**Conditions**
+
+- **Threshold 0.70** remains **demonstration**—Discussion states banks must **re-validate**.
+- **Article** numbers: verify against **EUR-Lex** snapshot before PDF.
+
+**Verdict:** Proceed; remaining gap is **page length** via Word + figures + programme-required extra sources.
+
+---
+
+## 2026-04-07 — Manuscript structure + Track A (thesis-facing)
+
+**Approved (writing)**
+
+- **Table 1a (chapter map):** RQs **signposted** to chapters — reduces examiner “where is this answered?” friction; **no** new empirical claims.
+- **§2.2:** Removed literature placeholder; **policy-as-code** framed **without** equating engineering patterns to **legal compliance** — aligns with foundation.
+- **Discussion — Sub-RQ relation:** **Complementary / not symmetric**; **Article 14** not claimed as legal conclusion from CI latency — **correct** boundary.
+- **§7.2 contribution triad:** Ties Section 1.4 to artifact / evaluation / principles **without** duplicating Results tables.
+- **Appendix E:** **Track A** checklist — binds paths already cited in Chapters 4–6; student must **re-walk** before PDF if `params.yaml` or metrics change.
+
+**Conditions**
+
+- Word export must **preserve** Appendix E and Table 1a numbering after faculty template merge.
+- If `compare_profiles.py` is re-run, **bump** Chapter 6 timestamps and `git_commit` lines to match new JSON.
+
+**Verdict:** Proceed to Word + figures + programme literature quota.
+
+---
+
 ## 2026-04-07 — Serving CI + readiness + rate limit
 
 **Approved (technical)**
@@ -12,7 +136,7 @@
 - **`/health` vs `/ready`**, **`slowapi`** rate limit on **`/predict`** — demo-grade; thesis must **not** claim bank-grade availability or DDoS protection.
 - **[RUNBOOK.md](deployment/RUNBOOK.md)** — operational clarity; no change to Sub-RQ evidence.
 
-**Verdict:** Proceed. Keep **§5.4** limitations language aligned.
+**Verdict:** Proceed. Keep **§5.5** limitations language aligned.
 
 ---
 
@@ -21,7 +145,7 @@
 **Approved (technical scope)**
 
 - **`artifacts/feature_schema.json`** from `train.py` — supports **train/serve contract** without new legal claims.
-- **Optional `SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON **access logs** — **illustrative** controls; thesis must **not** frame these as bank security or compliance tooling. See [MANUSCRIPT.md](thesis/MANUSCRIPT.md) §5.4.
+- **Optional `SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON **access logs** — **illustrative** controls; thesis must **not** frame these as bank security or compliance tooling. See [MANUSCRIPT.md](thesis/MANUSCRIPT.md) §5.5.
 - **`scripts/smoke_serving.py`**, **[TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md)** — documentation and regression hygiene; **no** change to Sub-RQ1/2 evidence unless you scope new experiments.
 
 **Verdict:** Proceed. Remind examiners: **illustrative deployment** only.

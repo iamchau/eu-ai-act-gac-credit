@@ -28,7 +28,7 @@
 
 ## A. Evidence & reproducibility (freeze before final Results)
 
-Tick when the **committed repo** matches what the **thesis cites**.
+Tick when the **committed repo** matches what the **thesis cites**. A **submission checklist** table is in **Appendix E** of [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md).
 
 - `**params.yaml`** for the thesis run is **committed** and **stable** (or change is intentional with re-run below).
 - `**metrics/experiment_comparison.json`** regenerated: `python scripts/compare_profiles.py` after last relevant `params.yaml` change; **committed**; `**git_commit`** inside file noted in thesis if required by faculty.
@@ -56,7 +56,7 @@ Use [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) for page/figure budget. Tick 
 - **Ch. 2 — Background / literature** (responsible AI, MLOps, EU AI Act high-risk framing).
 - **Ch. 3 — Theory / DSR / GaC** (Hevner cycle, construct vs instantiation).
 - **Ch. 4 — Methodology** — data, standard vs governed, gates, **limitations** block.
-- **Ch. 5 — Instantiation** — repo architecture; **§5.4 MLOps** aligned with [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md) limits.
+- **Ch. 5 — Instantiation** — repo architecture; **§5.4 CI / Gate C**, **§5.5 MLOps** aligned with [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md) limits.
 - **Ch. 6 — Results** — Sub-RQ1 (comparison + demo); Sub-RQ2 (latency); tables bound to **committed JSON**.
 - **Ch. 7 — Discussion** — design principles, trade-offs, **what banks could adapt**, limits; Dr. Voss claim discipline.
 - **Ch. 8 — Conclusion** — RQ answers; future work; Norway/transposition if required.

@@ -1,0 +1,16 @@
+%% Figure 1 — Standard vs governed GaC paths (thesis MANUSCRIPT.md, Appendix F)
+%% Export: npx @mermaid-js/mermaid-cli -i Fig01_gac_architecture.mmd -o Fig01_gac_architecture.png
+%% Or paste into https://mermaid.live
+
+flowchart LR
+  subgraph STD["Standard profile"]
+    D1[Data + split] --> T1[Train]
+    T1 --> M1[Model + metrics]
+  end
+  subgraph GOV["Governed profile"]
+    D2[Data + split] --> T2[Train]
+    T2 --> GA[Gate A Fairness]
+    GA --> GB[Gate B SHAP]
+    GB --> M2[Model + metrics]
+    GB --> GC[Gate C Human approval]
+  end

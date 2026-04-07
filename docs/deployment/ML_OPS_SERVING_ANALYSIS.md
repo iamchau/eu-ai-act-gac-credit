@@ -49,7 +49,7 @@
 | [RUNBOOK.md](RUNBOOK.md) | Operations: local, Docker, CI artefact, `docker load` |
 
 
-**Documentation wired in:** `README.md` (**Serving**), `docs/thesis/MANUSCRIPT.md` (§5.4), `docs/DOCUMENTATION_FOUNDATION.md`, `PROJECT_PLAN.md`.
+**Documentation wired in:** `README.md` (**Serving**), `docs/thesis/MANUSCRIPT.md` (§5.5), `docs/DOCUMENTATION_FOUNDATION.md`, `PROJECT_PLAN.md`.
 
 **Training:** Column contract is **both** `pipeline.feature_names_in_` at load time **and** **`feature_schema.json`** on disk for tooling and serving validation.
 
@@ -79,7 +79,7 @@
 
 | Task                                 | Rough time                         |
 | ------------------------------------ | ---------------------------------- |
-| Serving files + README + thesis §5.4 | **~2–4 h**                         |
+| Serving files + README + thesis §5.5 | **~2–4 h**                         |
 | First-time Docker install + debug    | **variable** (user machine)        |
 | Remaining **§7** backlog items       | **~1–4 h** each, depending on item |
 

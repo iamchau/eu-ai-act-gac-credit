@@ -1,6 +1,6 @@
 # Thesis manuscript (`MANUSCRIPT.md`)
 
-This folder holds the **thesis draft** in Markdown. **Replace** bracketed placeholders (`[Author]`, `[Supervisor]`, …) and align chapter titles with your **faculty template**.
+This folder holds the **thesis draft** in Markdown (`MANUSCRIPT.md`). The **repository copy** is the working **full draft**; replace **only** bracketed title-page placeholders (`[Author Name]`, `[Supervisor]`, …) and align the exported Word file with the **faculty template** (manual step).
 
 ## Export to Word (optional)
 
