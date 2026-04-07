@@ -1,0 +1,16 @@
+# Core ML & thesis stack (GaC / DSR)
+pandas>=2.1
+numpy>=1.26
+scikit-learn>=1.4
+pyyaml>=6.0
+
+# Experiment tracking & pipeline
+mlflow>=2.10
+dvc>=3.50
+
+# Gates (thesis): fairness + explainability (wired in later stages)
+fairlearn>=0.10
+shap>=0.44
+
+# Optional: plotting for thesis figures
+matplotlib>=3.8

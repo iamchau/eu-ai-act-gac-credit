@@ -1,0 +1,6 @@
+# Keep DVC pipeline focused on code + params; large local caches stay out of hashing noise
+.venv/
+venv/
+mlruns/
+__pycache__/
+.pytest_cache/

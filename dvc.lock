@@ -1,0 +1,27 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: .venv\Scripts\python.exe src/train.py
+    deps:
+    - path: params.yaml
+      hash: md5
+      md5: 11df89d3571de3399366dbbe3026234d
+      size: 343
+    - path: src/train.py
+      hash: md5
+      md5: ed118409b9f21d3f89b931c3b78134a0
+      size: 4694
+    params:
+      params.yaml:
+        data.raw_csv: data/raw/south_german_credit.csv
+        mlflow.experiment_name: eu-ai-act-gac-credit
+        mlflow.tracking_uri: file:./mlruns
+        model.C: 1.0
+        model.max_iter: 500
+        model.name: logistic_regression
+        seed: 42
+    outs:
+    - path: metrics/train_metrics.json
+      hash: md5
+      md5: 09925c7ae7c3874ee1995e4f85e9b5ad
+      size: 110

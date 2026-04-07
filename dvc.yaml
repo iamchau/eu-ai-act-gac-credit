@@ -1,0 +1,19 @@
+stages:
+  train:
+    # Use venv interpreter so `dvc repro` works without manual activation (Windows path).
+    cmd: .venv\Scripts\python.exe src/train.py
+    deps:
+      - src/train.py
+      - params.yaml
+    params:
+      - params.yaml:
+          - seed
+          - data.raw_csv
+          - model.name
+          - model.max_iter
+          - model.C
+          - mlflow.experiment_name
+          - mlflow.tracking_uri
+    metrics:
+      - metrics/train_metrics.json:
+          cache: false

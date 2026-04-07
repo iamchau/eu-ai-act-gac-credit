@@ -1,0 +1,15 @@
+# DVC parameters — referenced by dvc.yaml and src/train.py
+seed: 42
+
+data:
+  # If set and file exists, load this CSV; else fetch OpenML South German Credit.
+  raw_csv: data/raw/south_german_credit.csv
+
+model:
+  name: logistic_regression
+  max_iter: 500
+  C: 1.0
+
+mlflow:
+  experiment_name: eu-ai-act-gac-credit
+  tracking_uri: file:./mlruns

@@ -4,3 +4,4 @@
 - **Data:** South German Credit Dataset (sensitive attributes for bias testing).
 - **Non-goals:** Do not invent EU article text; cite or quote official sources when making legal claims.
 - **Traceability:** Prefer MLflow run IDs, DVC revisions, and CI logs over undocumented claims.
+- **Plan:** Read and update `PROJECT_PLAN.md` after substantive tasks (completed / next / current focus).
