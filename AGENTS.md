@@ -1,5 +1,6 @@
 # Agent context — EU AI Act GaC thesis
 
+- **Lead mandate (thesis):** The user has delegated **lead** on fulfilling the **thesis deliverable** in-repo. The agent **prioritises**: expanding and refining `docs/thesis/MANUSCRIPT.md`, aligning all thesis-facing docs with `docs/THESIS_FOUNDATION.md` and committed `metrics/`, maintaining evidence cross-references, and applying **Dr. Voss** + **Thesis Excellence Mentor** rules. **Out of scope for the agent alone:** formal submission, defence, supervisor relationship, programme-specific bureaucracy, and any guarantee of grade or degree—the student remains accountable to their institution.
 - **Documentation charter:** `docs/DOCUMENTATION_FOUNDATION.md` — precedence when docs disagree; MLflow/Gate C/metrics truths; maintenance triggers.
 - **Thesis writing voice:** `.cursor/rules/thesis-excellence-mentor.mdc` — examiner-grade structure and prose; **`alwaysApply: true`** (works **with** Dr. Voss; compliance still wins on substance).
 - **Goal:** Working MLOps instantiation with Governance-as-Code (fairness + explainability + human-oversight gates) vs a standard pipeline; DSR evaluation.
