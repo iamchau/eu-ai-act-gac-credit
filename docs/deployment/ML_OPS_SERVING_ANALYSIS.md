@@ -38,7 +38,7 @@
 
 | File | Purpose |
 |------|---------|
-| `serving/app.py` | FastAPI: `/health`, `/version`, `/predict`; optional **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON access logs — see [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) |
+| `serving/app.py` | FastAPI: `/health`, `/ready`, `/version`, `/predict`; **`RATE_LIMIT_PREDICT`**; configurable **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON access logs — see [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) |
 | `requirements-serving.txt` | Minimal deps — **no** MLflow/DVC/SHAP in image |
 | `Dockerfile` | Serving image; **bakes** `artifacts/model.joblib` + `feature_schema.json` (requires **train before `docker build`** — [RUNBOOK.md](RUNBOOK.md)) |
 | `docker-compose.yml` | Mount `./artifacts`, `MODEL_PATH`, `SCHEMA_PATH`, env template |
@@ -109,7 +109,7 @@ This slice is **not** bank-regulated production and **does not** substitute for 
 | Signal                 | What the repo demonstrates                                                                                                                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Governance-aware MLOps | Gates, CI, traceability (git/params digests), EU AI Act–aligned **thesis** narrative                                                                         |
-| Serving hygiene        | Containerised API, `/health`, `/version`, `/predict`, reproducibility hooks                                                                                  |
+| Serving hygiene        | Containerised API, `/health`, `/ready`, `/version`, `/predict`, reproducibility hooks                                                                          |
 | Professional framing   | Clear **scope limits** (research data, illustrative deploy) and a credible story for **what you would add** in enterprise (auth, monitoring, change control) |
 
 

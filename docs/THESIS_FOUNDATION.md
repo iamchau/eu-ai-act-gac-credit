@@ -147,7 +147,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 | Gate C (Sub-RQ2) | `metrics/human_oversight_latency.json` + workflow URL
 | Reproducibility | MLflow tags (`git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`); `dvc.lock`
 | Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + `metrics/fairness_gate_subrq1_threshold_demo_fail.json` (**`gate_passed: false`**) or your own export after threshold change |
-| Optional scoring API (Primary RQ / discussion) | `serving/`, [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md); `/health`, `/version`, `/predict` when running |
+| MLOps scoring API (Primary RQ / discussion) | `serving/`, [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md); `/health`, `/ready`, `/version`, `/predict` when running |
 | Train/serve feature contract | `artifacts/feature_schema.json` from `src/train.py`; catalog [docs/deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md) |
 | Docker image CI artefact | `.github/workflows/docker-build.yml` → downloadable `serving-image-<sha>.tar` (train → `docker build`); [docs/deployment/RUNBOOK.md](deployment/RUNBOOK.md) |
 

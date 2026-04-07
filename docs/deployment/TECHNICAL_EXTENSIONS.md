@@ -10,7 +10,7 @@
 
 | ID | Extension | Location / mechanism |
 |----|-----------|----------------------|
-| **A1** | Optional API key | Env **`SERVING_API_KEY`**. When set, **`POST /predict`** requires header **`X-API-Key`**. **`GET /health`** and **`GET /version`** stay unauthenticated for probes. |
+| **A1** | Optional API key | Env **`SERVING_API_KEY`**. When set, **`POST /predict`** requires header **`X-API-Key`**. **`GET /health`**, **`GET /ready`**, and **`GET /version`** stay unauthenticated for probes. |
 | **A2** | Smoke test script | **`scripts/smoke_serving.py`** — **`/health`**, **`/ready`**, **`/version`**, **`POST /predict`**. |
 | **A3** | Max request body size | Env **`MAX_BODY_BYTES`** (default **1048576**). **`POST /predict`** → **413** if `Content-Length` exceeds limit. |
 | **B4** | Feature schema artefact | **`train.py`** writes **`artifacts/feature_schema.json`**. Serving validates columns when file is present. |
