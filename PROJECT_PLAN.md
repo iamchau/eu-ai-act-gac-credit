@@ -8,12 +8,14 @@ This file is the **single overview** for scope, what is done, and what comes nex
 
 ## Phases (high level)
 
-| Phase | Goal                                                          | Status          |
-| ----- | ------------------------------------------------------------- | --------------- |
-| P0    | Repo + Python stack + MLflow + DVC baseline                   | **Done**        |
-| P1    | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**        |
-| P2    | Human-in-the-loop gate (GitHub Actions) + latency measurement | Not started     |
-| P3    | Standard vs governed experiment + thesis write-up               | Not started     |
+
+| Phase | Goal                                                          | Status      |
+| ----- | ------------------------------------------------------------- | ----------- |
+| P0    | Repo + Python stack + MLflow + DVC baseline                   | **Done**    |
+| P1    | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**    |
+| P2    | Human-in-the-loop gate (GitHub Actions) + latency measurement | Not started |
+| P3    | Standard vs governed experiment + thesis write-up             | Not started |
+
 
 ---
 
@@ -49,11 +51,13 @@ This file is the **single overview** for scope, what is done, and what comes nex
 
 ## Blockers / decisions
 
-| Item                              | Owner | Notes                                                         |
-| --------------------------------- | ----- | ------------------------------------------------------------- |
-| Git `user.name` / `user.email`    | You   | Set for meaningful commit attribution                         |
+
+| Item                              | Owner | Notes                                                                                         |
+| --------------------------------- | ----- | --------------------------------------------------------------------------------------------- |
+| Git `user.name` / `user.email`    | You   | Set for meaningful commit attribution                                                         |
 | Fairness threshold `0.70`         | You   | Baseline logistic is high EOD on `famges`; tighten after mitigation experiments in the thesis |
-| `dvc.yaml` uses Windows venv path | You   | On Linux/Mac, change `cmd` to `.venv/bin/python src/...`      |
+| `dvc.yaml` uses Windows venv path | You   | On Linux/Mac, change `cmd` to `.venv/bin/python src/...`                                      |
+
 
 ---
 
