@@ -114,3 +114,18 @@
 - **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §10** — Links hub + figures.
 
 **Verdict:** Documentation **foundation** is now **explicit** for the full thesis journey; student must still **confirm** page-count rules with faculty.
+
+---
+
+## 2026-04-07 — Thesis writing hub (follow-up review)
+
+**Approved**
+
+- **Scope clause** — Hub **does not** duplicate RQs/legal spine; **foundation wins** on conflict.  
+- **Dr. Voss guardrails** — No padding; evidence binding; confirm what counts toward page total.  
+- **Word count** — Clarified: prose estimate vs Word page count including tables/figures.  
+- **Foundation §7** — Linked to hub page budget.  
+- **Submission** — Alt text, git SHA in appendix, screenshot metadata.  
+- **[figures/README.md](figures/README.md)** — Caption template, resolution, accessibility.
+
+**Verdict:** Hub is **usable** for examiners; **length** is planned without inviting fluff.

@@ -176,8 +176,8 @@ Paste-ready text and checklists live outside this spine so the foundation stays 
 | [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md) | **EUR-Lex** link and citation discipline for Regulation (EU) 2024/1689 |
 | [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md) | What to **remove**, **tighten**, and **keep** in the main thesis text |
 | [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md) | Optional **Sub-RQ2** wordings (latency default; traceability; oversight design; trade-offs) |
-| [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) | **≥50 pages**, journey **anchors**, table/figure plan, Word workflow, pre-submission pass |
-| [figures/README.md](figures/README.md) | Where to put thesis **PNG/PDF** exports and naming |
+| [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) | **≥50 pages**, journey **anchors**, table/figure plan, Word workflow, pre-submission pass; **subordinate** to this file for RQs/evidence |
+| [figures/README.md](figures/README.md) | Thesis **PNG/PDF**, **captions**, alt text, resolution |
 
 ---
 

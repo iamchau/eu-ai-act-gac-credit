@@ -4,6 +4,17 @@ Use this file as the **single map** between **project work** (code, runs, CI) an
 
 **Rule:** Every thesis chapter should trace to **this repo** (paths, JSON, workflows) or to **primary sources** (EUR-Lex). If a paragraph has no anchor, cut it or move it to an appendix.
 
+**Scope of this hub:** Page/figure **planning** and **workflow**—not a second copy of RQs or legal mapping (those stay in [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)). If this file and the foundation **conflict**, **foundation wins**—then fix this hub.
+
+---
+
+## Dr. Voss — compliance guardrails (length is not a substitute for rigor)
+
+- **Do not** pad to 50 pages with tool tutorials or generic AI ethics; use [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md).  
+- **Do** bind every substantive claim to **evidence** ([THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8) or **cited** law—not to README enthusiasm.  
+- **Confirm** whether **references / appendices** count toward the page rule; programs differ.  
+- **Claim discipline** for the Act: same as foundation—**operationalizes selected controls**, not “full compliance in code.”
+
 ---
 
 ## 1. Thesis output specification (≥ 50 pages)
@@ -24,7 +35,11 @@ Your program may use **page** or **word** limits. **50 pages** in Word usually m
 | References | 4–8 | EUR-Lex + papers you actually cite |
 | Appendices | optional | JSON excerpts, params, screenshots, compliance matrix |
 
-**Rough word anchor:** ~250–350 words per **full text page** (11–12 pt, normal margins) → **50 pages ≈ 12,500–17,500 words** of narrative, **excluding** large tables/figures. Tables and images **count** toward the page requirement—plan **8–15** numbered tables and **6–12** figures for a technical DSR thesis.
+**Rough word anchor (narrative only):** ~250–350 words per page of **continuous prose** (11–12 pt, normal margins) → **about 12,500–17,500 words** of main text if you had **no** large tables. In practice, **Word’s page count includes** tables and figures—so you will **not** need that much prose if you use the planned tables/figures below.
+
+**Tables and figures:** They **occupy pages** and **carry evidence**—plan **8–15** numbered tables and **6–12** figures for a technical DSR thesis; do not duplicate the same numbers in prose **and** tables without purpose.
+
+**Alignment:** The chapter **outline** in [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §7 maps to the rows above—merge or split chapters to match your faculty template, not the other way around unless they allow it.
 
 ---
 
@@ -96,8 +111,10 @@ Place exports and drafts under [figures/](figures/) (see [figures/README.md](fig
 2. **Paste** RQs from [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) §1c; **lock** wording after supervisor approval.  
 3. **Insert** tables from §4 above; **link** file paths in footnotes or appendix (“artifact at commit …”).  
 4. **Export** figures to PNG/PDF; store originals in [figures/](figures/); version with thesis date.  
-5. **Track** page count in Word (including tables/figures); aim **≥ 50** before references or per program rule.  
-6. **References:** Zotero / EndNote; pin **EUR-Lex** snapshot date for the AI Act.
+5. **Track** page count in Word using the **same rules** your program uses (body-only vs everything). Aim **≥ 50** per that definition.  
+6. **References:** Zotero / EndNote; pin **EUR-Lex** snapshot date for the AI Act.  
+7. **Figures in Word:** Add **alt text** (accessibility); keep a **list of figures/tables** updated for the examiner PDF.  
+8. **Reproducibility line** in appendix: **git commit** (short SHA) matching the metrics you quote—see MLflow tags / `experiment_comparison.json`.
 
 ---
 
@@ -108,7 +125,8 @@ Place exports and drafts under [figures/](figures/) (see [figures/README.md](fig
 - [ ] [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 evidence index matches **committed** JSON and run URLs.  
 - [ ] [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §9 Dr. Voss checklist complete.  
 - [ ] Appendices: `params.yaml` excerpt, gate JSON, optional MLflow screenshot.  
-- [ ] **No** broken path references to repo files (use commit hash or tag in appendix if needed).
+- [ ] **No** broken path references to repo files (use commit hash or tag in appendix if needed).  
+- [ ] **Figures:** every image has caption + alt text; screenshots state **date** and **environment** (e.g. GitHub run id).
 
 ---
 
