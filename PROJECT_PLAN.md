@@ -9,12 +9,12 @@ This file is the **single overview** for scope, what is done, and what comes nex
 ## Phases (high level)
 
 
-| Phase | Goal                                                          | Status      |
-| ----- | ------------------------------------------------------------- | ----------- |
-| P0    | Repo + Python stack + MLflow + DVC baseline                   | **Done**    |
-| P1    | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**    |
-| P2    | Human-in-the-loop gate (GitHub Actions) + latency measurement | Not started |
-| P3    | Standard vs governed experiment + thesis write-up             | Not started |
+| Phase | Goal                                                          | Status          |
+| ----- | ------------------------------------------------------------- | --------------- |
+| P0    | Repo + Python stack + MLflow + DVC baseline                   | **Done**        |
+| P1    | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**        |
+| P2    | Human-in-the-loop gate (GitHub Actions) + latency measurement | **Done** (CI)   |
+| P3    | Standard vs governed experiment + thesis write-up             | **In progress** |
 
 
 ---
@@ -23,29 +23,28 @@ This file is the **single overview** for scope, what is done, and what comes nex
 
 - Repository scaffold (`README`, `AGENTS`, `.gitignore`, layout)
 - `requirements.txt` + `.venv` (local; not committed)
-- UCI South German Credit UPDATE in `data/raw/SouthGermanCredit.asc` (from official zip; provenance in `docs/DATA_PROVENANCE.md`)
-- `params.yaml` + `dvc.yaml`: **train** → **fairness_gate** → **shap_gate**
-- `src/train.py` + `src/data_loading.py`: MLflow, metrics, artifacts for gates (`model.joblib`, `val_audit.csv`, `X_val.csv`, `X_background.csv`)
-- `src/gate_fairness.py` — Equalized Odds (fairlearn), `metrics/fairness_gate.json`
-- `src/gate_shap.py` — SHAP report `artifacts/shap_report.md`, `metrics/shap_gate.json`
-- GitHub Actions **ci.yml** (Ubuntu): pip install → UCI download → train → gates
-- `dvc repro` end-to-end green (Windows venv path in `dvc.yaml`)
+- UCI South German Credit UPDATE in `data/raw/SouthGermanCredit.asc` + `docs/DATA_PROVENANCE.md`
+- `params.yaml` + `dvc.yaml`: **train** → **fairness_gate** → **shap_gate**; `**pipeline.profile`** (`standard`  `governed`)
+- `src/train.py` + `src/data_loading.py`: MLflow + `**pipeline_profile**`; gate artifacts
+- Gates A–B: `gate_fairness.py`, `gate_shap.py` + metrics JSON
+- **Gate C:** `governed_deploy.yml` — Environment `**model-governance`**, `**metrics/human_oversight_latency.json**` (see `docs/human_oversight.md`)
+- **CI matrix:** `ci.yml` runs **standard** (train only) and **governed** (train + gates)
+- `docs/compare_pipelines.md` — standard vs governed comparison table
 
 ---
 
 ## Next (priority order)
 
-1. **Git identity:** set `user.name` / `user.email` for meaningful commits.
-2. **Remote:** add GitHub origin and push (enables CI on `push`).
-3. **Gate C (human oversight):** required approval + **latency** measurement (Sub-RQ2) in Actions or external tool.
-4. **Standard vs governed:** second pipeline (performance-only) vs full gates; compare outcomes + velocity/latency.
-5. **Thesis:** DSR write-up + traceability tables (MLflow run id, DVC `git` commit, CI run URL).
+1. **GitHub:** add `origin`, push; create Environment `**model-governance`** with required reviewers; run `**governed_deploy**` once and archive `**human_oversight_latency.json**` for the thesis.
+2. **Git identity:** `user.name` / `user.email` for commits.
+3. **P3 experiment:** tabulate **standard vs governed** (CI duration, gate outcomes, MLflow run ids) for the same `seed`.
+4. **Thesis:** DSR narrative + limitations (CI proxy for Art. 14; fairness threshold 0.70).
 
 ---
 
 ## Current focus
 
-- Wire **human-in-the-loop** (P2) and define the **standard** baseline path for the controlled experiment (P3).
+- Collect **one governed_deploy** latency sample and **standard vs governed** CI metrics for the evaluation chapter.
 
 ---
 
@@ -57,6 +56,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 | Git `user.name` / `user.email`    | You   | Set for meaningful commit attribution                                                         |
 | Fairness threshold `0.70`         | You   | Baseline logistic is high EOD on `famges`; tighten after mitigation experiments in the thesis |
 | `dvc.yaml` uses Windows venv path | You   | On Linux/Mac, change `cmd` to `.venv/bin/python src/...`                                      |
+| Environment `model-governance`    | You   | Add reviewers in repo Settings for real Gate C waits                                          |
 
 
 ---
@@ -67,3 +67,4 @@ This file is the **single overview** for scope, what is done, and what comes nex
 2. Edit **Current focus** to one short line.
 3. Bump **Last updated** to today’s date.
 4. Optional: add MLflow run id / git commit next to completed items for audit trail.
+

@@ -5,16 +5,16 @@ stages:
     deps:
     - path: params.yaml
       hash: md5
-      md5: f5e0a55d470285086d5aa8e5c5e2d7c5
-      size: 927
+      md5: b8ebb990680840e65844280ff03b7d16
+      size: 972
     - path: src/data_loading.py
       hash: md5
-      md5: f6abd7eeb00b0c08bd6896329a58c0c3
-      size: 1720
+      md5: 6f523c4074b3177c4d355cbdbe5c954e
+      size: 1747
     - path: src/train.py
       hash: md5
-      md5: 7e42b66e7eecba7b9f0f6bc6d931848f
-      size: 4980
+      md5: 9ac431ad4252b1b68a2fe7a84e3348b3
+      size: 5317
     params:
       params.yaml:
         data.raw_asc: data/raw/SouthGermanCredit.asc
@@ -29,6 +29,7 @@ stages:
         model.C: 1.0
         model.max_iter: 500
         model.name: logistic_regression
+        pipeline.profile: governed
         seed: 42
     outs:
     - path: artifacts
@@ -38,8 +39,8 @@ stages:
       nfiles: 4
     - path: metrics/train_metrics.json
       hash: md5
-      md5: 45046960cec67743eadef671fe96afe1
-      size: 164
+      md5: ef469b38f8b3cb22f6ab95bcf667602d
+      size: 199
   fairness_gate:
     cmd: .venv\Scripts\python.exe src/gate_fairness.py
     deps:
@@ -49,8 +50,8 @@ stages:
       size: 7036
     - path: params.yaml
       hash: md5
-      md5: f5e0a55d470285086d5aa8e5c5e2d7c5
-      size: 927
+      md5: b8ebb990680840e65844280ff03b7d16
+      size: 972
     - path: src/gate_fairness.py
       hash: md5
       md5: dd9febf5a7d275642f65649c2689f6c6
@@ -77,8 +78,8 @@ stages:
       size: 3425
     - path: params.yaml
       hash: md5
-      md5: f5e0a55d470285086d5aa8e5c5e2d7c5
-      size: 927
+      md5: b8ebb990680840e65844280ff03b7d16
+      size: 972
     - path: src/gate_shap.py
       hash: md5
       md5: f1b211caafa582ef983695cc1bb4c6b5
@@ -86,5 +87,5 @@ stages:
     outs:
     - path: metrics/shap_gate.json
       hash: md5
-      md5: 835f52dc2cfe8ceafb23b41f1cf43f75
+      md5: 8c18e8f3aa7effc8b44510cc1446e13a
       size: 126

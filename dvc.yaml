@@ -8,6 +8,7 @@ stages:
     params:
       - params.yaml:
           - seed
+          - pipeline.profile
           - data.raw_csv
           - data.raw_asc
           - model.name

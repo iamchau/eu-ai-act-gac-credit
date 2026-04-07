@@ -4,6 +4,7 @@ Training run: South German Credit (CSV / UCI .asc / OpenML fallback) + sklearn +
 from __future__ import annotations
 
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -63,6 +64,11 @@ def build_pipeline(X: pd.DataFrame) -> Pipeline:
 
 def main() -> int:
     params = load_params()
+    profile = os.environ.get("PIPELINE_PROFILE")
+    if not profile:
+        profile = params.get("pipeline", {}).get("profile", "governed")
+    params.setdefault("pipeline", {})["profile"] = profile
+
     seed = int(params.get("seed", 42))
     mlflow.set_tracking_uri(params["mlflow"]["tracking_uri"])
     mlflow.set_experiment(params["mlflow"]["experiment_name"])
@@ -104,6 +110,7 @@ def main() -> int:
                 "model": model_params.get("name", "logistic_regression"),
                 "data_provenance": data_provenance,
                 "sensitive_column": sensitive_col,
+                "pipeline_profile": params["pipeline"]["profile"],
             }
         )
         pipe.fit(X_train, y_train)
@@ -147,6 +154,7 @@ def main() -> int:
         "n_val": int(len(X_val)),
         "seed": seed,
         "data_provenance": data_provenance,
+        "pipeline_profile": params["pipeline"]["profile"],
     }
     with open(METRICS_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)

@@ -1,4 +1,4 @@
-# GaC pipeline: train + fairness + SHAP gates (mirrors local dvc repro).
+# GaC: matrix — standard (train only) vs governed (train + fairness + SHAP).
 name: ci
 
 on:
@@ -8,10 +8,16 @@ on:
     branches: [master, main]
 
 jobs:
-  governed-pipeline:
+  pipeline:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: [standard, governed]
     env:
       PYTHONPATH: ${{ github.workspace }}
+      PIPELINE_PROFILE: ${{ matrix.profile }}
+
     steps:
       - uses: actions/checkout@v4
 
@@ -33,17 +39,20 @@ jobs:
           z.extract("SouthGermanCredit.asc", path="data/raw")
           PY
 
-      - name: Train + gates
+      - name: Train
+        run: python src/train.py
+
+      - name: GaC gates (fairness + SHAP)
+        if: matrix.profile == 'governed'
         run: |
-          python src/train.py
           python src/gate_fairness.py
           python src/gate_shap.py
 
       - name: Show metrics
         run: |
-          echo "--- train ---"
+          echo "profile=${{ matrix.profile }}"
           cat metrics/train_metrics.json
-          echo "--- fairness ---"
-          cat metrics/fairness_gate.json
-          echo "--- shap ---"
-          cat metrics/shap_gate.json
+          if [ "${{ matrix.profile }}" = "governed" ]; then
+            cat metrics/fairness_gate.json
+            cat metrics/shap_gate.json
+          fi

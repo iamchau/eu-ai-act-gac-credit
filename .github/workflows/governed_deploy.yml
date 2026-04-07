@@ -1,0 +1,88 @@
+# Gate C — Human oversight: automated gates complete, then wait for Environment approval; record latency (Sub-RQ2).
+# Create GitHub Environment "model-governance" with required reviewers (Settings → Environments).
+name: governed-deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-gates:
+    runs-on: ubuntu-latest
+    outputs:
+      gates_completed_epoch: ${{ steps.gates_done.outputs.epoch }}
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PIPELINE_PROFILE: governed
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch UCI South German Credit UPDATE (.asc)
+        run: |
+          mkdir -p data/raw
+          curl -fsSL -o data/south_german.zip \
+            "https://archive.ics.uci.edu/static/public/573/south+german+credit+update.zip"
+          python - <<'PY'
+          import zipfile
+          z = zipfile.ZipFile("data/south_german.zip")
+          z.extract("SouthGermanCredit.asc", path="data/raw")
+          PY
+
+      - name: Train + GaC gates
+        run: |
+          python src/train.py
+          python src/gate_fairness.py
+          python src/gate_shap.py
+
+      - id: gates_done
+        name: Mark gates complete (human-oversight window opens)
+        run: echo "epoch=$(date +%s)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload pipeline metrics
+        uses: actions/upload-artifact@v4
+        with:
+          name: governed-metrics-${{ github.run_id }}
+          path: |
+            metrics/train_metrics.json
+            metrics/fairness_gate.json
+            metrics/shap_gate.json
+
+  human-approval-release:
+    needs: build-and-gates
+    runs-on: ubuntu-latest
+    environment: model-governance
+
+    steps:
+      - name: Record human-oversight latency
+        env:
+          GATES_EPOCH: ${{ needs.build-and-gates.outputs.gates_completed_epoch }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          export APPROVAL_EPOCH=$(date +%s)
+          export LATENCY=$((APPROVAL_EPOCH - GATES_EPOCH))
+          mkdir -p metrics
+          python <<'PY'
+          import json, os
+          out = {
+              "human_oversight_latency_seconds": int(os.environ["LATENCY"]),
+              "gates_completed_epoch": int(os.environ["GATES_EPOCH"]),
+              "approval_epoch": int(os.environ["APPROVAL_EPOCH"]),
+              "workflow_run_url": os.environ["RUN_URL"],
+          }
+          with open("metrics/human_oversight_latency.json", "w") as f:
+              json.dump(out, f, indent=2)
+          print(json.dumps(out, indent=2))
+          PY
+
+      - name: Upload latency metric
+        uses: actions/upload-artifact@v4
+        with:
+          name: human-oversight-latency-${{ github.run_id }}
+          path: metrics/human_oversight_latency.json

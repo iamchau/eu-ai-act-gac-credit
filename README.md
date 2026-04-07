@@ -31,7 +31,11 @@ dvc repro  # uses .venv\Scripts\python.exe from dvc.yaml (Windows)
 
 **Data:** Prefer UCI **South German Credit UPDATE** (dataset 573). Use `data/raw/SouthGermanCredit.asc` and/or `data/raw/south_german_credit.csv` (see [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md)). If neither is present, training falls back to OpenML **credit-g**; check MLflow `data_provenance`.
 
-**Governance gates:** **Fairness** — `src/gate_fairness.py` (equalized odds vs `gates.fairness.max_equalized_odds_difference`). **SHAP** — `src/gate_shap.py` → `artifacts/shap_report.md`. Run full pipeline: `dvc repro`. CI mirrors this in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+**Pipelines:** **Standard** = train only (performance baseline). **Governed** = train + fairness + SHAP. See [`docs/compare_pipelines.md`](docs/compare_pipelines.md). Set `pipeline.profile` in `params.yaml` or `PIPELINE_PROFILE=standard|governed` for CI/local.
+
+**Governance gates:** **A Fairness** — `src/gate_fairness.py`. **B SHAP** — `src/gate_shap.py` → `artifacts/shap_report.md`. **C Human oversight** — GitHub Environment `model-governance` + [`governed_deploy.yml`](.github/workflows/governed_deploy.yml) (latency JSON). Setup: [`docs/human_oversight.md`](docs/human_oversight.md).
+
+Run full local pipeline: `dvc repro`. CI: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs **both** profiles in a matrix.
 
 Tracking: MLflow UI → `mlruns/` (see `params.yaml` → `mlflow.tracking_uri`).  
 **Plan & status:** [`PROJECT_PLAN.md`](PROJECT_PLAN.md).

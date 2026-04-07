@@ -4,5 +4,6 @@
   "n_train": 750,
   "n_val": 250,
   "seed": 42,
-  "data_provenance": "uci-asc:SouthGermanCredit.asc"
+  "data_provenance": "uci-asc:SouthGermanCredit.asc",
+  "pipeline_profile": "governed"
 }
