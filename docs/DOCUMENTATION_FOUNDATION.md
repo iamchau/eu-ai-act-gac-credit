@@ -10,11 +10,11 @@ When two documents disagree, apply this order **from top (strongest) to bottom**
 
 | Priority | Source | Governs |
 |----------|--------|---------|
-| 1 | **`params.yaml` + `src/*.py` + `.github/workflows/*.yml`** | Actual runtime behavior |
+| 1 | **`params.yaml` + `src/*.py` + `.github/workflows/*.yml`** | Actual runtime behavior (if **code** and **params** disagree, **code is what runs**—fix the mismatch; do not “document around” a bug) |
 | 2 | **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)** | Research questions, DSR mapping, scope, evidence index (§8), claim discipline |
 | 3 | **[human_oversight.md](human_oversight.md)** | Gate C latency **definition** (includes Environment approval wait when configured) |
 | 4 | **[compare_pipelines.md](compare_pipelines.md)** | **Standard** vs **governed** profiles and DVC vs `PIPELINE_PROFILE` |
-| 5 | **[COMPLIANCE_MATRIX.md](COMPLIANCE_MATRIX.md)** | Act ↔ controls **scaffold** (replace Article text with EUR-Lex in the thesis) |
+| 5 | **[COMPLIANCE_MATRIX.md](COMPLIANCE_MATRIX.md)** | Act ↔ controls **scaffold** — **never** overrides **EUR-Lex** or supervisor-approved legal text in the thesis body |
 | 6 | **README.md** (repo root) | Quick start; must stay consistent with **1**—fix README if it drifts |
 | 7 | **[THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md)** | Page/figure **planning** only—never overrides **2** |
 
@@ -38,6 +38,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 
 | Document | Role |
 |----------|------|
+| [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) | **This file** — precedence, deprecations, maintenance |
 | [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) | **Spine:** RQs, DSR, scope, chapter outline, evidence §8, Voss checklist §9 |
 | [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) | ≥50 pages, journey anchors, tables/figures, Word workflow |
 | [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) | Paste-ready paragraphs, operationalization tables, limitations |
@@ -61,7 +62,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 
 | Reader | Start |
 |--------|--------|
-| **Thesis author (writing)** | [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) → [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) → snippets & citations |
+| **Thesis author (writing)** | [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) (this charter) → [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) → [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) → snippets & citations |
 | **Engineer (running code)** | [README.md](../README.md) → [compare_pipelines.md](compare_pipelines.md) |
 | **Examiner traceability** | [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 + committed `metrics/*.json` |
 
