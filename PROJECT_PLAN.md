@@ -1,6 +1,6 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (Sub-RQ2 alternatives + Discussion stubs)
+**Last updated:** 2026-04-07 (thesis writing hub + figures folder)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
 
@@ -38,13 +38,14 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Docs:** [COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md), [SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md), [stress_experiment.md](docs/stress_experiment.md), [DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md), **[THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)** (RQs, DSR, scope, chapter spine)
 - **Thesis draft pack (2026-04-07):** [THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md), [EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md), [THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md); §10 in [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) links them
 - **Sub-RQ2 + Discussion (2026-04-07):** [SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md) (optional Sub-RQ2 wordings); [THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) §3b–3c (Sub-RQ relationship, velocity vs governance), Art. 14 one-liner
+- **Thesis documentation anchor (2026-04-07):** [THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) — **≥50 pages** budget, journey-stage anchors, table/figure checklist, Word workflow; [figures/README.md](docs/figures/README.md); §10 [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)
 
 ---
 
 ## Next (priority order)
 
 1. **Sub-RQ1 (once):** Run [docs/SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md) (tighten fairness threshold → gate fails) → export metrics → **revert** threshold to `0.70`.
-2. **Thesis writing:** Use [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) + [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md); [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) + `experiment_comparison.json` + `human_oversight_latency.json` (Sub-RQ2: **7 s**).
+2. **Thesis writing:** Follow [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) (page/table/figure plan); then [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) + [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md); [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) + `experiment_comparison.json` + `human_oversight_latency.json` (Sub-RQ2: **7 s**). Export figures into [docs/figures/](docs/figures/) per [figures/README.md](docs/figures/README.md).
 3. **Git identity (optional):** `git config user.email "your@email"` if you still use a placeholder.
 4. **Optional:** `python scripts/compare_profiles.py` after `params.yaml` changes; commit updated JSON.
 

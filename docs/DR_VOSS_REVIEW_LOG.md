@@ -102,3 +102,15 @@
 - **PROJECT_PLAN.md:** branch name typo (`main`).
 
 **Verdict:** No code change required for Sub-RQ2 — **measurement** was already correct; **thesis** text had drifted.
+
+---
+
+## 2026-04-07 — Thesis writing hub (≥50 pages, journey anchors)
+
+**Approved**
+
+- **[THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md)** — Page/word **guide**, chapter budget, **stage→doc** anchor table, reading order, table/figure inventory, Word workflow, pre-submission checklist.  
+- **[figures/README.md](figures/README.md)** — Naming and export guidance.  
+- **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §10** — Links hub + figures.
+
+**Verdict:** Documentation **foundation** is now **explicit** for the full thesis journey; student must still **confirm** page-count rules with faculty.
