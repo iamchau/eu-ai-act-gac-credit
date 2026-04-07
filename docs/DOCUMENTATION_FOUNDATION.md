@@ -11,7 +11,7 @@ When two documents disagree, apply this order **from top (strongest) to bottom**
 
 | Priority | Source                                                     | Governs                                                                                                                               |
 | -------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| 1        | `**params.yaml` + `src/*.py` + `.github/workflows/*.yml`** | Actual runtime behavior (if **code** and **params** disagree, **code is what runs**—fix the mismatch; do not “document around” a bug) |
+| 1        | **`params.yaml` + `src/*.py` + `.github/workflows/*.yml`** | Actual runtime behavior (if **code** and **params** disagree, **code is what runs**—fix the mismatch; do not “document around” a bug) |
 | 2        | **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)**           | Research questions, DSR mapping, scope, evidence index (§8), claim discipline                                                         |
 | 3        | **[human_oversight.md](human_oversight.md)**               | Gate C latency **definition** (includes Environment approval wait when configured)                                                    |
 | 4        | **[compare_pipelines.md](compare_pipelines.md)**           | **Standard** vs **governed** profiles and DVC vs `PIPELINE_PROFILE`                                                                   |
@@ -30,11 +30,11 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | Topic                            | Canonical fact                                                                                                 | Do not assume                                                                                                                                           |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **MLflow store**                 | `mlflow.tracking_uri: sqlite:///./mlflow.db` in `params.yaml`                                                  | That the UI “lives in `mlruns/`” as the **primary** backend (legacy file store); use `--backend-store-uri` for SQLite                                   |
-| `**mlruns/`**                    | Gitignored; may appear if you switch tracking URI                                                              | That old runs are auto-migrated to SQLite                                                                                                               |
+| **`mlruns/`**                    | Gitignored; may appear if you switch tracking URI                                                              | That old runs are auto-migrated to SQLite                                                                                                               |
 | **Gate C**                       | Implemented by **workflows** + Environment, **not** by reading `gates.human_oversight.enabled_in_ci` in Python | That `enabled_in_ci` changes runtime (it is a **documentation flag**)                                                                                   |
-| **P3 comparison metrics**        | `metrics/experiment_comparison.json` has its own `**git_commit`**                                              | That `metrics/train_metrics.json` always matches without re-running `scripts/compare_profiles.py` — see [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 |
+| **P3 comparison metrics**        | `metrics/experiment_comparison.json` has its own `git_commit` field                                              | That `metrics/train_metrics.json` always matches without re-running `scripts/compare_profiles.py` — see [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8 |
 | **Sub-RQ1 demo (archived fail)** | `metrics/fairness_gate_subrq1_threshold_demo_fail.json` — threshold demo with `gate_passed: false`             | That `metrics/fairness_gate.json` is always the failing snapshot (it reflects **last** run at 0.70 baseline after revert)                               |
-| `**dvc.yaml`**                   | Uses **Windows** `.venv\Scripts\python.exe` in `cmd`                                                           | Same path on Linux/macOS — adjust to `.venv/bin/python` per [PROJECT_PLAN.md](../PROJECT_PLAN.md) blockers                                              |
+| **`dvc.yaml`**                   | Uses **Windows** `.venv\Scripts\python.exe` in `cmd`                                                           | Same path on Linux/macOS — adjust to `.venv/bin/python` per [PROJECT_PLAN.md](../PROJECT_PLAN.md) blockers                                              |
 
 
 ---
@@ -63,7 +63,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | [DR_VOSS_REVIEW_LOG.md](DR_VOSS_REVIEW_LOG.md)                                 | Implementation & doc review trail                                                                                                      |
 | [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md) | MLOps Docker/scoring API — constraints, flows, thesis fit; **§8** career/portfolio (non-thesis)                                        |
 | [deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md)       | **Catalog:** implemented serving extensions + backlog                                                                                  |
-| [deployment/RUNBOOK.md](deployment/RUNBOOK.md)                                 | Serving: local, Docker, Docker Compose, `**docker load`** from CI artefact                                                             |
+| [deployment/RUNBOOK.md](deployment/RUNBOOK.md)                                 | Serving: local, Docker, Docker Compose, **`docker load`** from CI artefact                                                             |
 | [figures/README.md](figures/README.md)                                         | Thesis figure exports                                                                                                                  |
 | [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md)                                   | **Thesis draft** (chapters 1–8 + appendices); export via [thesis/README.md](thesis/README.md)                                          |
 
@@ -72,7 +72,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 
 ## 4. Who starts where?
 
-**Cursor:** The **Thesis Excellence Mentor** rule is `**alwaysApply: true`** (examiner-grade prose/structure); it stacks with **Dr. Voss**—compliance wins on substance. See `.cursor/rules/thesis-excellence-mentor.mdc`.
+**Cursor:** The **Thesis Excellence Mentor** rule is **`alwaysApply: true`** (examiner-grade prose/structure); it stacks with **Dr. Voss**—compliance wins on substance. See `.cursor/rules/thesis-excellence-mentor.mdc`.
 
 
 | Reader                      | Start                                                                                                                                                                                                                                                                                                          |
