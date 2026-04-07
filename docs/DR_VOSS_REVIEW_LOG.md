@@ -154,3 +154,16 @@
 - **Wired** into [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §10, [README.md](../README.md), [AGENTS.md](../AGENTS.md), [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md), [THESIS_EVAL_NOTES.md](THESIS_EVAL_NOTES.md), [figures/README.md](figures/README.md), [PROJECT_PLAN.md](../PROJECT_PLAN.md).
 
 **Verdict:** Thesis documentation has an explicit **foundation**; conflicts resolve by **procedure**, not guesswork.
+
+---
+
+## 2026-04-07 — Documentation charter (micro-edit)
+
+**Approved**
+
+- **Precedence row 1:** Clarified **code vs params** — code is what runs; mismatch = **bug**, not narrative workaround.  
+- **COMPLIANCE_MATRIX:** Explicit that scaffold **never** overrides **EUR-Lex** / approved legal text.  
+- **§4 Thesis author path** aligned with hub: **charter → foundation → hub → …**  
+- **§3 map:** Self-row for this file.
+
+**Verdict:** Charter is **examiner-safe** on legal hierarchy and **implementation** truth.
