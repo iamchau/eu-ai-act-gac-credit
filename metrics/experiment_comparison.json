@@ -1,10 +1,10 @@
 {
-  "generated_at_utc": "2026-04-07T12:05:02.217653+00:00",
-  "git_commit": "4b6bf10360f33c7427f6a4edc017b2d9d0ad6037",
+  "generated_at_utc": "2026-04-07T12:06:07.428833+00:00",
+  "git_commit": "224c6170b1ca1162e39a4fbab86365523b6d743b",
   "profiles": {
     "standard": {
       "exit_code": 0,
-      "wall_time_seconds": 5.327,
+      "wall_time_seconds": 4.918,
       "train_metrics": {
         "accuracy": 0.776,
         "roc_auc": 0.795657142857143,
@@ -18,7 +18,7 @@
     },
     "governed": {
       "exit_code": 0,
-      "wall_time_seconds": 19.127,
+      "wall_time_seconds": 17.751,
       "train_metrics": {
         "accuracy": 0.776,
         "roc_auc": 0.795657142857143,
@@ -36,7 +36,7 @@
       },
       "shap_gate": {
         "top_feature": "laufkont",
-        "top_mean_abs_shap": 0.0997866883160125,
+        "top_mean_abs_shap": 0.09979873300061229,
         "min_required": 0.0,
         "gate_passed": true
       },
