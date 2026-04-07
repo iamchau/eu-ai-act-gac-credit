@@ -1,0 +1,8 @@
+# Minimal stack for containerised scoring API (serving/) — no MLflow/DVC/SHAP
+pandas>=2.1
+numpy>=1.26
+scikit-learn>=1.4
+pyyaml>=6.0
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.0

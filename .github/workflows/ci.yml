@@ -8,6 +8,22 @@ on:
     branches: [master, main]
 
 jobs:
+  serving_import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies (train + serving)
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-serving.txt
+      - name: Import serving app (no model required at import time)
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: python -c "from serving.app import app; assert app.title; print('serving_import_ok')"
+
   pipeline:
     runs-on: ubuntu-latest
     strategy:

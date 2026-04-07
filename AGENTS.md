@@ -8,6 +8,7 @@
 - **Non-goals:** Do not invent EU article text; cite or quote official sources when making legal claims.
 - **Traceability:** Prefer MLflow run IDs, DVC revisions, and CI logs over undocumented claims.
 - **Plan:** Read and update `PROJECT_PLAN.md` after substantive tasks (completed / next / current focus).
+- **Serving (optional):** Implementation catalog [docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md); analysis [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md).
 - **Thesis (≥50 pp., Word + tables/figures):** Draft body in `docs/thesis/MANUSCRIPT.md` (Pandoc → Word per `docs/thesis/README.md`); start from `docs/THESIS_WRITING_HUB.md`; spine `docs/THESIS_FOUNDATION.md`; figures under `docs/figures/`.
 - **Gates:** A Fairness (`gate_fairness.py`), B SHAP (`gate_shap.py`); thresholds in `params.yaml` under `gates.*`. Gate C is **GitHub Environment** `model-governance` + `governed_deploy.yml` (latency JSON).
 - **Profiles:** `pipeline.profile` or `PIPELINE_PROFILE` = `standard` (train only) vs `governed` (full GaC); see `docs/compare_pipelines.md`.

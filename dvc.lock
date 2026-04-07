@@ -5,8 +5,8 @@ stages:
     deps:
     - path: params.yaml
       hash: md5
-      md5: 0ee14933a58f443b018882f066250a35
-      size: 1376
+      md5: 3f7bc11eaffd042a15df8f3a4cf4f08a
+      size: 1514
     - path: src/data_loading.py
       hash: md5
       md5: 6f523c4074b3177c4d355cbdbe5c954e
@@ -17,8 +17,8 @@ stages:
       size: 1174
     - path: src/train.py
       hash: md5
-      md5: 8f69b499de5f865e10f28aa87b2f9c32
-      size: 7770
+      md5: 0ed4bcca7ce53ebb98700ca347dd8f7f
+      size: 8352
     params:
       params.yaml:
         data.raw_asc: data/raw/SouthGermanCredit.asc
@@ -41,12 +41,12 @@ stages:
     outs:
     - path: artifacts
       hash: md5
-      md5: 612c7bf161e14bb3ebd37a10382ad3bf.dir
-      size: 25867
-      nfiles: 4
+      md5: 7fecc84cb55f03762e3ea80e66cb7231.dir
+      size: 26851
+      nfiles: 5
     - path: metrics/train_metrics.json
       hash: md5
-      md5: a493d7e74a63cd67e0cbe49626ee9d70
+      md5: 338af9b42c233ab8a5ffb2402f84d7b9
       size: 342
   fairness_gate:
     cmd: .venv\Scripts\python.exe src/gate_fairness.py
@@ -57,8 +57,8 @@ stages:
       size: 7036
     - path: params.yaml
       hash: md5
-      md5: 0ee14933a58f443b018882f066250a35
-      size: 1376
+      md5: 3f7bc11eaffd042a15df8f3a4cf4f08a
+      size: 1514
     - path: src/gate_fairness.py
       hash: md5
       md5: dd9febf5a7d275642f65649c2689f6c6
@@ -85,8 +85,8 @@ stages:
       size: 3425
     - path: params.yaml
       hash: md5
-      md5: 0ee14933a58f443b018882f066250a35
-      size: 1376
+      md5: 3f7bc11eaffd042a15df8f3a4cf4f08a
+      size: 1514
     - path: src/gate_shap.py
       hash: md5
       md5: f1b211caafa582ef983695cc1bb4c6b5
@@ -94,5 +94,5 @@ stages:
     outs:
     - path: metrics/shap_gate.json
       hash: md5
-      md5: 3b1e6c954f955d0098108125650a241b
-      size: 126
+      md5: 8335dc41a376b963fece5d995c8dc090
+      size: 125

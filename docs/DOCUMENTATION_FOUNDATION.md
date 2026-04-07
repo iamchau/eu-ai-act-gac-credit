@@ -55,6 +55,8 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | [stress_experiment.md](stress_experiment.md) | Stress / bias training path |
 | [GITHUB_SETUP.md](GITHUB_SETUP.md), [GATE_C_RUNBOOK.md](GATE_C_RUNBOOK.md) | GitHub / Gate C operations |
 | [DR_VOSS_REVIEW_LOG.md](DR_VOSS_REVIEW_LOG.md) | Implementation & doc review trail |
+| [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md) | Optional Docker/scoring API slice — constraints, flows, thesis fit; **§8** career/portfolio (non-thesis) |
+| [deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md) | **Catalog:** implemented serving extensions (API key, body limit, logs, `feature_schema.json`, smoke script) + backlog |
 | [figures/README.md](figures/README.md) | Thesis figure exports |
 | [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) | **Thesis draft** (chapters 1–8 + appendices); export via [thesis/README.md](thesis/README.md) |
 
@@ -80,6 +82,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 | Change **workflows or Gate C** | [human_oversight.md](human_oversight.md), [GATE_C_RUNBOOK.md](GATE_C_RUNBOOK.md) if behavior changes |
 | New **thesis-facing batch** | [DR_VOSS_REVIEW_LOG.md](DR_VOSS_REVIEW_LOG.md) (short entry) |
 | **Regenerate** P3 evidence for final thesis | Run `python scripts/compare_profiles.py`; commit `experiment_comparison.json`; note commit in appendix |
+| Change **serving API or Docker** | [deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md), [deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md); README **Serving**; `params.yaml` / feature contract if inference inputs change |
 
 ---
 

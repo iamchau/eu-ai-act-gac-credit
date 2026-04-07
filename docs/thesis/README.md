@@ -14,4 +14,4 @@ Then apply your faculty **.dotx** styles in Word (Heading 1–3, captions, refer
 
 ## Source of truth
 
-Narrative and claims follow [../THESIS_FOUNDATION.md](../THESIS_FOUNDATION.md). Evidence paths and numbers match **`metrics/`** at commit **`9556cce`** (or later if you regenerate JSON).
+Narrative and claims follow [../THESIS_FOUNDATION.md](../THESIS_FOUNDATION.md). Bind numbers to **`metrics/experiment_comparison.json`** (P3 comparison; includes **`git_commit`**) and regenerate with `python scripts/compare_profiles.py` after changing `params.yaml`, gates, or data—do not rely on a hand-pasted commit hash here.

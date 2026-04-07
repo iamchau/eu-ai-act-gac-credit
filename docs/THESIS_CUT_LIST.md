@@ -15,12 +15,14 @@ Use this as an **editorial checklist** alongside [THESIS_FOUNDATION.md](THESIS_F
 
 ## Tighten in main text
 
-| Instead of | Prefer |
-|------------|--------|
-| Listing every Python package | **Role** of each layer (tracking, lineage, gates) + pointer to repository |
-| “The EU AI Act requires…” without citation | **Article + EUR-Lex** (see [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md)) |
-| Vague “non-compliant model” | **Definition**: fairness/SHAP gate outcomes as in Sub-RQ1 |
-| “Human oversight” as buzzword | **Sub-RQ2 definition**: what was measured (CI latency proxy) and what was not (banking SLA, eID) |
+
+| Instead of                                 | Prefer                                                                                           |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| Listing every Python package               | **Role** of each layer (tracking, lineage, gates) + pointer to repository                        |
+| “The EU AI Act requires…” without citation | **Article + EUR-Lex** (see [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md))                     |
+| Vague “non-compliant model”                | **Definition**: fairness/SHAP gate outcomes as in Sub-RQ1                                        |
+| “Human oversight” as buzzword              | **Sub-RQ2 definition**: what was measured (CI latency proxy) and what was not (banking SLA, eID) |
+
 
 ---
 

@@ -147,6 +147,10 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 | Gate C (Sub-RQ2) | `metrics/human_oversight_latency.json` + workflow URL
 | Reproducibility | MLflow tags (`git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`); `dvc.lock`
 | Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + `metrics/fairness_gate_subrq1_threshold_demo_fail.json` (**`gate_passed: false`**) or your own export after threshold change |
+| Optional scoring API (Primary RQ / discussion) | `serving/`, [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md); `/health`, `/version`, `/predict` when running |
+| Train/serve feature contract (optional artefact) | `artifacts/feature_schema.json` from `src/train.py`; catalog [docs/deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md) |
+
+**Gate B (baseline):** `params.yaml` sets `gates.shap.min_top_mean_abs_shap: 0.0`. The gate **records** SHAP-based attribution (`artifacts/shap_report.md`, `metrics/shap_gate.json`) and **passes** under typical runs; **Sub-RQ1 “blocking”** evidence relies on **Gate A** (fairness) and the archived threshold demo—not on SHAP failure. See manuscript §4.4.
 
 **Minimum Sub-RQ1 evidence bundle:** (1) `experiment_comparison.json` for standard vs governed under shared controls; (2) **either** exported failing `fairness_gate.json` from threshold demo **or** stress run with documented gate failure.
 
@@ -165,6 +169,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 - [ ] **famges** / sensitive attributes: **honest** proxy discussion.  
 - [ ] **GitHub approval** ≠ **digital signature** in law — **one** clear sentence.  
 - [ ] **Contributions** = **artifact + evaluation + principles**, not “solved compliance.”  
+- [ ] **Gate B (SHAP)** at **`min_top_mean_abs_shap: 0.0`** is framed as **mandated explainability artefact**, not the **Sub-RQ1 blocking** lever—**Gate A** (fairness) carries that demonstration (see manuscript §4.4).
 
 ---
 

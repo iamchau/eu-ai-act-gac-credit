@@ -1,0 +1,17 @@
+# Local scoring API: mount trained model + schema from host (artifacts/ is gitignored).
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./artifacts:/app/artifacts:ro
+    environment:
+      MODEL_PATH: /app/artifacts/model.joblib
+      SCHEMA_PATH: /app/artifacts/feature_schema.json
+      # Optional: require X-API-Key on POST /predict (same value)
+      # SERVING_API_KEY: "change-me"
+      # Max POST body bytes for /predict (default 1048576)
+      # MAX_BODY_BYTES: "1048576"
+      # JSON access logs to stdout: 1 | 0
+      # LOG_JSON_ACCESS: "1"

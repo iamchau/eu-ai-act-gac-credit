@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-04-07 — Serving extensions (Tier A + B4 + B6)
+
+**Approved (technical scope)**
+
+- **`artifacts/feature_schema.json`** from `train.py` — supports **train/serve contract** without new legal claims.
+- **Optional `SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON **access logs** — **illustrative** controls; thesis must **not** frame these as bank security or compliance tooling. See [MANUSCRIPT.md](thesis/MANUSCRIPT.md) §5.4.
+- **`scripts/smoke_serving.py`**, **[TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md)** — documentation and regression hygiene; **no** change to Sub-RQ1/2 evidence unless you scope new experiments.
+
+**Verdict:** Proceed. Remind examiners: **illustrative deployment** only.
+
+---
+
 ## 2026-04-07 — Foundation + stress feature batch
 
 **Approved**

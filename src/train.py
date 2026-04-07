@@ -195,6 +195,21 @@ def main() -> int:
     ARTIFACTS.mkdir(parents=True, exist_ok=True)
     joblib.dump(pipe, ARTIFACTS / "model.joblib")
 
+    fn = getattr(pipe, "feature_names_in_", None)
+    if fn is not None:
+        names = [str(x) for x in fn]
+        dtypes = {str(c): str(X_val[c].dtype) for c in names if c in X_val.columns}
+        schema_out = {
+            "schema_version": 1,
+            "feature_names": names,
+            "dtypes": dtypes,
+            "git_commit": git_sha,
+            "params_yaml_sha16": p_digest,
+            "data_provenance": data_provenance,
+        }
+        with open(ARTIFACTS / "feature_schema.json", "w", encoding="utf-8") as f:
+            json.dump(schema_out, f, indent=2)
+
     proba_pos = proba[:, 1] if proba.shape[1] > 1 else proba[:, 0]
     audit = pd.DataFrame(
         {

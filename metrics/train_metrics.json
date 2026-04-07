@@ -6,7 +6,7 @@
   "seed": 42,
   "data_provenance": "uci-asc:SouthGermanCredit.asc",
   "pipeline_profile": "governed",
-  "git_commit": "456289c57a50",
+  "git_commit": "b13f649b605b",
   "params_yaml_sha16": "2007d8c2f0d65a1c",
   "dvc_lock_sha16": "b3add8eb1426b122",
   "stress_bias": "off"

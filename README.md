@@ -18,6 +18,8 @@ Design Science Research (DSR) thesis artifact: MLOps pipeline with fairness (Fai
 |------|---------|
 | `docs/` | Thesis source; **[docs/thesis/MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md)** (draft thesis); [docs/figures/](docs/figures/) for figures |
 | `src/` | Training, evaluation, gate scripts |
+| `serving/` | Optional FastAPI scoring API — see **Serving** below |
+| `scripts/` | `compare_profiles.py` (P3); `smoke_serving.py` (serving health check) |
 | `.github/workflows/` | GitHub Actions (CI matrix, governed deploy / Gate C) |
 | `pipelines/` | Placeholder (reserved); workflows live under `.github/workflows/` |
 | `data/` | Raw data (gitignored); DVC-tracked artifacts |
@@ -52,6 +54,29 @@ Tracking: `params.yaml` → `mlflow.tracking_uri` is **`sqlite:///./mlflow.db`**
 **Thesis writing:** [docs/DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) (charter) → [docs/THESIS_WRITING_HUB.md](docs/THESIS_WRITING_HUB.md) (**≥50 pages**, tables/figures plan, anchors) → [docs/THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md) · [docs/EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md) · [docs/THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md) · [docs/SUB_RQ2_ALTERNATIVES.md](docs/SUB_RQ2_ALTERNATIVES.md).
 
 **Plan & status:** [PROJECT_PLAN.md](PROJECT_PLAN.md) · **Review log:** [docs/DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md).
+
+## Serving (optional — Docker)
+
+Illustrative **scoring API** for CV/thesis discussion; not bank production. **`artifacts/`** is **gitignored** — train first so **`model.joblib`** and **`feature_schema.json`** exist, then run the container with a **volume** mount.
+
+1. **Train:** `python src/train.py` (or `dvc repro`) — writes `artifacts/model.joblib`, `artifacts/feature_schema.json` (column contract for inference), and gate CSVs.
+2. **Install serving deps** (local run without Docker): `pip install -r requirements-serving.txt`
+3. **Run API:** `docker compose up --build` from the repo root (port **8080**), **or** `uvicorn serving.app:app --host 127.0.0.1 --port 8080` from repo root with `PYTHONPATH=.`
+
+**Endpoints:** `GET /health` · `GET /version` · `POST /predict` with body `{"records": [ { "<feature>": <value>, ... } ]}` (columns must match `feature_schema.json`).
+
+**Operational knobs (environment):**
+
+| Variable | Role |
+|----------|------|
+| `SERVING_API_KEY` | If set, `POST /predict` requires header `X-API-Key` (same value). `/health` and `/version` stay open. |
+| `MAX_BODY_BYTES` | Max `Content-Length` for `POST /predict` (default **1048576**). **413** if larger. |
+| `LOG_JSON_ACCESS` | `1` (default): one JSON access log line per request to stdout (no request body logged). Set `0` to disable. |
+| `MODEL_PATH` / `SCHEMA_PATH` | Override paths to model and schema (defaults under `artifacts/`). |
+
+**Smoke test** (API must be running): `python scripts/smoke_serving.py` — optional `SERVING_API_KEY` in the environment. Options: `--base-url`, `--artifacts`.
+
+**Reference docs:** [docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md) (catalog of implemented + backlog items) · [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) (analysis, §8 career note).
 
 ## Rules
 

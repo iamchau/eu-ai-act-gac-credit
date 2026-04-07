@@ -1,9 +1,9 @@
-
 ---
-title: "Implementing the EU AI Act: A Design Science Study on Governance-as-Code (GaC) for High-Risk Credit Scoring in Norway"
+
+## title: "Implementing the EU AI Act: A Design Science Study on Governance-as-Code (GaC) for High-Risk Credit Scoring in Norway"
+
 author: "[Author Name]"
 date: "[Submission year]"
----
 
 **Institution:** [University / Faculty]  
 **Programme:** [Degree programme]  
@@ -28,15 +28,15 @@ The thesis does **not** claim full legal compliance or industry adoption. Contri
 
 # Table of contents
 
-1. [Introduction](#1-introduction)  
-2. [Background and literature](#2-background-and-literature)  
-3. [Theoretical framework](#3-theoretical-framework)  
-4. [Methodology](#4-methodology)  
-5. [Instantiation](#5-instantiation)  
-6. [Results](#6-results)  
-7. [Discussion](#7-discussion)  
-8. [Conclusion](#8-conclusion)  
-9. [References](#9-references)  
+1. [Introduction](#1-introduction)
+2. [Background and literature](#2-background-and-literature)
+3. [Theoretical framework](#3-theoretical-framework)
+4. [Methodology](#4-methodology)
+5. [Instantiation](#5-instantiation)
+6. [Results](#6-results)
+7. [Discussion](#7-discussion)
+8. [Conclusion](#8-conclusion)
+9. [References](#9-references)
 10. [Appendices](#10-appendices)
 
 ---
@@ -75,17 +75,19 @@ Table 1 summarises operational terms for the primary RQ (see also Chapter 4).
 
 **Table 1 — Operational terms for the primary RQ**
 
-| Phrase | Meaning in this thesis |
-|--------|-------------------------|
-| Design | Construct (GaC pipeline) + instantiation (repository) + design principles (Chapter 7). |
-| Automatically enforces | Executable checks: failed gates block or record failure—not full automation of law. |
+
+| Phrase                 | Meaning in this thesis                                                                  |
+| ---------------------- | --------------------------------------------------------------------------------------- |
+| Design                 | Construct (GaC pipeline) + instantiation (repository) + design principles (Chapter 7).  |
+| Automatically enforces | Executable checks: failed gates block or record failure—not full automation of law.     |
 | EU AI Act requirements | Mapped to engineering controls (Chapter 5, Appendix B); legal completeness not claimed. |
-| CI/CD pipeline | GitHub Actions + local DVC; deployment is illustrative, not a production bank stack. |
+| CI/CD pipeline         | GitHub Actions + local DVC; deployment is illustrative, not a production bank stack.    |
+
 
 ## 1.4 Contributions
 
-1. **Artifact:** A reference **GaC MLOps** repository with Gates A (fairness), B (SHAP), C (human approval), experiment tracking, and reproducibility digests.  
-2. **Evaluation:** Controlled **standard vs governed** comparison and a **policy tightening** demonstration with archived gate failure JSON; **Sub-RQ2** latency from a documented workflow run.  
+1. **Artifact:** A reference **GaC MLOps** repository with Gates A (fairness), B (SHAP), C (human approval), experiment tracking, and reproducibility digests.
+2. **Evaluation:** Controlled **standard vs governed** comparison and a **policy tightening** demonstration with archived gate failure JSON; **Sub-RQ2** latency from a documented workflow run.
 3. **Principles:** Discussion of trade-offs (velocity vs control) and boundaries of CI-based oversight.
 
 ## 1.5 Structure of the thesis
@@ -98,7 +100,7 @@ Chapter 2 reviews responsible AI, MLOps, and the EU AI Act high-risk framing. Ch
 
 ## 2.1 Responsible AI and algorithmic fairness
 
-Fairness in classification is operationalised through **group** and **individual** notions. This thesis uses **equalized odds** (Fairlearn) on validation predictions relative to a **sensitive attribute** column. The UCI dataset exposes a combined demographic proxy (`famges`); interpretation limits are discussed in Section 4.4.
+Fairness in classification is operationalised through **group** and **individual** notions. This thesis uses **equalized odds** (Fairlearn) on validation predictions relative to a **sensitive attribute** column. The UCI dataset exposes a combined demographic proxy (`famges`); interpretation limits are discussed in Section 4.5.
 
 ## 2.2 MLOps and compliance
 
@@ -136,6 +138,8 @@ The study follows a **DSR** path: build the instantiation, compare **standard** 
 
 **Primary source:** UCI Machine Learning Repository, **South German Credit (UPDATE)** (`SouthGermanCredit.asc`), dataset ID 573. **Provenance** string logged to MLflow: `uci-asc:SouthGermanCredit.asc`. If local raw files are missing, the training script may fall back to OpenML `credit-g`; the thesis reports the provenance recorded for the runs cited here.
 
+**Binding for Chapter 6 (P3):** Tables and metrics for the **standard vs governed** comparison **must** match `**metrics/experiment_comparison.json`**—including its `**git_commit**`, `**data_provenance**`, and embedded metrics. For the committed file cited in Section 6.1, lineage is `**uci-asc:SouthGermanCredit.asc**` (aligned with CI and `scripts/compare_profiles.py`). A different local raw path does not override the cited JSON unless you regenerate and recommit that file.
+
 **Split:** 75% train / 25% validation, `random_state=42`, stratified on the target. **Sensitive column** for fairness: `famges` (fallback `personal_status` if absent).
 
 ## 4.3 Profiles
@@ -145,7 +149,15 @@ The study follows a **DSR** path: build the instantiation, compare **standard** 
 
 **Note:** Local `dvc repro` runs all stages after train using `pipeline.profile` from `params.yaml` (default governed); the **standard** baseline for P3 uses the comparison script, not `dvc repro` alone (see project `docs/compare_pipelines.md`).
 
-## 4.4 Ethics and limitations (methods)
+## 4.4 Gate roles and evidence binding
+
+For **Sub-RQ1**, the **fairness** gate (Gate A) carries the **demonstrated blocking** story: the archived threshold-tightening run (`metrics/fairness_gate_subrq1_threshold_demo_fail.json`) records `**gate_passed: false`** when the fairness budget is tighter than the observed equalized-odds difference on the validation split.
+
+The **SHAP** gate (Gate B) **mandates** an explainability artefact (`artifacts/shap_report.md`) and metrics (`metrics/shap_gate.json`). With the baseline `**min_top_mean_abs_shap: 0.0`** in `params.yaml`, Gate B **documents** SHAP-based attribution for the validation set and **passes** under normal runs; it does **not** provide a second independent numeric failure mode in this baseline configuration (raising `min_top_mean_abs_shap` would be required to make SHAP-driven failure likely). Optional **stress** / bias-injection runs target **fairness** outcomes; see `docs/stress_experiment.md`.
+
+**Evidence binding:** Claims in Chapter 6 that rest on the profile comparison **must** align with `**metrics/experiment_comparison.json`** (Sections 4.2 and 4.4). On-disk `metrics/fairness_gate.json` from a **later** local run may differ; the **thesis table** is tied to the embedded objects inside `experiment_comparison.json` unless you state otherwise.
+
+## 4.5 Ethics and limitations (methods)
 
 - **Data:** Public anonymised records; **proxy** sensitive attributes—no claim of representing protected characteristics directly.  
 - **Legal:** Appendix B maps themes to controls; **thesis must cite EUR-Lex** for Articles.  
@@ -161,21 +173,29 @@ The study follows a **DSR** path: build the instantiation, compare **standard** 
 
 - **Python 3.12** (CI); scikit-learn logistic regression; **MLflow** tracking (`sqlite:///./mlflow.db`); **DVC** for pipeline stages; **Fairlearn** (equalized odds difference); **SHAP** (mean |SHAP| on validation).  
 - **CI:** `.github/workflows/ci.yml` matrix **standard** vs **governed**.  
-- **Gate C:** `.github/workflows/governed_deploy.yml`; Environment **`model-governance`**; latency written to `metrics/human_oversight_latency.json`.
+- **Gate C:** `.github/workflows/governed_deploy.yml`; Environment `**model-governance`**; latency written to `metrics/human_oversight_latency.json`.
 
 ## 5.2 Gates
 
-| Gate | Script | Pass criterion (baseline) |
-|------|--------|---------------------------|
-| A Fairness | `src/gate_fairness.py` | `abs(equalized_odds_difference) ≤ max_equalized_odds_difference` (default **0.70**) |
-| B SHAP | `src/gate_shap.py` | Top feature mean |SHAP| ≥ `min_top_mean_abs_shap` (default **0.0**) |
-| C Human oversight | GitHub Actions + Environment | Manual approval before second job; latency JSON |
+
+| Gate              | Script                       | Pass criterion (baseline)                                                               |
+| ----------------- | ---------------------------- | --------------------------------------------------------------------------------------- |
+| A Fairness        | `src/gate_fairness.py`       | `abs(equalized_odds_difference) ≤ max_equalized_odds_difference` (default **0.70**)     |
+| B SHAP            | `src/gate_shap.py`           | Top feature mean |SHAP| ≥ `min_top_mean_abs_shap` (**0.0** — artefact + pass; see §4.4) |
+| C Human oversight | GitHub Actions + Environment | Manual approval before second job; latency JSON                                         |
+
+
+Gate **A** is the primary **policy-as-code** lever for **blocking** demonstrations in this thesis (threshold demo; optional stress). Gate **B** enforces **presence** of a SHAP summary under the baseline threshold; Chapter 4.4 states how this relates to Sub-RQ1 evidence.
 
 **Figure 1 (placeholder):** High-level architecture — standard vs governed paths and Gate A/B/C.
 
 ## 5.3 Traceability
 
 Each training run logs **git commit** (short), **params.yaml** SHA-16, and **dvc.lock** SHA-16 to MLflow tags and `metrics/train_metrics.json`, supporting audit-style replay.
+
+## 5.4 Optional scoring API (illustrative)
+
+The repository **includes** a **containerised** FastAPI service (`serving/`, Docker) exposing `/health`, `/version`, and `/predict` for the **same** sklearn pipeline as offline training; training also emits **`artifacts/feature_schema.json`** for a documented inference column contract. Optional controls (**API key** on predict, **request body limit**, **structured access logs**) are **illustrative** operations hygiene—not bank security or compliance tooling. This supports **Primary RQ** “instantiation” and **Discussion** (traceable deployment-shaped artefact) but is **not** claimed as regulated production deployment: no service-level guarantees, no integration with core banking systems, and the model artefact remains **research-grade** on public data. Sub-RQ1 and Sub-RQ2 evidence remain tied to committed metrics and CI unless extended by explicit new experiments.
 
 ---
 
@@ -187,14 +207,16 @@ Table 2 summarises `metrics/experiment_comparison.json` generated at **2026-04-0
 
 **Table 2 — Standard vs governed profiles (same seed, same lineage)**
 
-| Metric | Standard | Governed |
-|--------|----------|----------|
-| Exit code | 0 | 0 |
-| Wall time (s) | 6.726 | 20.912 |
-| Accuracy | 0.776 | 0.776 |
-| ROC-AUC | 0.796 | 0.796 |
-| Fairness gate | not run | pass (EOD 0.617, max 0.70) |
-| SHAP gate | not run | pass (top feature `laufkont`) |
+
+| Metric        | Standard | Governed                      |
+| ------------- | -------- | ----------------------------- |
+| Exit code     | 0        | 0                             |
+| Wall time (s) | 6.726    | 20.912                        |
+| Accuracy      | 0.776    | 0.776                         |
+| ROC-AUC       | 0.796    | 0.796                         |
+| Fairness gate | not run  | pass (EOD 0.617, max 0.70)    |
+| SHAP gate     | not run  | pass (top feature `laufkont`) |
+
 
 Under the **baseline** threshold (**0.70**), both profiles achieve identical accuracy and ROC-AUC; the governed path adds **gate latency** (wall time) and **policy enforcement** without changing point predictions for this split.
 
@@ -204,10 +226,12 @@ When `max_equalized_odds_difference` was tightened from **0.70** to **0.55**, th
 
 **Table 3 — Fairness gate: baseline vs tightened policy**
 
-| Setting | max EOD allowed | abs EOD (val) | gate_passed |
-|---------|-------------------|----------------|-------------|
-| Baseline | 0.70 | 0.617 | true |
-| Demo (archived) | 0.55 | 0.617 | **false** |
+
+| Setting         | max EOD allowed | abs EOD (val) | gate_passed |
+| --------------- | --------------- | ------------- | ----------- |
+| Baseline        | 0.70            | 0.617         | true        |
+| Demo (archived) | 0.55            | 0.617         | **false**   |
+
 
 This demonstrates **executable** policy: **identical** code and data, **stricter** threshold, **blocked** governed path.
 
@@ -215,7 +239,7 @@ This demonstrates **executable** policy: **identical** code and data, **stricter
 
 From `metrics/human_oversight_latency.json` (workflow sample):
 
-- **`human_oversight_latency_seconds`:** 7  
+- `**human_oversight_latency_seconds`:** 7  
 - **Workflow run:** `https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560`
 
 This measures **GitHub-mediated** delay (gates complete → approval job start), including Environment approval wait when protection is enabled—not end-to-end bank processing.
@@ -234,13 +258,13 @@ This measures **GitHub-mediated** delay (gates complete → approval job start),
 
 ## 7.2 Design principles
 
-1. **Separation of profiles** — standard vs governed must be **defined** and reproducible.  
-2. **Evidence binding** — claims attach to JSON, workflows, and commit hashes.  
+1. **Separation of profiles** — standard vs governed must be **defined** and reproducible.
+2. **Evidence binding** — claims attach to JSON, workflows, and commit hashes.
 3. **Honest scope** — proxy attributes, CI-only oversight, illustrative deployment.
 
 ## 7.3 Limitations
 
-See Section 4.4 and Chapter 1. In short: **dataset** limits generalisation; **legal** claims require EUR-Lex and supervision; **Sub-RQ2** is a **narrow** operational metric.
+See Section 4.5 and Chapter 1. In short: **dataset** limits generalisation; **legal** claims require EUR-Lex and supervision; **Sub-RQ2** is a **narrow** operational metric.
 
 ## 7.4 Future work
 
