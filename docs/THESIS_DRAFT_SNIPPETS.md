@@ -62,11 +62,12 @@ Norway is relevant as **jurisdictional context** for how EU high-risk rules inte
 
 ### 2.4 Sub-RQ 2 — answers vs does not answer
 
+Aligned with [human_oversight.md](human_oversight.md): the clock **includes** waiting for **Environment** approval (and queue) before the second job runs — **not** “orchestration only.”
+
 | **In scope** | **Out of scope (state in Methodology or Discussion)** |
 |--------------|--------------------------------------------------------|
-| Seconds from end of automated gates to **start** of approval job (CI orchestration) | End-to-end latency of a **real** credit decision in a bank |
-| One **instantiation** (GitHub Environment + reviewer) | Reviewer **cognitive** time, calendar wait, SLA |
-| Illustrative sample(s) with JSON + run URL | Statistical model of “oversight cost” across organizations |
+| `human_oversight_latency_seconds`: gates complete → approval job starts (includes reviewer wait when protection is on) | **Bank** credit decision time, **core** lending systems, **legal** eID signing |
+| One **instantiation** + JSON + workflow URL | Industry-wide “cost of oversight” statistics |
 
 ---
 
@@ -84,7 +85,7 @@ Compared to the **standard** profile, the **governed** profile adds automated fa
 
 ### Sub-RQ 2 — answer sketch
 
-Human-in-the-loop is modeled as a **required reviewer** on a protected GitHub **Environment** before a deploy-style job. **Latency** in this proxy is the **automation-to-approval-job** interval (on the order of **seconds** in sample runs—replace with your measured value and cite `human_oversight_latency.json` and workflow URL). This measures **CI orchestration delay**, not end-to-end credit decision time or legal signing workflows.
+Human-in-the-loop is modeled as a **required reviewer** on a protected GitHub **Environment** before a deploy-style job. **Latency** is wall-clock seconds from **end of automated gates** to **start** of the approval job’s first step (on the order of **seconds** in sample runs—replace with your value; cite `human_oversight_latency.json` and workflow URL). Per [human_oversight.md](human_oversight.md), this **includes** queue and **wait for Environment approval** when reviewers are configured — it is **not** end-to-end bank credit time or eID signing.
 
 **Art. 14 (functional analogue — one sentence, Methodology or Sub-RQ2):**  
 The GitHub Environment approval is a **technical analogue** for “human oversight before release” in this DSR artifact; it is **not** a claim that the setup satisfies Article 14 of Regulation (EU) 2024/1689 as a legal matter—verify wording against [EUR-Lex](EU_AI_ACT_CITATIONS.md) and your supervisor.
@@ -93,7 +94,7 @@ The GitHub Environment approval is a **technical analogue** for “human oversig
 
 ### 3b. Discussion — how the Sub-RQs relate (paste paragraph)
 
-Sub-RQ1 and Sub-RQ2 answer **different** questions and are **not** equally general. Sub-RQ1 addresses whether the **governed** pipeline **differs** from the **standard** path under controlled conditions and whether policy can **block** release when operational criteria fail. Sub-RQ2 addresses **orchestration overhead** for inserting a **human gate** in **this** CI design—not the latency of a real credit decision in a bank, reviewer judgment time, or legal signing. Together they support a **complementary** reading: **effectiveness** of automated gates (Sub-RQ1) and **cost** of the human handoff in the proxy (Sub-RQ2).
+Sub-RQ1 and Sub-RQ2 answer **different** questions and are **not** equally general. Sub-RQ1 addresses whether the **governed** pipeline **differs** from the **standard** path under controlled conditions and whether policy can **block** release when operational criteria fail. Sub-RQ2 addresses **GitHub-mediated** delay (gates done → approval job start), which **includes** Environment approval wait when protection is enabled — **not** a real bank credit-workflow SLA. Together they support a **complementary** reading: **effectiveness** of automated gates (Sub-RQ1) and **approval latency in the CI proxy** (Sub-RQ2).
 
 ---
 
@@ -110,7 +111,7 @@ The **standard** profile optimizes for **training and release velocity** under a
 1. **Data and domain:** The study uses the **UCI South German Credit (UPDATE)** dataset, not Norwegian bank data. **Sensitive attributes** are operationalized via dataset fields (including combined proxies such as `famges` per dataset documentation); findings do not transfer to production credit populations without re-validation.  
 2. **Legal:** The compliance matrix is a **scaffold**; final thesis text must **cite EUR-Lex** (or assigned official sources) for Articles; the implementation **operationalizes selected controls**, not the Act in full.  
 3. **Sub-RQ1:** Evidence is **controlled comparison** and **demonstrated blocking** under defined thresholds—not a statistical audit of model approval rates in industry.  
-4. **Sub-RQ2:** Latency is a **CI/CD proxy** (GitHub Environments), not core banking systems, auditor calendars, or qualified electronic signatures.  
+4. **Sub-RQ2:** Latency is a **GitHub Actions / Environment** proxy; it **includes** approval wait when reviewers are set — **not** core banking systems or qualified electronic signatures.  
 5. **Deployment:** The pipeline is a **research instantiation**; “release” and “environment” are **illustrative**, not a certified production deployment.
 
 ---

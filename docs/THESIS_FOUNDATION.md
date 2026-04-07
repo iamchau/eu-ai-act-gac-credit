@@ -66,15 +66,16 @@ Use these **instead of** the informal proposal sentences so examiners do not quo
 
 #### Sub-RQ2 — what it answers vs what it does not
 
+**Must match** [human_oversight.md](human_oversight.md): the recorded interval **includes** time waiting for **GitHub Environment** approval (reviewer) and runner queue **before** the `human-approval-release` job starts — not “pure orchestration ms.”
+
 | **Answers (in scope)** | **Does not answer (state explicitly)** |
 |------------------------|----------------------------------------|
-| Orchestration delay for **this** CI design (gates → protected environment → job start) | Total time in a **real** bank credit workflow |
-| Whether a **human gate** can be inserted **without** implying a specific review duration | Reviewer **thinking time**, queue time, SLA |
-| A **functional analogue** for “human oversight before release” in a DSR artifact | **Article 14** compliance as a legal conclusion |
+| Wall-clock seconds from **end of automated gates** to **start** of the approval job’s first step (`human_oversight_latency_seconds`) — **includes** Environment approval wait when reviewers are configured | End-to-end **bank** credit decision latency, **core banking** systems, **national eID** / qualified signature workflows |
+| A **functional analogue** for “human oversight before release” in a DSR artifact | **Article 14** compliance as a **legal** conclusion |
 
 #### Sub-RQ parity (for Discussion one paragraph)
 
-Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries the main **evaluative** comparison (standard vs governed + blocking demo); Sub-RQ2 is a **narrow** operational measure of **one** instantiation’s handoff delay. **State that** so Sub-RQ2 is not read as weak banking evidence or as inflated latency science.
+Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries the main **evaluative** comparison (standard vs governed + blocking demo); Sub-RQ2 is a **narrow** measure of **GitHub-mediated** approval latency (gates done → approval job start), **not** banking science. **State that** so Sub-RQ2 is not read as weak evidence or as a claim about production credit SLAs.
 
 **Optional Sub-RQ2 formulations** (latency default; traceability / design / trade-offs): [SUB_RQ2_ALTERNATIVES.md](SUB_RQ2_ALTERNATIVES.md).
 
@@ -157,7 +158,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 
 - [ ] Every **Article** number matches **EUR-Lex** or official consolidated text you were assigned.  
 - [ ] **Sub-RQ1** uses **defined** “standard” vs “governed” and **operational** non-compliance — not vague “ethics.”  
-- [ ] **Sub-RQ2** states **CI proxy** and **single** (or few) latency samples; **one** sentence on what latency **does not** measure (banking workflow, reviewer time, eID).  
+- [ ] **Sub-RQ2** states **CI proxy** and **single** (or few) latency samples; **one** sentence that the metric **includes** GitHub Environment approval wait when configured, and **does not** measure **bank** credit pipelines or **eID** signing.  
 - [ ] Introduction uses **thesis-ready one-liners** (§2), not informal proposal wording (“reduce the rate,” “credit scoring workflow” without scope).  
 - [ ] **famges** / sensitive attributes: **honest** proxy discussion.  
 - [ ] **GitHub approval** ≠ **digital signature** in law — **one** clear sentence.  

@@ -88,3 +88,17 @@
 - **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)** — Core-claim **note** if Sub-RQ2 is swapped; §2 link; §10 index.
 
 **Verdict:** Supervisory choice on Sub-RQ2 is **documented**; default repo thesis remains **latency**-aligned.
+
+---
+
+## 2026-04-07 — Cross-audit: thesis ↔ code ↔ workflows
+
+**Approved (doc corrections)**
+
+- **Sub-RQ2 semantics:** [human_oversight.md](human_oversight.md) already stated latency **includes** Environment approval wait; [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) and [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) were updated to **match** (removed incorrect “excludes reviewer/queue” wording).  
+- **README:** MLflow tracking is **`sqlite:///./mlflow.db`** — not `mlruns/` as primary UI path.  
+- **compare_pipelines.md:** `dvc repro` vs `PIPELINE_PROFILE` / **standard** baseline clarified.  
+- **SUB_RQ1_DEMO.md:** EOD range aligned with committed `experiment_comparison.json`.  
+- **PROJECT_PLAN.md:** branch name typo (`main`).
+
+**Verdict:** No code change required for Sub-RQ2 — **measurement** was already correct; **thesis** text had drifted.

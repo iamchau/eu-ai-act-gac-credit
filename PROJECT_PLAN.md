@@ -33,7 +33,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - `scripts/compare_profiles.py` + `metrics/experiment_comparison.json` — local P3 tabulation (same seed)
 - `docs/GITHUB_SETUP.md`, `docs/GATE_C_RUNBOOK.md`
 - `docs/THESIS_EVAL_NOTES.md` — limitations + artifact checklist for writing
-- **GitHub:** `origin` → `https://github.com/iamchau/eu-ai-act-gac-credit.git`, branch `**main`**, pushed
+- **GitHub:** `origin` → `https://github.com/iamchau/eu-ai-act-gac-credit.git`, branch `main`, pushed
 - **Foundation (2026-04-07):** MLflow **SQLite** (`mlflow.db`), `src/run_context.py` digests (**git**, **params.yaml**, **dvc.lock**), `requirements.lock.txt`
 - **Docs:** [COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md), [SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md), [stress_experiment.md](docs/stress_experiment.md), [DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md), **[THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)** (RQs, DSR, scope, chapter spine)
 - **Thesis draft pack (2026-04-07):** [THESIS_DRAFT_SNIPPETS.md](docs/THESIS_DRAFT_SNIPPETS.md), [EU_AI_ACT_CITATIONS.md](docs/EU_AI_ACT_CITATIONS.md), [THESIS_CUT_LIST.md](docs/THESIS_CUT_LIST.md); §10 in [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) links them

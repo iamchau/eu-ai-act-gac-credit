@@ -1,6 +1,6 @@
 # Sub-RQ2 — alternative formulations (Dr. Voss)
 
-The **default** thesis design uses **Sub-RQ2 = CI orchestration latency** (`human_oversight_latency.json`). That is **measurable** and **honest**, but **narrow**. If your supervisor wants Sub-RQ2 to stress **traceability** or **human oversight design** instead (or in addition), use **one** of the alternatives below—**do not** stack multiple Sub-RQ2s without faculty approval.
+The **default** thesis design uses **Sub-RQ2 = latency from gates-complete to approval-job start** (`human_oversight_latency.json`), which **includes** GitHub Environment approval wait when reviewers are set ([human_oversight.md](human_oversight.md)). It is **measurable** and **honest**, but **narrow** (still not bank credit latency). If your supervisor wants Sub-RQ2 to stress **traceability** or **human oversight design** instead (or in addition), use **one** of the alternatives below—**do not** stack multiple Sub-RQ2s without faculty approval.
 
 **Repository default:** Latency-focused Sub-RQ2 (aligned with Gate C and [human_oversight.md](human_oversight.md)).
 

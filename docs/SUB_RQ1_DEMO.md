@@ -4,7 +4,7 @@
 
 ## Steps
 
-1. Note current fairness: `metrics/fairness_gate.json` — `abs_equalized_odds_difference` ≈ **0.585** (typical for this baseline).
+1. Note current fairness: `metrics/fairness_gate.json` — `abs_equalized_odds_difference` is often **~0.58–0.62** on this baseline (exact value depends on data split and run; e.g. [experiment_comparison.json](../metrics/experiment_comparison.json) shows **~0.617**).
 2. In `params.yaml`, set `gates.fairness.max_equalized_odds_difference` from **0.70** to **0.55** (stricter).
 3. Run:
 
