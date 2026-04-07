@@ -6,7 +6,7 @@ Use with your supervisor’s style guide; cite primary sources for the EU AI Act
 
 ## Limitations (methods)
 
-- **Gate C latency** is measured in **GitHub Actions** (wall-clock from end of automated gates until the approval job starts). It is a **CI proxy**, not production banking workflow latency.
+- **Gate C latency** is measured in **GitHub Actions** (wall-clock from end of automated gates until the approval job starts; **includes** Environment approval wait when reviewers are configured — see [human_oversight.md](human_oversight.md)). It is a **CI proxy**, not production banking workflow latency.
 - **Fairness threshold** `max_equalized_odds_difference: 0.70` is set so the **baseline** logistic model passes; report sensitivity when you tighten it or add mitigation (Fairlearn reductions, etc.).
 - **`famges`** is a **proxy** for personal status / sex (UCI description); discuss proxy risk and Article 9 / GDPR where relevant.
 
@@ -30,3 +30,5 @@ python scripts/compare_profiles.py
 ```
 
 Paste the table from `metrics/experiment_comparison.json` into the thesis and discuss **wall_time_seconds** vs **gate outcomes**.
+
+**Which file to cite:** Use **`experiment_comparison.json`** for the **standard vs governed** side-by-side (it records `git_commit` at generation time). **`train_metrics.json`** on disk is only the **last** `train.py` run and may not match that comparison if you trained again without re-running `compare_profiles.py` — see [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §8.

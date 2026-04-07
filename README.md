@@ -14,7 +14,8 @@ Design Science Research (DSR) thesis artifact: MLOps pipeline with fairness (Fai
 |------|---------|
 | `docs/` | Thesis source (Markdown/LaTeX); [docs/figures/](docs/figures/) for thesis image exports |
 | `src/` | Training, evaluation, gate scripts |
-| `pipelines/` | CI workflow definitions and pipeline orchestration |
+| `.github/workflows/` | GitHub Actions (CI matrix, governed deploy / Gate C) |
+| `pipelines/` | Placeholder (reserved); workflows live under `.github/workflows/` |
 | `data/` | Raw data (gitignored); DVC-tracked artifacts |
 
 ## Setup

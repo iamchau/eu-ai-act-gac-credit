@@ -129,3 +129,17 @@
 - **[figures/README.md](figures/README.md)** — Caption template, resolution, accessibility.
 
 **Verdict:** Hub is **usable** for examiners; **length** is planned without inviting fluff.
+
+---
+
+## 2026-04-07 — Full-doc consistency pass
+
+**Approved**
+
+- **README:** `pipelines/` was misdescribed (folder empty); **`.github/workflows/`** added to layout table.  
+- **PROJECT_PLAN:** `standard`/`governed` formatting; **`metrics/...`** path markup cleaned.  
+- **THESIS_FOUNDATION §8:** Note on **`experiment_comparison.json`** `git_commit` vs last **`train_metrics.json`**.  
+- **THESIS_EVAL_NOTES:** Gate C wording aligned with **human_oversight.md**; which metric file to cite for P3.  
+- **params.yaml:** `gates.human_oversight.enabled_in_ci` clarified as **documentation-only** (Gate C is workflow-driven).
+
+**Verdict:** Reduces silent **thesis↔metrics** mismatch when students re-train without re-running **`compare_profiles.py`**.

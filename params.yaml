@@ -38,5 +38,6 @@ gates:
     min_top_mean_abs_shap: 0.0
   # Gate C: enforced in GitHub Actions via environment protection (see docs/human_oversight.md)
   human_oversight:
-    # Latency = seconds from automated gates complete → human approval (measured in governed_deploy workflow)
-    enabled_in_ci: true
+    # Gate C is enforced by governed_deploy.yml + GitHub Environment (not read by Python).
+    # Latency = seconds from automated gates complete → approval job start (see docs/human_oversight.md).
+    enabled_in_ci: true  # documentation flag only; workflows drive Gate C

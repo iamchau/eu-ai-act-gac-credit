@@ -24,10 +24,10 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - Repository scaffold (`README`, `AGENTS`, `.gitignore`, layout)
 - `requirements.txt` + `.venv` (local; not committed)
 - UCI South German Credit UPDATE in `data/raw/SouthGermanCredit.asc` + `docs/DATA_PROVENANCE.md`
-- `params.yaml` + `dvc.yaml`: train → fairness_gate → shap_gate; `pipeline.profile` (`standard`  `governed`)
+- `params.yaml` + `dvc.yaml`: train → fairness_gate → shap_gate; `pipeline.profile` (`standard` or `governed`)
 - `src/train.py` + `src/data_loading.py`: MLflow + `pipeline_profile`; gate artifacts
 - Gates A–B: `gate_fairness.py`, `gate_shap.py` + metrics JSON
-- Gate C: `governed_deploy.yml` + `**metrics/human_oversight_latency.json`** archived (run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560), **7 s** human-oversight latency)
+- Gate C: `governed_deploy.yml` + `metrics/human_oversight_latency.json` archived (run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560), **7 s** human-oversight latency)
 - CI matrix: `ci.yml` runs standard (train only) and governed (train + gates)
 - `docs/compare_pipelines.md` — standard vs governed comparison table
 - `scripts/compare_profiles.py` + `metrics/experiment_comparison.json` — local P3 tabulation (same seed)

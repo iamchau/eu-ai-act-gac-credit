@@ -152,6 +152,8 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 
 **Minimum Sub-RQ2 evidence bundle:** `human_oversight_latency.json` + **workflow run URL**; state **n** (e.g. one illustrative run vs several).
 
+**Git / metric alignment:** On-disk `metrics/train_metrics.json` and gate JSON reflect the **last** local train/gate run. `experiment_comparison.json` includes its own **`git_commit`** and embedded metrics from `scripts/compare_profiles.py` at generation time. If those **differ**, either **regenerate** the comparison (`python scripts/compare_profiles.py`) before final thesis export or **cite** the commit recorded **inside** `experiment_comparison.json` for P3 tables.
+
 ---
 
 ## 9. Dr. Voss — thesis pre-flight checklist
