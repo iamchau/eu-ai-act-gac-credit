@@ -63,13 +63,13 @@ Illustrative **scoring API** for CV/thesis discussion; not bank production. **`a
 2. **Install serving deps** (local run without Docker): `pip install -r requirements-serving.txt`
 3. **Run API:** `docker compose up --build` from the repo root (port **8080**), **or** `uvicorn serving.app:app --host 127.0.0.1 --port 8080` from repo root with `PYTHONPATH=.`
 
-**Endpoints:** `GET /health` (liveness) · `GET /ready` (readiness) · `GET /version` · `POST /predict` with body `{"records": [ { "<feature>": <value>, ... } ]}` (columns must match `feature_schema.json`).
+**Endpoints:** `GET /health` (liveness) · `GET /ready` (readiness) · `GET /version` · `GET /metrics` (minimal process JSON, not Prometheus) · `POST /predict` with body `{"records": [ { "<feature>": <value>, ... } ]}` (columns must match `feature_schema.json`).
 
 **Operational knobs (environment):**
 
 | Variable | Role |
 |----------|------|
-| `SERVING_API_KEY` | If set, `POST /predict` requires header `X-API-Key` (same value). `/health`, `/ready`, and `/version` stay open. |
+| `SERVING_API_KEY` | If set, `POST /predict` requires header `X-API-Key` (same value). `/health`, `/ready`, `/version`, and `/metrics` stay open. |
 | `MAX_BODY_BYTES` | Max `Content-Length` for `POST /predict` (default **1048576**). **413** if larger. |
 | `RATE_LIMIT_PREDICT` | Per-IP limit for `POST /predict` (default **`120/minute`**; **`off`** = effectively unlimited). |
 | `LOG_JSON_ACCESS` | `1` (default): one JSON access log line per request to stdout (no request body logged). Set `0` to disable. |
@@ -77,7 +77,7 @@ Illustrative **scoring API** for CV/thesis discussion; not bank production. **`a
 
 **Smoke test** (API must be running): `python scripts/smoke_serving.py` — optional `SERVING_API_KEY`. Options: `--base-url`, `--artifacts`.
 
-**CI:** [`.github/workflows/docker-build.yml`](.github/workflows/docker-build.yml) — after each push/PR to `main`, **train → Docker build → upload `serving-image.tar`** (download from **Actions** → workflow run → **Artifacts**). No registry push.
+**CI:** [`.github/workflows/docker-build.yml`](.github/workflows/docker-build.yml) — **train → Docker build → upload `serving-image.tar`** (every run; download from **Actions** → **Artifacts**). On **`push`** / **`workflow_dispatch`** (not **`pull_request`**), also **push** to **GHCR** (`ghcr.io/<owner>/<repo>:serving-<sha>` and `:latest`).
 
 **Reference docs:** [docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md) · [docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md) · [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) (§8 career note).
 

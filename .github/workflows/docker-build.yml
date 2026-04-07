@@ -1,4 +1,4 @@
-# Train → Docker image → upload tarball artefact (no registry push; thesis/portfolio).
+# Train → Docker image → tarball artefact + GHCR push (non-PR runs).
 name: docker-build
 
 on:
@@ -7,6 +7,10 @@ on:
   pull_request:
     branches: [main, master]
   workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   build-image:
@@ -49,6 +53,24 @@ jobs:
 
       - name: Build serving image
         run: docker build -t gac-credit-serving:${{ github.sha }} .
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image to GHCR
+        if: github.event_name != 'pull_request'
+        run: |
+          IMAGE="ghcr.io/$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')"
+          docker tag "gac-credit-serving:${{ github.sha }}" "${IMAGE}:serving-${{ github.sha }}"
+          docker tag "gac-credit-serving:${{ github.sha }}" "${IMAGE}:latest"
+          docker push "${IMAGE}:serving-${{ github.sha }}"
+          docker push "${IMAGE}:latest"
+          echo "Pushed ${IMAGE}:serving-${{ github.sha }} and ${IMAGE}:latest"
 
       - name: Save image to tarball
         run: docker save gac-credit-serving:${{ github.sha }} -o serving-image.tar

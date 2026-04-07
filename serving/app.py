@@ -48,6 +48,8 @@ limiter = Limiter(key_func=get_remote_address)
 _pipeline = None
 _feature_names: list[str] | None = None
 _schema: dict[str, Any] | None = None
+_start_monotonic: float | None = None
+_predict_success_total: int = 0
 
 
 def _env_int(name: str, default: int) -> int:
@@ -100,6 +102,8 @@ def load_schema() -> None:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    global _start_monotonic
+    _start_monotonic = time.monotonic()
     load_model()
     load_schema()
     yield
@@ -108,7 +112,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="GaC Credit - scoring API (thesis demo)",
     description="Serves sklearn pipeline from train.py; illustrative deployment only.",
-    version="0.3.0",
+    version="0.4.0",
     lifespan=lifespan,
 )
 app.state.limiter = limiter
@@ -187,6 +191,23 @@ def ready() -> dict:
     }
 
 
+@app.get("/metrics")
+def metrics() -> dict:
+    """Minimal process stats (JSON). Not Prometheus exposition format."""
+    uptime = 0.0
+    if _start_monotonic is not None:
+        uptime = round(time.monotonic() - _start_monotonic, 3)
+    return {
+        "uptime_seconds": uptime,
+        "pid": os.getpid(),
+        "python": sys.version.split()[0],
+        "model_loaded": _pipeline is not None,
+        "schema_loaded": _schema is not None,
+        "predict_success_total": _predict_success_total,
+        "app_version": app.version,
+    }
+
+
 @app.get("/version")
 def version() -> dict:
     git_sha = os.environ.get("GIT_COMMIT", git_head_short(_ROOT))
@@ -252,6 +273,8 @@ async def predict(
         pred = _pipeline.predict(df)
     except Exception as e:
         raise HTTPException(400, f"Prediction failed: {e!s}") from e
+    global _predict_success_total
+    _predict_success_total += 1
     n = len(df)
     out = []
     for i in range(n):

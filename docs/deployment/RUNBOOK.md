@@ -53,6 +53,15 @@ docker load -i serving-image.tar
 docker run --rm -p 8080:8080 gac-credit-serving:<git-sha>
 ```
 
+**Pull from GHCR** (after a **`push`** or **`workflow_dispatch`** run — not from **`pull_request`**): authenticate if the package is private (`echo $GITHUB_TOKEN | docker login ghcr.io -u USER --password-stdin`), then:
+
+```bash
+docker pull ghcr.io/<owner>/<repo>:latest
+docker run --rm -p 8080:8080 ghcr.io/<owner>/<repo>:latest
+```
+
+Use lowercase **`owner/repo`** as in the GitHub URL. Tags: **`serving-<full-git-sha>`** and **`latest`**.
+
 ---
 
 ## Docker Compose (dev)
@@ -73,6 +82,7 @@ docker compose up --build
 | `GET /health` | **Liveness** — process up (always **200** if server runs). |
 | `GET /ready` | **Readiness** — model loaded (**503** if not). |
 | `GET /version` | Git/params digests + paths (no secrets). |
+| `GET /metrics` | Minimal **JSON** process stats (uptime, PID, predict success count); not Prometheus text format. |
 | `POST /predict` | Scoring; optional **`X-API-Key`**; rate-limited (see below). |
 
 ---
@@ -92,9 +102,7 @@ docker compose up --build
 ## CI
 
 - **`ci.yml`** — matrix train + gates; **`serving_import`** imports `serving.app`.
-- **`docker-build.yml`** — train → **`docker build`** → upload **`serving-image.tar`** (artefact **per run**).
-
-No container registry is configured; **push to a registry** is a separate manual step if you need it.
+- **`docker-build.yml`** — train → **`docker build`** → upload **`serving-image.tar`** (every run) → on **`push`** / **`workflow_dispatch`**, **`docker push`** to **GHCR** (`:serving-<sha>`, `:latest`) using **`GITHUB_TOKEN`** (`packages: write`).
 
 ---
 

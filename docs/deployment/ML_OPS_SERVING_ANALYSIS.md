@@ -14,7 +14,7 @@
 | Features         | Same as UCI raw                           | `load_xy_from_config` → feature matrix `X`                                                   |
 | Repro metadata   | `metrics/train_metrics.json`, MLflow tags | `git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`                                          |
 | Params           | `params.yaml`                             | Single source for hyperparameters                                                            |
-| CI               | `.github/workflows/ci.yml` + **`docker-build.yml`** | Train + gates; **serving import**; **train → Docker image** artefact (`serving-image.tar`) |
+| CI               | `.github/workflows/ci.yml` + **`docker-build.yml`** | Train + gates; **serving import**; **train → Docker image** tarball (`serving-image.tar`) + **GHCR push** on **`push`** / **`workflow_dispatch`** |
 
 
 **Inference rule:** `pipeline.predict` / `predict_proba` expect a **DataFrame** (or array) with **columns matching training `X`** — same names and compatible dtypes as after `load_xy_from_config`.
@@ -38,14 +38,14 @@
 
 | File | Purpose |
 |------|---------|
-| `serving/app.py` | FastAPI: `/health`, `/ready`, `/version`, `/predict`; **`RATE_LIMIT_PREDICT`**; configurable **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON access logs — see [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) |
+| `serving/app.py` | FastAPI: `/health`, `/ready`, `/version`, `/metrics`, `/predict`; **`RATE_LIMIT_PREDICT`**; configurable **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON access logs — see [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) |
 | `requirements-serving.txt` | Minimal deps — **no** MLflow/DVC/SHAP in image |
 | `Dockerfile` | Serving image; **bakes** `artifacts/model.joblib` + `feature_schema.json` (requires **train before `docker build`** — [RUNBOOK.md](RUNBOOK.md)) |
 | `docker-compose.yml` | Mount `./artifacts`, `MODEL_PATH`, `SCHEMA_PATH`, env template |
-| `.github/workflows/docker-build.yml` | CI: fetch data → train → **`docker build`** → upload **`serving-image-<sha>.tar`** |
+| `.github/workflows/docker-build.yml` | CI: fetch data → train → **`docker build`** → upload **`serving-image-<sha>.tar`** → **GHCR push** (non-PR) |
 | `src/train.py` | Writes **`artifacts/feature_schema.json`** after fit |
-| `scripts/smoke_serving.py` | Smoke: **`/health`**, **`/ready`**, **`/version`**, **`POST /predict`** |
-| [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) | Catalog: implemented + small backlog |
+| `scripts/smoke_serving.py` | Smoke: **`/health`**, **`/ready`**, **`/version`**, **`/metrics`**, **`POST /predict`** |
+| [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) | Catalog: implemented extensions + **MLOps backlog closed** |
 | [RUNBOOK.md](RUNBOOK.md) | Operations: local, Docker, CI artefact, `docker load` |
 
 
@@ -68,7 +68,7 @@
 
 1. **Train:** `python src/train.py` (or `dvc repro`) → `artifacts/model.joblib` exists.
 2. **Local API:** `docker compose up --build` → mounts `artifacts/`, starts uvicorn.
-3. **Predict:** `POST /predict` with JSON `{"records": [{ "<col>": <val>, ... }, ...]}` — columns must match **`feature_schema.json`** (and the model pipeline). Optional **API key** / **body limit** / **JSON logs** — [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md).  
+3. **Predict:** `POST /predict` with JSON `{"records": [{ "<col>": <val>, ... }, ...]}` — columns must match **`feature_schema.json`** (and the model pipeline). Optional **API key** / **body limit** / **JSON logs** — [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md). **`GET /metrics`** returns minimal process JSON (not Prometheus).  
 4. **Smoke:** `python scripts/smoke_serving.py` (with API running).  
 5. **Thesis:** Cite as **deployment illustration**; link git SHA from `/version` to reproducibility narrative.
 
@@ -88,16 +88,16 @@
 
 ## 7. Future extensions (backlog)
 
-**Committed project scope:** items below are **planned completion work** (not out-of-scope extras). **Implemented elsewhere:** [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) (includes **B5** CI Docker, **C7** `/ready`, **C9** rate limit).
+**Committed project scope:** [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) lists **C8** **`/metrics`** (minimal JSON process stats) and **B5** **GHCR push** as **implemented**.
 
-**Still open (not implemented):**
+**Previously backlog (now done):**
 
 | Item | Notes |
 |------|--------|
-| **Minimal `/metrics`** | Process stats; not full Prometheus |
-| **Container registry push** (GHCR, etc.) | Needs secrets + policy decision |
+| **Minimal `/metrics`** | **`GET /metrics`** — uptime, PID, Python, model/schema flags, **`predict_success_total`**; not Prometheus scrape format |
+| **Container registry push** | **`docker-build.yml`** pushes to **GHCR** on **`push`** / **`workflow_dispatch`** (`GITHUB_TOKEN`, `packages: write`) |
 
-**Relationship to §4:** Backlog items are **planned completion work**; §4 still lists what we are **not** claiming as full production scope.
+**Relationship to §4:** These items remain **portfolio / hygiene** signals, not claims of full production observability or release management.
 
 ---
 
