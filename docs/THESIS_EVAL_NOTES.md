@@ -1,5 +1,7 @@
 # Thesis evaluation — ready-made points
 
+**Start here:** [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) — RQs, DSR map, scope, and evidence chain.
+
 Use with your supervisor’s style guide; cite primary sources for the EU AI Act.
 
 ## Limitations (methods)

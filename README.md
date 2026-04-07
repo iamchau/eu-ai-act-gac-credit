@@ -40,7 +40,7 @@ Run full local pipeline: `dvc repro`. CI: [.github/workflows/ci.yml](.github/wor
 Tracking: MLflow UI → `mlruns/` (see `params.yaml` → `mlflow.tracking_uri`).  
 **P3 experiment (local):** `python scripts/compare_profiles.py` → [metrics/experiment_comparison.json](metrics/experiment_comparison.json).
 
-**GitHub / Gate C:** [docs/GITHUB_SETUP.md](docs/GITHUB_SETUP.md) · **Troubleshoot governed-deploy:** [docs/GATE_C_RUNBOOK.md](docs/GATE_C_RUNBOOK.md) · **Thesis eval notes:** [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md).
+**GitHub / Gate C:** [docs/GITHUB_SETUP.md](docs/GITHUB_SETUP.md) · **Troubleshoot governed-deploy:** [docs/GATE_C_RUNBOOK.md](docs/GATE_C_RUNBOOK.md) · **Thesis eval notes:** [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) · **Thesis spine (RQs, DSR, scope):** [docs/THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md).
 
 **Foundation:** MLflow **SQLite** store (`mlflow.db`); run context (**git**, **params**, **dvc.lock** digests) on each train. Lockfile: [requirements.lock.txt](requirements.lock.txt). **Compliance map:** [docs/COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md). **Sub-RQ1 policy demo:** [docs/SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md).
 

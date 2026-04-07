@@ -30,3 +30,19 @@
 - **SUB_RQ1_DEMO.md** — Policy tightening (`max_equalized_odds_difference` **0.70 → 0.55**) is the **primary** demonstration that GaC **blocks** when rules tighten; stress modes are **secondary** (EOD did not move enough under undersample/remove_rare alone for this baseline).
 
 **Action:** Student runs one **failing** fairness gate (threshold demo), exports JSON, then **reverts** threshold to 0.70 for the main baseline narrative.
+
+---
+
+## 2026-04-07 — Thesis foundation (document)
+
+**Approved**
+
+- **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md)** — **Operational** definitions for Primary RQ and Sub-RQs; **Hevner** mapping; **scope** table (Norway, `famges`, GitHub vs “digital signature”); **claim discipline** for EU AI Act; **chapter outline**; **evidence index**; **pre-flight checklist**.
+
+**Conditions**
+
+- **Legal:** Replace scaffold Article references in [COMPLIANCE_MATRIX.md](COMPLIANCE_MATRIX.md) with **EUR-Lex** citations your supervisor approves.  
+- **Sub-RQ1:** Do not imply **sampled production approval rates** — use **defined** standard vs governed + **policy/threshold** demo.  
+- **Sub-RQ2:** **One** latency number is **illustrative**; state **CI** limits in **one** explicit paragraph.
+
+**Verdict:** Thesis **spine** is now **auditable**. Writing quality is yours; **structure** is no longer hand-waving.

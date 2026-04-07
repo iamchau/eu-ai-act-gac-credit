@@ -8,12 +8,14 @@ This file is the **single overview** for scope, what is done, and what comes nex
 
 ## Phases (high level)
 
+
 | Phase | Goal                                                          | Status          |
 | ----- | ------------------------------------------------------------- | --------------- |
 | P0    | Repo + Python stack + MLflow + DVC baseline                   | **Done**        |
 | P1    | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**        |
 | P2    | Human-in-the-loop gate (GitHub Actions) + latency measurement | **Done** (CI)   |
 | P3    | Standard vs governed experiment + thesis write-up             | **In progress** |
+
 
 ---
 
@@ -22,18 +24,18 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - Repository scaffold (`README`, `AGENTS`, `.gitignore`, layout)
 - `requirements.txt` + `.venv` (local; not committed)
 - UCI South German Credit UPDATE in `data/raw/SouthGermanCredit.asc` + `docs/DATA_PROVENANCE.md`
-- `params.yaml` + `dvc.yaml`: train → fairness_gate → shap_gate; `pipeline.profile` (`standard` \| `governed`)
+- `params.yaml` + `dvc.yaml`: train → fairness_gate → shap_gate; `pipeline.profile` (`standard`  `governed`)
 - `src/train.py` + `src/data_loading.py`: MLflow + `pipeline_profile`; gate artifacts
 - Gates A–B: `gate_fairness.py`, `gate_shap.py` + metrics JSON
-- Gate C: `governed_deploy.yml` + **`metrics/human_oversight_latency.json`** archived (run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560), **7 s** human-oversight latency)
+- Gate C: `governed_deploy.yml` + `**metrics/human_oversight_latency.json`** archived (run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560), **7 s** human-oversight latency)
 - CI matrix: `ci.yml` runs standard (train only) and governed (train + gates)
 - `docs/compare_pipelines.md` — standard vs governed comparison table
 - `scripts/compare_profiles.py` + `metrics/experiment_comparison.json` — local P3 tabulation (same seed)
 - `docs/GITHUB_SETUP.md`, `docs/GATE_C_RUNBOOK.md`
 - `docs/THESIS_EVAL_NOTES.md` — limitations + artifact checklist for writing
-- **GitHub:** `origin` → `https://github.com/iamchau/eu-ai-act-gac-credit.git`, branch **`main`**, pushed
+- **GitHub:** `origin` → `https://github.com/iamchau/eu-ai-act-gac-credit.git`, branch `**main`**, pushed
 - **Foundation (2026-04-07):** MLflow **SQLite** (`mlflow.db`), `src/run_context.py` digests (**git**, **params.yaml**, **dvc.lock**), `requirements.lock.txt`
-- **Docs:** [COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md), [SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md), [stress_experiment.md](docs/stress_experiment.md), [DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md)
+- **Docs:** [COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md), [SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md), [stress_experiment.md](docs/stress_experiment.md), [DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md), **[THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md)** (RQs, DSR, scope, chapter spine)
 
 ---
 
@@ -54,10 +56,12 @@ This file is the **single overview** for scope, what is done, and what comes nex
 
 ## Blockers / decisions
 
+
 | Item                              | Owner | Notes                                                      |
 | --------------------------------- | ----- | ---------------------------------------------------------- |
-| Fairness threshold `0.70`         | You   | Document sensitivity; tighten after mitigation experiments   |
+| Fairness threshold `0.70`         | You   | Document sensitivity; tighten after mitigation experiments |
 | `dvc.yaml` uses Windows venv path | You   | On Linux/Mac, change `cmd` to `.venv/bin/python src/...`   |
+
 
 ---
 
