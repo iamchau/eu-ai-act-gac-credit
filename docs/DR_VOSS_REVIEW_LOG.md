@@ -4,6 +4,42 @@
 
 ---
 
+## 2026-04-07 — Phase A/B/C advance (spine, abstract, 7.1, freeze instructions)
+
+**Approved**
+
+- **Phase A:** Introduction **§1.7** cross-links [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) Section 4 (proposal vs implementation); RQ blockquotes verified against foundation §2 one-liners.
+- **Phase B:** **Abstract** tightened (less token bold; explicit limitation closing sentence); **§7.1** rewritten in continuous prose; **Appendix F** word-count note points to [thesis/README.md](thesis/README.md).
+- **Phase C:** [thesis/README.md](thesis/README.md) — **Evidence freeze** subsection (verify → tag → push); [EXCELLENCE_ROADMAP.md](EXCELLENCE_ROADMAP.md) checkboxes updated.
+
+**Verdict:** Proceed. Create git tag only after clean commit; user executes push.
+
+---
+
+## 2026-04-07 — Chapter 7–8 navigation + conclusion prose
+
+**Approved**
+
+- **Chapter 7:** Opening **overview** paragraph signposts RQ answers → practice → limitations → extended reflection (7.7–7.40).
+- **Chapter 8:** **Conclusion** lead paragraph rewritten in continuous prose (reduced bold); **§8.4** rephrased for examination-board voice (“students” removed).
+- **[EXCELLENCE_ROADMAP.md](EXCELLENCE_ROADMAP.md):** Phase B partial ticks (limitations spine + Discussion/Conclusion pass).
+
+**Verdict:** Proceed.
+
+---
+
+## 2026-04-07 — Excellence roadmap + manuscript voice pass
+
+**Approved**
+
+- **[EXCELLENCE_ROADMAP.md](EXCELLENCE_ROADMAP.md):** Phases A–G (spine, manuscript, evidence freeze, submission); linked from [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md), [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §10, [PROJECT_JOURNEY.md](PROJECT_JOURNEY.md) B.1, root [README.md](../README.md).
+- **[thesis/README.md](thesis/README.md):** Expanded author checklist (word count, AI disclosure, forks, appendices)—meta moved out of scholarly chapters where possible.
+- **MANUSCRIPT.md:** Chapter 3 de-bolded (readable DSR/GaC); Section 7.5 named canonical limitations block; Section 7.38 cross-refs 7.5; second-person / “student handbook” phrasing reduced; Section 8.3 retitled to evidence-maintenance recommendations; pointers to `docs/thesis/README.md` for examination-office and fork rules.
+
+**Verdict:** Proceed. Remaining excellence items: Phase C freeze (`verify_thesis_metrics.py` + tag), optional Chapter 7 subsection merge, Word export pass.
+
+---
+
 ## 2026-04-07 — DOCUMENTATION_FOUNDATION ↔ Chapter 6 evidence
 
 **Approved**

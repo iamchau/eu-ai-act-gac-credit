@@ -189,6 +189,7 @@ Paste-ready text and checklists live outside this spine so the foundation stays 
 | [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) | **≥50 pages**, journey **anchors**, table/figure plan, Word workflow, pre-submission pass; **subordinate** to this file for RQs/evidence |
 | [figures/README.md](figures/README.md) | Thesis **PNG/PDF**, **captions**, alt text, resolution |
 | [DOCUMENTATION_FOUNDATION.md](DOCUMENTATION_FOUNDATION.md) | **Authority order**, deprecations, maintenance triggers, full `docs/` index |
+| [EXCELLENCE_ROADMAP.md](EXCELLENCE_ROADMAP.md) | **Examiner-grade roadmap** — phases A–G (spine, manuscript, freeze, submission); subordinate to this file for RQs/evidence |
 | [PROJECT_JOURNEY.md](PROJECT_JOURNEY.md) | **Tickable execution checklist** (evidence freeze, chapters, MLOps, submission); use with [PROJECT_PLAN.md](../PROJECT_PLAN.md) |
 | [thesis/MANUSCRIPT.md](thesis/MANUSCRIPT.md) | **Thesis draft** (Markdown → Word via Pandoc; see [thesis/README.md](thesis/README.md)) |
 

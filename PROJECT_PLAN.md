@@ -1,6 +1,6 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (P3 maintenance: `fix_manuscript_inline_md.py` on PROJECT_PLAN + MANUSCRIPT; `verify_thesis_metrics.py` OK)
+**Last updated:** 2026-04-07 (Phase A spine ref §1.7; abstract + §7.1; thesis README evidence-freeze tag; `EXCELLENCE_ROADMAP` ticks)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
 
@@ -17,16 +17,16 @@ This file is the **single overview** for scope, what is done, and what comes nex
 | P1        | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**        |
 | P2        | Human-in-the-loop gate (GitHub Actions) + latency measurement | **Done** (CI)   |
 | P3        | Standard vs governed experiment + thesis write-up             | **In progress** |
-| **MLOps** | Serving API, Docker, CI image, **`/metrics`**, **GHCR push**  | **Done**        |
+| **MLOps** | Serving API, Docker, CI image, `**/metrics`**, **GHCR push**  | **Done**        |
 
 
 ---
 
 ## MLOps serving — status
 
-**In scope (not optional):** Train writes **`artifacts/model.joblib`** + **`artifacts/feature_schema.json`**. **`docker compose up --build`** mounts `./artifacts`. FastAPI [serving/app.py](serving/app.py): **`/health`**, **`/ready`**, **`/version`**, **`/predict`**; configurable via **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, **`RATE_LIMIT_PREDICT`**, JSON access logs (**`LOG_JSON_ACCESS`**). **[scripts/smoke_serving.py](scripts/smoke_serving.py)** smoke test. **[.github/workflows/docker-build.yml](.github/workflows/docker-build.yml)** CI train → Docker image artefact; **[docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md)**. **[docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)** = full catalog; **[docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md)** = analysis + **§8** career note; README **Serving**; manuscript §5.5.
+**In scope (not optional):** Train writes `**artifacts/model.joblib`** + `**artifacts/feature_schema.json**`. `**docker compose up --build**` mounts `./artifacts`. FastAPI [serving/app.py](serving/app.py): `**/health**`, `**/ready**`, `**/version**`, `**/predict**`; configurable via `**SERVING_API_KEY**`, `**MAX_BODY_BYTES**`, `**RATE_LIMIT_PREDICT**`, JSON access logs (`**LOG_JSON_ACCESS**`). **[scripts/smoke_serving.py](scripts/smoke_serving.py)** smoke test. **[.github/workflows/docker-build.yml](.github/workflows/docker-build.yml)** CI train → Docker image artefact; **[docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md)**. **[docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)** = full catalog; **[docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md)** = analysis + **§8** career note; README **Serving**; manuscript §5.5.
 
-**Completed (2026-04-07):** **`GET /metrics`** (minimal JSON process stats) — [serving/app.py](serving/app.py); **GHCR** (`docker-build.yml` pushes on **`push`** / **`workflow_dispatch`**) — [RUNBOOK.md](docs/deployment/RUNBOOK.md).
+**Completed (2026-04-07):** `**GET /metrics`** (minimal JSON process stats) — [serving/app.py](serving/app.py); **GHCR** (`docker-build.yml` pushes on `**push`** / `**workflow_dispatch**`) — [RUNBOOK.md](docs/deployment/RUNBOOK.md).
 
 ---
 
@@ -58,7 +58,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Serving extensions (2026-04-07):** `train.py` → `artifacts/feature_schema.json`; serving: API key, max body, JSON access logs; [scripts/smoke_serving.py](scripts/smoke_serving.py); [docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)
 - **Serving CI + ops (2026-04-07):** [docker-build.yml](.github/workflows/docker-build.yml); `/ready`; `slowapi` rate limit; [RUNBOOK.md](docs/deployment/RUNBOOK.md)
 - **Thesis alignment (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) §4.4 gate roles + P3 evidence binding; §4.5 ethics (renumbered); §5.2 Gate B row; [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) §8 serving row + Gate B note + Dr. Voss checklist item
-- **MLOps backlog (2026-04-07):** **`GET /metrics`** (minimal JSON: uptime, PID, **`predict_success_total`**, etc.); **`docker-build.yml`** **GHCR** push (`:serving-<sha>`, `:latest`) on **`push`** / **`workflow_dispatch`**; [smoke_serving.py](scripts/smoke_serving.py) updated; [README.md](README.md), [RUNBOOK.md](docs/deployment/RUNBOOK.md), [TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md), [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) §5.5
+- **MLOps backlog (2026-04-07):** `**GET /metrics`** (minimal JSON: uptime, PID, `**predict_success_total**`, etc.); `**docker-build.yml**` **GHCR** push (`:serving-<sha>`, `:latest`) on `**push`** / `**workflow_dispatch**`; [smoke_serving.py](scripts/smoke_serving.py) updated; [README.md](README.md), [RUNBOOK.md](docs/deployment/RUNBOOK.md), [TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md), [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) §5.5
 - **Manuscript excellence pass (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — **Table 1a** chapter map (RQ signposting); §2.2 MLOps/compliance prose (placeholder removed); Discussion **Sub-RQ relation** + **contribution triad** §7.2; Conclusion explicit RQ answers; **Appendix E** Track A binding checklist; [PROJECT_JOURNEY.md](docs/PROJECT_JOURNEY.md) §A pointer
 - **Manuscript depth pass (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — expanded **Ch. 2** (fairness metrics, MLOps, Act, Norway/EEA); **Ch. 3** (Hevner/Peffers, construct vs instantiation); **§4.1** evaluation stance; **Discussion** §7.4–7.6 (practice, velocity, future work); **§9 References** (APA-style core list); **Appendix F** Mermaid Figure 1 + optional figures; [AGENTS.md](AGENTS.md) — agent owns thesis writing, human manual-only steps
 - **Manuscript continuation (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — **§4.6–4.7** (`compare_profiles` vs CI matrix; Sub-RQ2 epochs); **§5.4** CI / Gate C / `governed_deploy` / docker-build pointer; **§5.5** serving API (former §5.4); **Appendix B** Table B1 compliance mapping; **§6.3** epoch fields; references alphabetised; cross-refs **§5.5** in [PROJECT_PLAN.md](PROJECT_PLAN.md), [PROJECT_JOURNEY.md](docs/PROJECT_JOURNEY.md), [ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md), [DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md)
@@ -68,8 +68,10 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Manuscript continuation 5 (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — **Chapter 6** opening reader note (committed JSON only; interpretation in Ch.7); **§4.5** trimmed to ethics + deployment + pointers to **§4.7–4.8** (removed duplicate Sub-RQ bullets)
 - **Foundation alignment (2026-04-07):** [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) — **§7** Results bullet (reader note, §6.4); **§8** “Chapter 6 rule” + evidence table **MLOps** row (`/metrics`, GHCR); [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) **§6.4** ties to Chapter 6 lead-in
 - **Documentation charter (2026-04-07):** [DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) — **§1** paragraph + **§2** table row (Results discipline); **§5** maintenance row; [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) **§6.3** list formatting fix
-- **Repo hygiene (2026-04-07):** [.gitignore](.gitignore) — `thesis-draft.docx`, `~$*.docx`; [scripts/verify_thesis_metrics.py](scripts/verify_thesis_metrics.py) — JSON sanity check for thesis; [scripts/fix_manuscript_inline_md.py](scripts/fix_manuscript_inline_md.py) — optional path args; [PROJECT_PLAN.md](PROJECT_PLAN.md) — **`…`** inline-code normalization
-- **Markdown hygiene (maintenance):** [PROJECT_PLAN.md](PROJECT_PLAN.md) + [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — rerun automated **`…`** normalization; thesis metrics JSON verify pass
+- **Repo hygiene (2026-04-07):** [.gitignore](.gitignore) — `thesis-draft.docx`, `~$*.docx`; [scripts/verify_thesis_metrics.py](scripts/verify_thesis_metrics.py) — JSON sanity check for thesis; [scripts/fix_manuscript_inline_md.py](scripts/fix_manuscript_inline_md.py) — optional path args; [PROJECT_PLAN.md](PROJECT_PLAN.md) — `**…`** inline-code normalization
+- **Markdown hygiene (maintenance):** [PROJECT_PLAN.md](PROJECT_PLAN.md) + [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — rerun automated `**…`** normalization; thesis metrics JSON verify pass
+- **Excellence roadmap (2026-04-07):** [EXCELLENCE_ROADMAP.md](docs/EXCELLENCE_ROADMAP.md) (phases A–G); [thesis/README.md](docs/thesis/README.md) — author checklist + fork/word-count; [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — Ch.3 de-bold, **§7.5** canonical limitations, voice pass; [PROJECT_JOURNEY.md](docs/PROJECT_JOURNEY.md) B.1
+- **Next-step batch (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — **§1.7** → THESIS_FOUNDATION §4; **Abstract** + **§7.1** prose; **Appendix F** pointer; [thesis/README.md](docs/thesis/README.md) — git tag freeze; [EXCELLENCE_ROADMAP.md](docs/EXCELLENCE_ROADMAP.md) Phase A/B/C ticks
 
 ---
 
@@ -105,4 +107,3 @@ This file is the **single overview** for scope, what is done, and what comes nex
 2. Edit **Current focus** to one short line.
 3. Bump **Last updated** to today’s date.
 4. Optional: add MLflow run id / git commit next to completed items for audit trail.
-

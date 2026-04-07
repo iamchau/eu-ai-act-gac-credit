@@ -46,6 +46,7 @@ Use [THESIS_WRITING_HUB.md](THESIS_WRITING_HUB.md) for page/figure budget. Tick 
 
 ### B.1 Structure & spine
 
+- **Roadmap** — [EXCELLENCE_ROADMAP.md](EXCELLENCE_ROADMAP.md) (phases A–G); author meta + **evidence-freeze git tag** steps in [thesis/README.md](thesis/README.md), not in the main argument.
 - **Abstract** — problem, method, findings, contribution, **one** limitation.
 - **Introduction** — RQs with **thesis-ready one-liners** ([THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §2); chapter map; scope honest (no bank case study).
 - **Conclusion** — **explicit answers** to Primary RQ + Sub-RQs tied to evidence paths.
