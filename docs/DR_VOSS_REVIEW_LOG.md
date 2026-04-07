@@ -64,3 +64,15 @@
 - **COMPLIANCE_MATRIX.md** remains a **scaffold** until Articles are verified against EUR-Lex in the thesis body.
 
 **Verdict:** Dr. Voss structural feedback is **materialized** in-repo; drafting can proceed without re-deriving paragraphs from chat history.
+
+---
+
+## 2026-04-07 — RQ wording + Sub-RQ parity (doc pass)
+
+**Approved**
+
+- **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §2:** Thesis-ready **one-liners** for Introduction; **Sub-RQ2** answers vs does-not-answer table; **Sub-RQ parity** note (complementary, not symmetric).  
+- **§8:** Minimum **evidence bundles** for Sub-RQ1 (comparison + blocking demo) and Sub-RQ2 (JSON + URL + **n**).  
+- **[THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md):** §1b Norway/Annex III; §1c RQ one-liners; §2.4 Sub-RQ2 scope; §5 evidence checklist.
+
+**Verdict:** Reduces examiner risk from **informal proposal phrasing** and **misread Sub-RQ2** as banking latency.

@@ -12,6 +12,26 @@ The gap addressed in this thesis is not merely abstract “ethics in AI,” but 
 
 ---
 
+## 1b. Norway and Annex III — standalone paragraph (optional second paragraph)
+
+*Use if the title says “Norway” and you need one explicit scope sentence.*
+
+Norway is relevant as **jurisdictional context** for how EU high-risk rules intersect with national financial supervision and EEA implementation—not as a source of proprietary credit data in this study. Credit scoring used to evaluate natural persons falls under **Annex III** high-risk AI in the Act’s taxonomy; this thesis **does not** empirically represent Norwegian banks or customers. The **artifact** is a **portable** GaC pattern; any **institutional** deployment would require data, policies, and sign-off processes beyond this repository.
+
+---
+
+## 1c. Final research questions — one sentence each (Introduction)
+
+*Replace informal proposal wording. Aligns with [THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §2.*
+
+| RQ | Thesis-ready sentence |
+|----|------------------------|
+| **Primary** | *How can Governance-as-Code be **designed and instantiated** as a MLOps pipeline for high-risk credit scoring that **maps selected** EU AI Act obligations to **executable** fairness, explainability, and human-oversight controls in CI/CD—**without** claiming that the Act is fully automated or fully implemented in code?* |
+| **Sub-RQ1** | *Under **controlled** comparison (same seed, same data lineage), does the **governed** profile (fairness + SHAP gates) **differ** from the **standard** profile—and can **stricter policy** or stress **demonstrate** that the governed path **blocks** when operational non-compliance is detected?* |
+| **Sub-RQ2** | *What **automation-to-approval** latency does a human gate add in the **GitHub Actions** instantiation—measured as seconds from **end of automated gates** to **start** of the approval job—and **not** as end-to-end credit decision or legal signing time?* |
+
+---
+
 ## 2. Methodology — subsection: Operationalization
 
 *Insert under DSR / evaluation; pull tables into thesis body as numbered tables.*
@@ -39,6 +59,14 @@ The gap addressed in this thesis is not merely abstract “ethics in AI,” but 
 |------|------------|
 | **Latency** | Seconds from end of automated gates to start of the approval job in GitHub Actions, recorded in `metrics/human_oversight_latency.json`. |
 | **Limitation** | CI proxy only—not core banking latency, auditor calendar time, or national eID signing. |
+
+### 2.4 Sub-RQ 2 — answers vs does not answer
+
+| **In scope** | **Out of scope (state in Methodology or Discussion)** |
+|--------------|--------------------------------------------------------|
+| Seconds from end of automated gates to **start** of approval job (CI orchestration) | End-to-end latency of a **real** credit decision in a bank |
+| One **instantiation** (GitHub Environment + reviewer) | Reviewer **cognitive** time, calendar wait, SLA |
+| Illustrative sample(s) with JSON + run URL | Statistical model of “oversight cost” across organizations |
 
 ---
 
@@ -69,6 +97,22 @@ Human-in-the-loop is modeled as a **required reviewer** on a protected GitHub **
 3. **Sub-RQ1:** Evidence is **controlled comparison** and **demonstrated blocking** under defined thresholds—not a statistical audit of model approval rates in industry.  
 4. **Sub-RQ2:** Latency is a **CI/CD proxy** (GitHub Environments), not core banking systems, auditor calendars, or qualified electronic signatures.  
 5. **Deployment:** The pipeline is a **research instantiation**; “release” and “environment” are **illustrative**, not a certified production deployment.
+
+---
+
+## 5. Evidence checklist (Sub-RQ parity in the binder)
+
+**Sub-RQ1 (evaluative thread — expect more pages):**
+
+- [ ] `metrics/experiment_comparison.json` — standard vs governed under shared controls  
+- [ ] **Blocking demo:** exported `fairness_gate.json` with `gate_passed: false` after threshold tightening (see [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md)), **or** documented stress failure  
+- [ ] One short paragraph: **not** a sampled “approval rate” from industry  
+
+**Sub-RQ2 (narrow operational thread — do not oversell):**
+
+- [ ] `metrics/human_oversight_latency.json` + **workflow run URL**  
+- [ ] State **n** (one run vs several) and that the measure is **automation → approval job**, not banking workflow  
+- [ ] **Optional:** One sentence that Sub-RQ1 and Sub-RQ2 are **complementary** (effectiveness vs handoff delay), not equally general claims  
 
 ---
 

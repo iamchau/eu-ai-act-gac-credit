@@ -52,6 +52,28 @@ Use this as the **single spine** for writing. If a paragraph does not connect to
 | **Latency** | **Seconds** from **end of automated gates** to **start of the approval job** in GitHub Actions, recorded in `metrics/human_oversight_latency.json` (example: **7 s** for run [24081106560](https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560)). |
 | **Limitation (must state)** | **CI proxy** only — not core banking latency, not auditor calendar time, not signing with a national eID. |
 
+#### Thesis-ready one-liners (use in Introduction — replace proposal wording)
+
+Use these **instead of** the informal proposal sentences so examiners do not quote over-broad claims.
+
+| RQ | One sentence (adapt to faculty style) |
+|----|----------------------------------------|
+| **Primary** | *How can Governance-as-Code be **designed and instantiated** as a MLOps pipeline for high-risk credit scoring that **maps selected** EU AI Act obligations to **executable** fairness, explainability, and human-oversight controls in CI/CD—**without** claiming that the Act is fully automated or fully implemented in code?* |
+| **Sub-RQ1** | *Under **controlled** comparison (same seed, same data lineage), does the **governed** profile (fairness + SHAP gates) **differ** from the **standard** profile—and can **stricter policy** or stress **demonstrate** that the governed path **blocks** when operational non-compliance is detected?* |
+| **Sub-RQ2** | *What **automation-to-approval** latency does a human gate add in the **GitHub Actions** instantiation—measured as seconds from **end of automated gates** to **start** of the approval job—and **not** as end-to-end credit decision or legal signing time?* |
+
+#### Sub-RQ2 — what it answers vs what it does not
+
+| **Answers (in scope)** | **Does not answer (state explicitly)** |
+|------------------------|----------------------------------------|
+| Orchestration delay for **this** CI design (gates → protected environment → job start) | Total time in a **real** bank credit workflow |
+| Whether a **human gate** can be inserted **without** implying a specific review duration | Reviewer **thinking time**, queue time, SLA |
+| A **functional analogue** for “human oversight before release” in a DSR artifact | **Article 14** compliance as a legal conclusion |
+
+#### Sub-RQ parity (for Discussion one paragraph)
+
+Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries the main **evaluative** comparison (standard vs governed + blocking demo); Sub-RQ2 is a **narrow** operational measure of **one** instantiation’s handoff delay. **State that** so Sub-RQ2 is not read as weak banking evidence or as inflated latency science.
+
 ---
 
 ## 3. Design Science Research (Hevner) — map to chapters
@@ -119,7 +141,11 @@ Use this as the **single spine** for writing. If a paragraph does not connect to
 | Gate B | `metrics/shap_gate.json`, `artifacts/shap_report.md` (after run)
 | Gate C (Sub-RQ2) | `metrics/human_oversight_latency.json` + workflow URL
 | Reproducibility | MLflow tags (`git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`); `dvc.lock`
-| Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + exported fairness JSON after threshold change
+| Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + exported fairness JSON after threshold change (prefer **one** clean `gate_passed: false`) |
+
+**Minimum Sub-RQ1 evidence bundle:** (1) `experiment_comparison.json` for standard vs governed under shared controls; (2) **either** exported failing `fairness_gate.json` from threshold demo **or** stress run with documented gate failure.
+
+**Minimum Sub-RQ2 evidence bundle:** `human_oversight_latency.json` + **workflow run URL**; state **n** (e.g. one illustrative run vs several).
 
 ---
 
@@ -127,7 +153,8 @@ Use this as the **single spine** for writing. If a paragraph does not connect to
 
 - [ ] Every **Article** number matches **EUR-Lex** or official consolidated text you were assigned.  
 - [ ] **Sub-RQ1** uses **defined** “standard” vs “governed” and **operational** non-compliance — not vague “ethics.”  
-- [ ] **Sub-RQ2** states **CI proxy** and **single** (or few) latency samples.  
+- [ ] **Sub-RQ2** states **CI proxy** and **single** (or few) latency samples; **one** sentence on what latency **does not** measure (banking workflow, reviewer time, eID).  
+- [ ] Introduction uses **thesis-ready one-liners** (§2), not informal proposal wording (“reduce the rate,” “credit scoring workflow” without scope).  
 - [ ] **famges** / sensitive attributes: **honest** proxy discussion.  
 - [ ] **GitHub approval** ≠ **digital signature** in law — **one** clear sentence.  
 - [ ] **Contributions** = **artifact + evaluation + principles**, not “solved compliance.”  
@@ -140,7 +167,7 @@ Paste-ready text and checklists live outside this spine so the foundation stays 
 
 | Document | Use |
 |----------|-----|
-| [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) | Introduction **positioning** paragraph; **operationalization** tables; **explicit RQ answer** sketches; **single** limitations block |
+| [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) | **Thesis-ready RQ one-liners**; Norway/Annex III paragraph; **operationalization** tables; Sub-RQ2 **in/out of scope**; **evidence checklist**; answer sketches; **single** limitations block |
 | [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md) | **EUR-Lex** link and citation discipline for Regulation (EU) 2024/1689 |
 | [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md) | What to **remove**, **tighten**, and **keep** in the main thesis text |
 
