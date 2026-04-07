@@ -62,7 +62,7 @@ If **7** or **6** conflicts with **2**, **update the hub/README** after changing
 
 ## 4. Who starts where?
 
-**Cursor:** For thesis **prose quality** (structure, examiner psychology), the **Thesis Excellence Mentor** rule applies when editing `docs/thesis/**` and thesis Markdown—alongside **Dr. Voss** (compliance); see `.cursor/rules/thesis-excellence-mentor.mdc`.
+**Cursor:** The **Thesis Excellence Mentor** rule is **`alwaysApply: true`** (examiner-grade prose/structure); it stacks with **Dr. Voss**—compliance wins on substance. See `.cursor/rules/thesis-excellence-mentor.mdc`.
 
 | Reader | Start |
 |--------|--------|
