@@ -1,0 +1,46 @@
+{
+  "generated_at_utc": "2026-04-07T12:05:02.217653+00:00",
+  "git_commit": "4b6bf10360f33c7427f6a4edc017b2d9d0ad6037",
+  "profiles": {
+    "standard": {
+      "exit_code": 0,
+      "wall_time_seconds": 5.327,
+      "train_metrics": {
+        "accuracy": 0.776,
+        "roc_auc": 0.795657142857143,
+        "n_train": 750,
+        "n_val": 250,
+        "seed": 42,
+        "data_provenance": "uci-asc:SouthGermanCredit.asc",
+        "pipeline_profile": "standard"
+      },
+      "gates_run": false
+    },
+    "governed": {
+      "exit_code": 0,
+      "wall_time_seconds": 19.127,
+      "train_metrics": {
+        "accuracy": 0.776,
+        "roc_auc": 0.795657142857143,
+        "n_train": 750,
+        "n_val": 250,
+        "seed": 42,
+        "data_provenance": "uci-asc:SouthGermanCredit.asc",
+        "pipeline_profile": "governed"
+      },
+      "fairness_gate": {
+        "equalized_odds_difference": 0.6169354838709677,
+        "abs_equalized_odds_difference": 0.6169354838709677,
+        "max_allowed": 0.7,
+        "gate_passed": true
+      },
+      "shap_gate": {
+        "top_feature": "laufkont",
+        "top_mean_abs_shap": 0.0997866883160125,
+        "min_required": 0.0,
+        "gate_passed": true
+      },
+      "gates_run": true
+    }
+  }
+}

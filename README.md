@@ -38,6 +38,10 @@ dvc repro  # uses .venv\Scripts\python.exe from dvc.yaml (Windows)
 Run full local pipeline: `dvc repro`. CI: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs **both** profiles in a matrix.
 
 Tracking: MLflow UI → `mlruns/` (see `params.yaml` → `mlflow.tracking_uri`).  
+**P3 experiment (local):** `python scripts/compare_profiles.py` → [`metrics/experiment_comparison.json`](metrics/experiment_comparison.json).
+
+**GitHub / Gate C:** [`docs/GITHUB_SETUP.md`](docs/GITHUB_SETUP.md) · **Thesis eval notes:** [`docs/THESIS_EVAL_NOTES.md`](docs/THESIS_EVAL_NOTES.md).
+
 **Plan & status:** [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
 
 ## Rules
