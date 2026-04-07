@@ -1,7 +1,8 @@
 {
-  "accuracy": 0.724,
-  "roc_auc": 0.7748571428571429,
+  "accuracy": 0.776,
+  "roc_auc": 0.795657142857143,
   "n_train": 750,
   "n_val": 250,
-  "seed": 42
+  "seed": 42,
+  "data_provenance": "uci-asc:SouthGermanCredit.asc"
 }

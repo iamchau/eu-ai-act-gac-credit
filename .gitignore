@@ -8,15 +8,20 @@ venv/
 .pytest_cache/
 .mypy_cache/
 
-# ML / data
-data/raw/
+# ML / data (narrow ignores so pipeline artifacts/*.csv stay visible to DVC/git)
 data/processed/
-*.csv
-!data/.gitkeep
+data/raw/*.csv
+data/*.zip
+data/south_german_extract/
+
+# UCI South German Credit UPDATE (.asc) can be committed for CI + reproducibility (CC BY 4.0)
 
 # MLflow & DVC
 mlruns/
 .dvc/cache/
+
+# Train outputs (rebuilt by `dvc repro`)
+artifacts/
 
 # OS / IDE
 .DS_Store

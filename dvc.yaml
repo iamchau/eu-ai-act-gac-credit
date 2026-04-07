@@ -1,19 +1,50 @@
 stages:
   train:
-    # Use venv interpreter so `dvc repro` works without manual activation (Windows path).
     cmd: .venv\Scripts\python.exe src/train.py
     deps:
       - src/train.py
+      - src/data_loading.py
       - params.yaml
     params:
       - params.yaml:
           - seed
           - data.raw_csv
+          - data.raw_asc
           - model.name
           - model.max_iter
           - model.C
           - mlflow.experiment_name
           - mlflow.tracking_uri
+          - gates.fairness.sensitive_column
+          - gates.fairness.sensitive_column_fallback
+          - gates.fairness.max_equalized_odds_difference
+          - gates.shap.background_samples
+          - gates.shap.min_top_mean_abs_shap
+    outs:
+      - artifacts:
+          cache: false
     metrics:
       - metrics/train_metrics.json:
+          cache: false
+
+  fairness_gate:
+    cmd: .venv\Scripts\python.exe src/gate_fairness.py
+    deps:
+      - src/gate_fairness.py
+      - params.yaml
+      - artifacts/val_audit.csv
+    metrics:
+      - metrics/fairness_gate.json:
+          cache: false
+
+  shap_gate:
+    cmd: .venv\Scripts\python.exe src/gate_shap.py
+    deps:
+      - src/gate_shap.py
+      - params.yaml
+      - artifacts/model.joblib
+      - artifacts/X_val.csv
+      - artifacts/X_background.csv
+    metrics:
+      - metrics/shap_gate.json:
           cache: false

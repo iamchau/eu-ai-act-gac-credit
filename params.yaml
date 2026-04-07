@@ -1,9 +1,10 @@
-# DVC parameters — referenced by dvc.yaml and src/train.py
+# DVC parameters — referenced by dvc.yaml and src/*.py
 seed: 42
 
 data:
-  # If set and file exists, load this CSV; else fetch OpenML South German Credit.
+  # Preferred: CSV export. Else UCI .asc (see README).
   raw_csv: data/raw/south_german_credit.csv
+  raw_asc: data/raw/SouthGermanCredit.asc
 
 model:
   name: logistic_regression
@@ -13,3 +14,17 @@ model:
 mlflow:
   experiment_name: eu-ai-act-gac-credit
   tracking_uri: file:./mlruns
+
+# Governance gates (GaC) — fail CI if violated
+gates:
+  fairness:
+    sensitive_column: famges
+    # When using OpenML credit-g fallback (column names differ)
+    sensitive_column_fallback: personal_status
+    # Equalized odds difference (fairlearn); fail if abs exceeds this.
+    # Baseline logistic model on UCI South German is often ~0.6+ on famges; tighten after mitigation experiments.
+    max_equalized_odds_difference: 0.70
+  shap:
+    background_samples: 80
+    # Minimum mean |SHAP| for top feature (sanity check; optional floor)
+    min_top_mean_abs_shap: 0.0

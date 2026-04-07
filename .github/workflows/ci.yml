@@ -1,0 +1,49 @@
+# GaC pipeline: train + fairness + SHAP gates (mirrors local dvc repro).
+name: ci
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+jobs:
+  governed-pipeline:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch UCI South German Credit UPDATE (.asc)
+        run: |
+          mkdir -p data/raw
+          curl -fsSL -o data/south_german.zip \
+            "https://archive.ics.uci.edu/static/public/573/south+german+credit+update.zip"
+          python - <<'PY'
+          import zipfile
+          z = zipfile.ZipFile("data/south_german.zip")
+          z.extract("SouthGermanCredit.asc", path="data/raw")
+          PY
+
+      - name: Train + gates
+        run: |
+          python src/train.py
+          python src/gate_fairness.py
+          python src/gate_shap.py
+
+      - name: Show metrics
+        run: |
+          echo "--- train ---"
+          cat metrics/train_metrics.json
+          echo "--- fairness ---"
+          cat metrics/fairness_gate.json
+          echo "--- shap ---"
+          cat metrics/shap_gate.json

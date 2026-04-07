@@ -5,15 +5,25 @@ stages:
     deps:
     - path: params.yaml
       hash: md5
-      md5: 11df89d3571de3399366dbbe3026234d
-      size: 343
+      md5: f5e0a55d470285086d5aa8e5c5e2d7c5
+      size: 927
+    - path: src/data_loading.py
+      hash: md5
+      md5: f6abd7eeb00b0c08bd6896329a58c0c3
+      size: 1720
     - path: src/train.py
       hash: md5
-      md5: ed118409b9f21d3f89b931c3b78134a0
-      size: 4694
+      md5: 7e42b66e7eecba7b9f0f6bc6d931848f
+      size: 4980
     params:
       params.yaml:
+        data.raw_asc: data/raw/SouthGermanCredit.asc
         data.raw_csv: data/raw/south_german_credit.csv
+        gates.fairness.max_equalized_odds_difference: 0.7
+        gates.fairness.sensitive_column: famges
+        gates.fairness.sensitive_column_fallback: personal_status
+        gates.shap.background_samples: 80
+        gates.shap.min_top_mean_abs_shap: 0.0
         mlflow.experiment_name: eu-ai-act-gac-credit
         mlflow.tracking_uri: file:./mlruns
         model.C: 1.0
@@ -21,7 +31,60 @@ stages:
         model.name: logistic_regression
         seed: 42
     outs:
+    - path: artifacts
+      hash: md5
+      md5: 612c7bf161e14bb3ebd37a10382ad3bf.dir
+      size: 25867
+      nfiles: 4
     - path: metrics/train_metrics.json
       hash: md5
-      md5: 09925c7ae7c3874ee1995e4f85e9b5ad
-      size: 110
+      md5: 45046960cec67743eadef671fe96afe1
+      size: 164
+  fairness_gate:
+    cmd: .venv\Scripts\python.exe src/gate_fairness.py
+    deps:
+    - path: artifacts/val_audit.csv
+      hash: md5
+      md5: d84bf2bbff6849d7a65ae7c8af8cc333
+      size: 7036
+    - path: params.yaml
+      hash: md5
+      md5: f5e0a55d470285086d5aa8e5c5e2d7c5
+      size: 927
+    - path: src/gate_fairness.py
+      hash: md5
+      md5: dd9febf5a7d275642f65649c2689f6c6
+      size: 1671
+    outs:
+    - path: metrics/fairness_gate.json
+      hash: md5
+      md5: 290f568d530fb641141251455222c29d
+      size: 158
+  shap_gate:
+    cmd: .venv\Scripts\python.exe src/gate_shap.py
+    deps:
+    - path: artifacts/X_background.csv
+      hash: md5
+      md5: 2fcf3cf968642758fc7ed18c2fcfc3b2
+      size: 3805
+    - path: artifacts/X_val.csv
+      hash: md5
+      md5: 74ca569809a871844c61996a55ec3786
+      size: 11601
+    - path: artifacts/model.joblib
+      hash: md5
+      md5: 3595558b4a08ef69845df5744571f3f3
+      size: 3425
+    - path: params.yaml
+      hash: md5
+      md5: f5e0a55d470285086d5aa8e5c5e2d7c5
+      size: 927
+    - path: src/gate_shap.py
+      hash: md5
+      md5: f1b211caafa582ef983695cc1bb4c6b5
+      size: 2661
+    outs:
+    - path: metrics/shap_gate.json
+      hash: md5
+      md5: 835f52dc2cfe8ceafb23b41f1cf43f75
+      size: 126

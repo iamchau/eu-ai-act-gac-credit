@@ -29,7 +29,9 @@ dvc init   # once
 dvc repro  # uses .venv\Scripts\python.exe from dvc.yaml (Windows)
 ```
 
-**Data:** Put the South German Credit UPDATE CSV at `data/raw/south_german_credit.csv` and document the source in your thesis. If that file is missing, `train.py` falls back to OpenML **credit-g** (Statlog German Credit, ~1000 rows) for pipeline development—log `data_provenance` in MLflow and switch to the thesis CSV for reported experiments.
+**Data:** Prefer UCI **South German Credit UPDATE** (dataset 573). Use `data/raw/SouthGermanCredit.asc` and/or `data/raw/south_german_credit.csv` (see [`docs/DATA_PROVENANCE.md`](docs/DATA_PROVENANCE.md)). If neither is present, training falls back to OpenML **credit-g**; check MLflow `data_provenance`.
+
+**Governance gates:** **Fairness** — `src/gate_fairness.py` (equalized odds vs `gates.fairness.max_equalized_odds_difference`). **SHAP** — `src/gate_shap.py` → `artifacts/shap_report.md`. Run full pipeline: `dvc repro`. CI mirrors this in [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
 Tracking: MLflow UI → `mlruns/` (see `params.yaml` → `mlflow.tracking_uri`).  
 **Plan & status:** [`PROJECT_PLAN.md`](PROJECT_PLAN.md).
