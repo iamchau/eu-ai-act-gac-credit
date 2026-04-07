@@ -20,15 +20,19 @@ git push -u origin main
 
 Without reviewers, the approval job may still run immediately; latency is smaller but still recorded.
 
+**Important:** Under **Deployment branches**, allow **`main`** (or “All branches”). If only `production` is allowed, the `human-approval-release` job will not run on `main`.
+
 ## 3. Run governed deploy (latency sample)
 
 **Actions** → **governed-deploy** → **Run workflow** → approve the Environment when prompted.
 
 Download artifacts:
 
-- **`human-oversight-latency-<run_id>`** → contains `metrics/human_oversight_latency.json`.
+- **`human-oversight-latency-<run_id>`** (ZIP) → contains `metrics/human_oversight_latency.json`.
 
 Keep that JSON for Sub-RQ2 in the thesis.
+
+**If Run workflow, approval, or download fails:** see **[GATE_C_RUNBOOK.md](GATE_C_RUNBOOK.md)** (direct links, branch rules, troubleshooting).
 
 ## 4. CI matrix
 
@@ -41,3 +45,4 @@ If you install the [GitHub CLI](https://cli.github.com/), you can trigger workfl
 ```bash
 gh workflow run governed-deploy.yml
 ```
+
