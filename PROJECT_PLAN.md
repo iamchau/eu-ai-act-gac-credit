@@ -32,14 +32,17 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - `docs/GITHUB_SETUP.md`, `docs/GATE_C_RUNBOOK.md`
 - `docs/THESIS_EVAL_NOTES.md` — limitations + artifact checklist for writing
 - **GitHub:** `origin` → `https://github.com/iamchau/eu-ai-act-gac-credit.git`, branch **`main`**, pushed
+- **Foundation (2026-04-07):** MLflow **SQLite** (`mlflow.db`), `src/run_context.py` digests (**git**, **params.yaml**, **dvc.lock**), `requirements.lock.txt`
+- **Docs:** [COMPLIANCE_MATRIX.md](docs/COMPLIANCE_MATRIX.md), [SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md), [stress_experiment.md](docs/stress_experiment.md), [DR_VOSS_REVIEW_LOG.md](docs/DR_VOSS_REVIEW_LOG.md)
 
 ---
 
 ## Next (priority order)
 
-1. **Thesis writing:** Use [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) + `experiment_comparison.json` + **`human_oversight_latency.json`** (Sub-RQ2: **7 s** in this sample); cite the workflow run URL.
-2. **Git identity (optional):** `git config user.email "your@email"` if you still use a placeholder.
-3. **Optional:** After `params.yaml` changes, run `python scripts/compare_profiles.py` and commit updated JSON.
+1. **Sub-RQ1 (once):** Run [docs/SUB_RQ1_DEMO.md](docs/SUB_RQ1_DEMO.md) (tighten fairness threshold → gate fails) → export metrics → **revert** threshold to `0.70`.
+2. **Thesis writing:** [docs/THESIS_EVAL_NOTES.md](docs/THESIS_EVAL_NOTES.md) + `experiment_comparison.json` + `human_oversight_latency.json` (Sub-RQ2: **7 s**).
+3. **Git identity (optional):** `git config user.email "your@email"` if you still use a placeholder.
+4. **Optional:** `python scripts/compare_profiles.py` after `params.yaml` changes; commit updated JSON.
 
 ---
 
