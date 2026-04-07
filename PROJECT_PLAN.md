@@ -1,6 +1,6 @@
 # Thesis project plan & status
 
-**Last updated:** 2026-04-07 (DOCUMENTATION_FOUNDATION Ch.6 rule + deprecations + maintenance; §6.3 backtick fix)
+**Last updated:** 2026-04-07 (gitignore Word export; `verify_thesis_metrics.py` + multi-file `fix_manuscript_inline_md.py`; PROJECT_PLAN inline-code cleanup)
 
 This file is the **single overview** for scope, what is done, and what comes next. After each meaningful task, update **Last updated**, **Completed**, and **Next** (one minute).
 
@@ -11,20 +11,20 @@ This file is the **single overview** for scope, what is done, and what comes nex
 ## Phases (high level)
 
 
-| Phase     | Goal                                                                          | Status          |
-| --------- | ----------------------------------------------------------------------------- | --------------- |
-| P0        | Repo + Python stack + MLflow + DVC baseline                                   | **Done**        |
-| P1        | Fairness gate (Fairlearn) + SHAP gate + metrics in CI                         | **Done**        |
-| P2        | Human-in-the-loop gate (GitHub Actions) + latency measurement                 | **Done** (CI)   |
-| P3        | Standard vs governed experiment + thesis write-up                             | **In progress** |
-| **MLOps** | Serving API, Docker, CI image, **`/metrics`**, **GHCR push** | **Done** |
+| Phase     | Goal                                                          | Status          |
+| --------- | ------------------------------------------------------------- | --------------- |
+| P0        | Repo + Python stack + MLflow + DVC baseline                   | **Done**        |
+| P1        | Fairness gate (Fairlearn) + SHAP gate + metrics in CI         | **Done**        |
+| P2        | Human-in-the-loop gate (GitHub Actions) + latency measurement | **Done** (CI)   |
+| P3        | Standard vs governed experiment + thesis write-up             | **In progress** |
+| **MLOps** | Serving API, Docker, CI image, **`/metrics`**, **GHCR push**  | **Done**        |
 
 
 ---
 
 ## MLOps serving — status
 
-**In scope (not optional):** Train writes `**artifacts/model.joblib`** + `**artifacts/feature_schema.json`**. `**docker compose up --build**` mounts `./artifacts`. FastAPI **[serving/app.py](serving/app.py):** `**/health`**, `**/ready**`, `**/version**`, `**/predict**`; configurable via `**SERVING_API_KEY**`, `**MAX_BODY_BYTES**`, `**RATE_LIMIT_PREDICT**`, JSON access logs (`**LOG_JSON_ACCESS**`). **[scripts/smoke_serving.py](scripts/smoke_serving.py)** smoke test. **[.github/workflows/docker-build.yml](.github/workflows/docker-build.yml)** CI train → Docker image artefact; **[docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md)**. **[docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)** = full catalog; **[docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md)** = analysis + **§8** career note; README **Serving**; manuscript §5.5.
+**In scope (not optional):** Train writes **`artifacts/model.joblib`** + **`artifacts/feature_schema.json`**. **`docker compose up --build`** mounts `./artifacts`. FastAPI [serving/app.py](serving/app.py): **`/health`**, **`/ready`**, **`/version`**, **`/predict`**; configurable via **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, **`RATE_LIMIT_PREDICT`**, JSON access logs (**`LOG_JSON_ACCESS`**). **[scripts/smoke_serving.py](scripts/smoke_serving.py)** smoke test. **[.github/workflows/docker-build.yml](.github/workflows/docker-build.yml)** CI train → Docker image artefact; **[docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md)**. **[docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md)** = full catalog; **[docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md)** = analysis + **§8** career note; README **Serving**; manuscript §5.5.
 
 **Completed (2026-04-07):** **`GET /metrics`** (minimal JSON process stats) — [serving/app.py](serving/app.py); **GHCR** (`docker-build.yml` pushes on **`push`** / **`workflow_dispatch`**) — [RUNBOOK.md](docs/deployment/RUNBOOK.md).
 
@@ -68,6 +68,7 @@ This file is the **single overview** for scope, what is done, and what comes nex
 - **Manuscript continuation 5 (2026-04-07):** [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) — **Chapter 6** opening reader note (committed JSON only; interpretation in Ch.7); **§4.5** trimmed to ethics + deployment + pointers to **§4.7–4.8** (removed duplicate Sub-RQ bullets)
 - **Foundation alignment (2026-04-07):** [THESIS_FOUNDATION.md](docs/THESIS_FOUNDATION.md) — **§7** Results bullet (reader note, §6.4); **§8** “Chapter 6 rule” + evidence table **MLOps** row (`/metrics`, GHCR); [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) **§6.4** ties to Chapter 6 lead-in
 - **Documentation charter (2026-04-07):** [DOCUMENTATION_FOUNDATION.md](docs/DOCUMENTATION_FOUNDATION.md) — **§1** paragraph + **§2** table row (Results discipline); **§5** maintenance row; [MANUSCRIPT.md](docs/thesis/MANUSCRIPT.md) **§6.3** list formatting fix
+- **Repo hygiene (2026-04-07):** [.gitignore](.gitignore) — `thesis-draft.docx`, `~$*.docx`; [scripts/verify_thesis_metrics.py](scripts/verify_thesis_metrics.py) — JSON sanity check for thesis; [scripts/fix_manuscript_inline_md.py](scripts/fix_manuscript_inline_md.py) — optional path args; [PROJECT_PLAN.md](PROJECT_PLAN.md) — **`…`** inline-code normalization
 
 ---
 
@@ -103,4 +104,3 @@ This file is the **single overview** for scope, what is done, and what comes nex
 2. Edit **Current focus** to one short line.
 3. Bump **Last updated** to today’s date.
 4. Optional: add MLflow run id / git commit next to completed items for audit trail.
-

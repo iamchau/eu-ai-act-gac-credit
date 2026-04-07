@@ -37,7 +37,7 @@ The thesis does **not** claim full legal compliance or industry adoption. Contri
 7. [Discussion](#7-discussion)
 8. [Conclusion](#8-conclusion)
 9. [References](#9-references)
-10. [Appendices](#10-appendices)
+10. [Appendices](#10-appendices) (A–E)
 
 ---
 
@@ -92,7 +92,21 @@ Table 1 summarises operational terms for the primary RQ (see also Chapter 4).
 
 ## 1.5 Structure of the thesis
 
-Chapter 2 reviews responsible AI, MLOps, and the EU AI Act high-risk framing. Chapter 3 presents Design Science Research and GaC. Chapter 4 describes methodology, data, and limitations. Chapter 5 describes the instantiation. Chapter 6 reports results. Chapters 7–8 discuss and conclude. References and appendices follow.
+Table 1a **signposts** where each chapter supports the RQs (see [THESIS_FOUNDATION.md](../THESIS_FOUNDATION.md) for full operationalisation).
+
+**Table 1a — Chapter map (RQ coverage)**
+
+
+| Chapter | Primary RQ (design / instantiation) | Sub-RQ1 (controlled comparison + blocking demo) | Sub-RQ2 (automation-to-approval latency) |
+| ------- | ----------------------------------- | ----------------------------------------------- | ---------------------------------------- |
+| 1–2     | Problem, scope, literature gap      | Motivation for gates and metrics                | Oversight as CI proxy (framed)           |
+| 3–4     | DSR + GaC; data, profiles, ethics   | Method: standard vs governed; evidence binding  | Metric definition + limitations          |
+| 5       | **Instantiation** (stack, gates)    | Fairness + SHAP scripts; CI matrix              | Gate C workflow + Environment            |
+| 6       | —                                   | **Results:** Table 2–3, committed JSON          | **Results:** latency JSON + run URL      |
+| 7–8     | Principles, limits, future work     | Interpretation of Sub-RQ1 demo                  | Interpretation of Sub-RQ2 sample         |
+
+
+Narrative spine: Chapter 2 reviews responsible AI, MLOps, and the EU AI Act high-risk framing. Chapter 3 presents Design Science Research and GaC. Chapter 4 describes methodology, data, and limitations. Chapter 5 describes the instantiation. Chapter 6 reports results. Chapters 7–8 discuss and conclude. References and appendices follow.
 
 ---
 
@@ -104,7 +118,7 @@ Fairness in classification is operationalised through **group** and **individual
 
 ## 2.2 MLOps and compliance
 
-MLOps emphasises reproducibility, monitoring, and automation. **Governance-as-Code** extends that idea by encoding policy as **pipeline gates**—a theme aligned with software supply-chain and policy-as-code literature [expand with your supervisor’s required citations].
+MLOps practice emphasises **reproducible training**, **versioned artefacts**, and **repeatable deployment** of models. Independently, surveys of **AI ethics guidelines** (Jobin *et al.*, 2019) and of **bias and fairness** in machine learning (Mehrabi *et al.*, 2021) show convergence on abstract principles—**translating** those principles into **tests** that fail a build remains an **engineering** problem. Work at the intersection of **EU law and fair ML** (Veale & Zuiderveen Borgesius, 2021) clarifies that **legal** duties are not identical to **metric** choices; this thesis **does not** claim otherwise. **Governance-as-Code** extends MLOps by encoding **selected** policy expectations as **pipeline gates** (fairness thresholds, explainability artefacts, human approval before a release-style job)—a **policy-as-code** theme aligned with software supply-chain control literature, but scoped here to a **research** repository rather than a bank’s SDLC.
 
 ## 2.3 EU AI Act and high-risk credit scoring
 
@@ -178,16 +192,16 @@ The **SHAP** gate (Gate B) **mandates** an explainability artefact (`artifacts/s
 ## 5.2 Gates
 
 
-| Gate              | Script                       | Pass criterion (baseline)                                                               |
-| ----------------- | ---------------------------- | --------------------------------------------------------------------------------------- |
-| A Fairness        | `src/gate_fairness.py`       | `abs(equalized_odds_difference) ≤ max_equalized_odds_difference` (default **0.70**)     |
-| B SHAP            | `src/gate_shap.py`           | Top feature mean \|SHAP\| ≥ `min_top_mean_abs_shap` (**0.0** — artefact + pass; see §4.4) |
-| C Human oversight | GitHub Actions + Environment | Manual approval before second job; latency JSON                                         |
+| Gate              | Script                       | Pass criterion (baseline)                                                                                                                                   |
+| ----------------- | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A Fairness        | `src/gate_fairness.py`       | `abs(equalized_odds_difference) ≤ max_equalized_odds_difference` (default **0.70**)                                                                         |
+| B SHAP            | `src/gate_shap.py`           | Top feature mean |SHAP| ≥ `min_top_mean_abs_shap` from `params.yaml` (baseline **0.0**); writes `artifacts/shap_report.md`, `metrics/shap_gate.json` (§4.4) |
+| C Human oversight | GitHub Actions + Environment | Manual approval before second job; latency JSON                                                                                                             |
 
 
 Gate **A** is the primary **policy-as-code** lever for **blocking** demonstrations in this thesis (threshold demo; optional stress). Gate **B** enforces **presence** of a SHAP summary under the baseline threshold; Chapter 4.4 states how this relates to Sub-RQ1 evidence.
 
-**Figure 1 (placeholder):** High-level architecture — standard vs governed paths and Gate A/B/C.
+**Figure 1:** Standard vs governed GaC paths (schematic). **Source file:** `docs/figures/Fig01_gac_architecture.mmd` (export to PNG/SVG for Word). **Limitation:** diagram, not a bank network map.
 
 ## 5.3 Traceability
 
@@ -237,9 +251,10 @@ This demonstrates **executable** policy: **identical** code and data, **stricter
 
 ## 6.3 Human-oversight latency (Sub-RQ2)
 
-From `metrics/human_oversight_latency.json` (workflow sample):
+From **`metrics/human_oversight_latency.json`** (workflow sample):
 
-- **`human_oversight_latency_seconds`:** 7  
+- `**human_oversight_latency_seconds`:** 7  
+- **`gates_completed_epoch`** / `**approval_epoch`:** Unix epoch timestamps in the committed file (difference **7 s** for this run).  
 - **Workflow run:** `https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560`
 
 This measures **GitHub-mediated** delay (gates complete → approval job start), including Environment approval wait when protection is enabled—not end-to-end bank processing.
@@ -286,7 +301,13 @@ European Parliament and Council of the European Union. (2024). Regulation (EU) 2
 
 Hevner, A. R., March, S. T., Park, J., & Ram, S. (2004). Design science in information systems research. *MIS Quarterly*, 28(1), 75–105.
 
-[Add: Fairlearn, SHAP, UCI dataset, MLOps, RAI surveys as required by your programme.]
+Jobin, D., Ienca, M., & Vayena, E. (2019). The global landscape of AI ethics guidelines. *Nature Machine Intelligence*, 1(9), 389–399.
+
+Mehrabi, N., Morstatter, F., Saxena, N., Lerman, K., & Galstyan, A. (2021). A survey on bias and fairness in machine learning. *ACM Computing Surveys*, 54(6), 115:1–115:35.
+
+Veale, M., & Zuiderveen Borgesius, F. (2021). Demystifying the Draft EU Artificial Intelligence Act. *Computer Law Review International*, 22(4), 97–112.
+
+[Add: Fairlearn, SHAP, UCI repository, MLOps texts as required by your programme.]
 
 ---
 
@@ -320,6 +341,8 @@ Use `docs/COMPLIANCE_MATRIX.md` in the repository; **replace** Article citations
 ```json
 {
   "human_oversight_latency_seconds": 7,
+  "gates_completed_epoch": 1775564693,
+  "approval_epoch": 1775564700,
   "workflow_run_url": "https://github.com/iamchau/eu-ai-act-gac-credit/actions/runs/24081106560"
 }
 ```
@@ -327,6 +350,20 @@ Use `docs/COMPLIANCE_MATRIX.md` in the repository; **replace** Article citations
 ## Appendix D — Reproducibility
 
 Regenerate P3 comparison: `python scripts/compare_profiles.py` from repository root with the same `params.yaml` and data files.
+
+## Appendix E — Submission checklist (Track A)
+
+Tick **before** locking Results and PDF; **every row** must match the **committed** repository at `git commit` embedded in **`metrics/experiment_comparison.json`** (Sections 4.2, 4.4, Appendix C).
+
+
+| Check                                                                             | Evidence                             |
+| --------------------------------------------------------------------------------- | ------------------------------------ |
+| `params.yaml` matches cited baseline (fairness threshold, seed, sensitive column) | `params.yaml` in repo                |
+| `metrics/experiment_comparison.json` regenerated after any policy/data change     | File + timestamp in JSON             |
+| `metrics/human_oversight_latency.json` + workflow URL match Chapter 6             | Same JSON + URL                      |
+| Chapter 6 tables match JSON (no hand-typed drift)                                 | Diff vs `compare_profiles.py` output |
+| EUR-Lex citations for quoted Articles                                             | Final PDF                            |
+
 
 ---
 

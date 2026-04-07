@@ -28,3 +28,7 @@ artifacts/
 .DS_Store
 Thumbs.db
 .idea/
+
+# Word / Pandoc exports (regenerate locally)
+thesis-draft.docx
+~$*.docx
