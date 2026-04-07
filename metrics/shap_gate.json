@@ -1,6 +1,6 @@
 {
   "top_feature": "laufkont",
-  "top_mean_abs_shap": 0.09979873300061229,
+  "top_mean_abs_shap": 0.09983826493451062,
   "min_required": 0.0,
   "gate_passed": true
 }

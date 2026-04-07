@@ -17,7 +17,15 @@ model:
 
 mlflow:
   experiment_name: eu-ai-act-gac-credit
-  tracking_uri: file:./mlruns
+  # SQLite backend (recommended over deprecated file store in MLflow 3.x)
+  tracking_uri: sqlite:///./mlflow.db
+
+# Stress experiment: undersample rarest sensitive level in TRAIN only (Sub-RQ1 demo: governed gate should fail or worsen).
+stress:
+  enabled: false
+  # mode: undersample | remove_rare (remove_rare drops all train rows with rarest sensitive level — gate usually fails)
+  mode: undersample
+  minority_keep_fraction: 0.05
 
 # Governance gates (GaC) — fail CI if violated
 gates:

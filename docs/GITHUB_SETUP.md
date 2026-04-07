@@ -14,13 +14,13 @@ git push -u origin main
 
 ## 2. Environment for Gate C
 
-**Settings** → **Environments** → **New environment** → name: **`model-governance`**.
+**Settings** → **Environments** → **New environment** → name: `**model-governance`**.
 
 - Enable **Required reviewers** and add at least one reviewer (yourself is fine for a pilot).
 
 Without reviewers, the approval job may still run immediately; latency is smaller but still recorded.
 
-**Important:** Under **Deployment branches**, allow **`main`** (or “All branches”). If only `production` is allowed, the `human-approval-release` job will not run on `main`.
+**Important:** Under **Deployment branches**, allow `**main`** (or “All branches”). If only `production` is allowed, the `human-approval-release` job will not run on `main`.
 
 ## 3. Run governed deploy (latency sample)
 
@@ -28,7 +28,7 @@ Without reviewers, the approval job may still run immediately; latency is smalle
 
 Download artifacts:
 
-- **`human-oversight-latency-<run_id>`** (ZIP) → contains `metrics/human_oversight_latency.json`.
+- `**human-oversight-latency-<run_id>`** (ZIP) → contains `metrics/human_oversight_latency.json`.
 
 Keep that JSON for Sub-RQ2 in the thesis.
 

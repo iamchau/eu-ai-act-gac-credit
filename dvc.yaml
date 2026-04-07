@@ -4,6 +4,7 @@ stages:
     deps:
       - src/train.py
       - src/data_loading.py
+      - src/run_context.py
       - params.yaml
     params:
       - params.yaml:
@@ -21,6 +22,9 @@ stages:
           - gates.fairness.max_equalized_odds_difference
           - gates.shap.background_samples
           - gates.shap.min_top_mean_abs_shap
+          - stress.enabled
+          - stress.mode
+          - stress.minority_keep_fraction
     outs:
       - artifacts:
           cache: false

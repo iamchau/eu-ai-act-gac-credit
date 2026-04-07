@@ -25,8 +25,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
 from src.data_loading import load_params, load_xy_from_config
+from src.run_context import dvc_lock_digest, git_head_short, params_digest
 
 ROOT = _ROOT
+PARAMS_PATH = ROOT / "params.yaml"
 METRICS_PATH = ROOT / "metrics" / "train_metrics.json"
 ARTIFACTS = ROOT / "artifacts"
 
@@ -60,6 +62,33 @@ def build_pipeline(X: pd.DataFrame) -> Pipeline:
             ),
         ]
     )
+
+
+def inject_stress_bias_train(
+    X_train: pd.DataFrame,
+    y_train: np.ndarray,
+    sensitive_col: str,
+    seed: int,
+    minority_keep_fraction: float,
+    mode: str,
+) -> tuple[pd.DataFrame, np.ndarray]:
+    """Distort training only: undersample rare sensitive level, or remove it entirely."""
+    s = X_train[sensitive_col]
+    rare_level = s.value_counts().idxmin()
+    if mode == "remove_rare":
+        keep = s != rare_level
+        return (
+            X_train.loc[keep].reset_index(drop=True),
+            y_train[keep.values],
+        )
+    is_rare = (s == rare_level).values
+    rare_pos = np.where(is_rare)[0]
+    other_pos = np.where(~is_rare)[0]
+    n_keep = max(1, int(len(rare_pos) * minority_keep_fraction))
+    rng = np.random.default_rng(seed)
+    kept_rare = rng.choice(rare_pos, size=n_keep, replace=False) if len(rare_pos) else np.array([], dtype=int)
+    keep_idx = np.sort(np.concatenate([kept_rare, other_pos]))
+    return X_train.iloc[keep_idx].reset_index(drop=True), y_train[keep_idx]
 
 
 def main() -> int:
@@ -96,6 +125,28 @@ def main() -> int:
         X, y_codes, test_size=0.25, random_state=seed, stratify=y_codes
     )
 
+    stress_cfg = params.get("stress") or {}
+    stress_on = stress_cfg.get("enabled") is True or os.environ.get("STRESS_BIAS", "").lower() in (
+        "1",
+        "true",
+        "yes",
+    )
+    stress_note = "off"
+    if stress_on:
+        mode = os.environ.get("STRESS_MODE", stress_cfg.get("mode", "undersample"))
+        frac = float(
+            os.environ.get(
+                "STRESS_MINORITY_KEEP",
+                stress_cfg.get("minority_keep_fraction", 0.05),
+            )
+        )
+        X_train, y_train = inject_stress_bias_train(
+            X_train, y_train, sensitive_col, seed, frac, mode
+        )
+        stress_note = (
+            f"remove_rare_sensitive_train" if mode == "remove_rare" else f"undersample_rare_sensitive_keep={frac}"
+        )
+
     pipe = build_pipeline(X_train)
     model_params = params.get("model", {})
     pipe.set_params(
@@ -103,7 +154,19 @@ def main() -> int:
         clf__C=float(model_params.get("C", 1.0)),
     )
 
+    git_sha = git_head_short(ROOT)
+    p_digest = params_digest(PARAMS_PATH)
+    lock_digest = dvc_lock_digest(ROOT)
+
     with mlflow.start_run():
+        mlflow.set_tags(
+            {
+                "git_commit": git_sha,
+                "params_yaml_sha16": p_digest,
+                "dvc_lock_sha16": lock_digest,
+                "stress_bias": stress_note,
+            }
+        )
         mlflow.log_params(
             {
                 "seed": seed,
@@ -111,6 +174,7 @@ def main() -> int:
                 "data_provenance": data_provenance,
                 "sensitive_column": sensitive_col,
                 "pipeline_profile": params["pipeline"]["profile"],
+                "stress_enabled": str(stress_on),
             }
         )
         pipe.fit(X_train, y_train)
@@ -155,6 +219,10 @@ def main() -> int:
         "seed": seed,
         "data_provenance": data_provenance,
         "pipeline_profile": params["pipeline"]["profile"],
+        "git_commit": git_sha,
+        "params_yaml_sha16": p_digest,
+        "dvc_lock_sha16": lock_digest,
+        "stress_bias": stress_note,
     }
     with open(METRICS_PATH, "w", encoding="utf-8") as f:
         json.dump(out, f, indent=2)

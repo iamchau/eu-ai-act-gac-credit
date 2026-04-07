@@ -5,5 +5,9 @@
   "n_val": 250,
   "seed": 42,
   "data_provenance": "uci-asc:SouthGermanCredit.asc",
-  "pipeline_profile": "governed"
+  "pipeline_profile": "governed",
+  "git_commit": "3f532e222dee",
+  "params_yaml_sha16": "57900222102a5bec",
+  "dvc_lock_sha16": "d5608f4f11eb5f38",
+  "stress_bias": "off"
 }

@@ -5,16 +5,20 @@ stages:
     deps:
     - path: params.yaml
       hash: md5
-      md5: b8ebb990680840e65844280ff03b7d16
-      size: 972
+      md5: 0ee14933a58f443b018882f066250a35
+      size: 1376
     - path: src/data_loading.py
       hash: md5
       md5: 6f523c4074b3177c4d355cbdbe5c954e
       size: 1747
+    - path: src/run_context.py
+      hash: md5
+      md5: df175c57c7cb33a18f18c773f53d957d
+      size: 1174
     - path: src/train.py
       hash: md5
-      md5: 9ac431ad4252b1b68a2fe7a84e3348b3
-      size: 5317
+      md5: 8f69b499de5f865e10f28aa87b2f9c32
+      size: 7770
     params:
       params.yaml:
         data.raw_asc: data/raw/SouthGermanCredit.asc
@@ -25,12 +29,15 @@ stages:
         gates.shap.background_samples: 80
         gates.shap.min_top_mean_abs_shap: 0.0
         mlflow.experiment_name: eu-ai-act-gac-credit
-        mlflow.tracking_uri: file:./mlruns
+        mlflow.tracking_uri: sqlite:///./mlflow.db
         model.C: 1.0
         model.max_iter: 500
         model.name: logistic_regression
         pipeline.profile: governed
         seed: 42
+        stress.enabled: false
+        stress.minority_keep_fraction: 0.05
+        stress.mode: undersample
     outs:
     - path: artifacts
       hash: md5
@@ -39,8 +46,8 @@ stages:
       nfiles: 4
     - path: metrics/train_metrics.json
       hash: md5
-      md5: ef469b38f8b3cb22f6ab95bcf667602d
-      size: 199
+      md5: a493d7e74a63cd67e0cbe49626ee9d70
+      size: 342
   fairness_gate:
     cmd: .venv\Scripts\python.exe src/gate_fairness.py
     deps:
@@ -50,8 +57,8 @@ stages:
       size: 7036
     - path: params.yaml
       hash: md5
-      md5: b8ebb990680840e65844280ff03b7d16
-      size: 972
+      md5: 0ee14933a58f443b018882f066250a35
+      size: 1376
     - path: src/gate_fairness.py
       hash: md5
       md5: dd9febf5a7d275642f65649c2689f6c6
@@ -78,8 +85,8 @@ stages:
       size: 3425
     - path: params.yaml
       hash: md5
-      md5: b8ebb990680840e65844280ff03b7d16
-      size: 972
+      md5: 0ee14933a58f443b018882f066250a35
+      size: 1376
     - path: src/gate_shap.py
       hash: md5
       md5: f1b211caafa582ef983695cc1bb4c6b5
@@ -87,5 +94,5 @@ stages:
     outs:
     - path: metrics/shap_gate.json
       hash: md5
-      md5: 8c18e8f3aa7effc8b44510cc1446e13a
+      md5: 3b1e6c954f955d0098108125650a241b
       size: 126

@@ -18,6 +18,7 @@ data/south_german_extract/
 
 # MLflow & DVC
 mlruns/
+mlflow.db
 .dvc/cache/
 
 # Train outputs (rebuilt by `dvc repro`)
