@@ -15,7 +15,7 @@ Use with your supervisor’s style guide; cite primary sources for the EU AI Act
 | `metrics/experiment_comparison.json` | Standard vs governed (same seed) |
 | `metrics/fairness_gate.json` | Gate A outcome |
 | `metrics/shap_gate.json` | Gate B outcome |
-| `metrics/human_oversight_latency.json` | Gate C (after `governed_deploy`) |
+| `metrics/human_oversight_latency.json` | Gate C — **sample:** 7 s (`human_oversight_latency_seconds`), run `24081106560` |
 | MLflow runs | `pipeline_profile`, `data_provenance` |
 | `dvc.lock` + git commit | Reproducible pipeline state |
 
