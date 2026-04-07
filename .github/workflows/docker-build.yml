@@ -1,0 +1,61 @@
+# Train → Docker image → upload tarball artefact (no registry push; thesis/portfolio).
+name: docker-build
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: ${{ github.workspace }}
+      PIPELINE_PROFILE: governed
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install training dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch UCI South German Credit UPDATE (.asc)
+        run: |
+          mkdir -p data/raw
+          curl -fsSL -o data/south_german.zip \
+            "https://archive.ics.uci.edu/static/public/573/south+german+credit+update.zip"
+          python - <<'PY'
+          import zipfile
+          z = zipfile.ZipFile("data/south_german.zip")
+          z.extract("SouthGermanCredit.asc", path="data/raw")
+          PY
+
+      - name: Train (produces artifacts for Dockerfile COPY)
+        run: python src/train.py
+
+      - name: Verify artifacts for image bake
+        run: |
+          test -f artifacts/model.joblib
+          test -f artifacts/feature_schema.json
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build serving image
+        run: docker build -t gac-credit-serving:${{ github.sha }} .
+
+      - name: Save image to tarball
+        run: docker save gac-credit-serving:${{ github.sha }} -o serving-image.tar
+
+      - name: Upload image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: serving-image-${{ github.sha }}
+          path: serving-image.tar
+          if-no-files-found: error

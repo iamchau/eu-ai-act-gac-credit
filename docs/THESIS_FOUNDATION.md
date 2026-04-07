@@ -149,6 +149,7 @@ Sub-RQ1 and Sub-RQ2 are **complementary**, not **symmetric**: Sub-RQ1 carries th
 | Policy demo (Sub-RQ1) | [SUB_RQ1_DEMO.md](SUB_RQ1_DEMO.md) + `metrics/fairness_gate_subrq1_threshold_demo_fail.json` (**`gate_passed: false`**) or your own export after threshold change |
 | Optional scoring API (Primary RQ / discussion) | `serving/`, [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](deployment/ML_OPS_SERVING_ANALYSIS.md); `/health`, `/version`, `/predict` when running |
 | Train/serve feature contract (optional artefact) | `artifacts/feature_schema.json` from `src/train.py`; catalog [docs/deployment/TECHNICAL_EXTENSIONS.md](deployment/TECHNICAL_EXTENSIONS.md) |
+| Docker image CI artefact (optional) | `.github/workflows/docker-build.yml` → downloadable `serving-image-<sha>.tar` (train → `docker build`); [docs/deployment/RUNBOOK.md](deployment/RUNBOOK.md) |
 
 **Gate B (baseline):** `params.yaml` sets `gates.shap.min_top_mean_abs_shap: 0.0`. The gate **records** SHAP-based attribution (`artifacts/shap_report.md`, `metrics/shap_gate.json`) and **passes** under typical runs; **Sub-RQ1 “blocking”** evidence relies on **Gate A** (fairness) and the archived threshold demo—not on SHAP failure. See manuscript §4.4.
 

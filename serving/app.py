@@ -2,7 +2,7 @@
 FastAPI scoring service for the trained sklearn Pipeline (artifacts/model.joblib).
 Thesis / portfolio slice — not production banking infrastructure.
 
-Extensions: optional API key, max body size, JSON access logs, feature_schema.json (see docs/deployment/TECHNICAL_EXTENSIONS.md).
+See docs/deployment/TECHNICAL_EXTENSIONS.md and docs/deployment/RUNBOOK.md.
 """
 from __future__ import annotations
 
@@ -23,6 +23,10 @@ import joblib
 import pandas as pd
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from pydantic import BaseModel, Field
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.middleware import SlowAPIMiddleware
+from slowapi.util import get_remote_address
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
 
@@ -31,6 +35,15 @@ from src.run_context import git_head_short, params_digest
 MODEL_PATH = Path(os.environ.get("MODEL_PATH", str(_ROOT / "artifacts" / "model.joblib")))
 SCHEMA_PATH = Path(os.environ.get("SCHEMA_PATH", str(_ROOT / "artifacts" / "feature_schema.json")))
 PARAMS_PATH = _ROOT / "params.yaml"
+
+# "off" / "none" / "0" → effectively unlimited (high ceiling) for demo
+_raw_rl = os.environ.get("RATE_LIMIT_PREDICT", "120/minute").strip()
+if _raw_rl.lower() in ("off", "none", "0", ""):
+    _PREDICT_RATE = "100000/minute"
+else:
+    _PREDICT_RATE = _raw_rl
+
+limiter = Limiter(key_func=get_remote_address)
 
 _pipeline = None
 _feature_names: list[str] | None = None
@@ -95,9 +108,11 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="GaC Credit - scoring API (thesis demo)",
     description="Serves sklearn pipeline from train.py; illustrative deployment only.",
-    version="0.2.0",
+    version="0.3.0",
     lifespan=lifespan,
 )
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 class LimitBodySizeMiddleware(BaseHTTPMiddleware):
@@ -145,14 +160,31 @@ class JsonAccessLogMiddleware(BaseHTTPMiddleware):
         return response
 
 
-# Last added = outermost: access log wraps limit so 413 from limit is still logged.
+# Order: SlowAPI inner → limit body → JSON access log outer (last added = outermost in Starlette)
+app.add_middleware(SlowAPIMiddleware)
 app.add_middleware(LimitBodySizeMiddleware, max_bytes=_env_int("MAX_BODY_BYTES", 1048576))
 app.add_middleware(JsonAccessLogMiddleware)
 
 
 @app.get("/health")
 def health() -> dict:
-    return {"status": "ok", "model_loaded": _pipeline is not None}
+    """Liveness: process is up (orchestrator / load balancer)."""
+    return {"status": "ok"}
+
+
+@app.get("/ready")
+def ready() -> dict:
+    """Readiness: model (and optional schema) loaded for traffic."""
+    if _pipeline is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Model not loaded",
+        )
+    return {
+        "ready": True,
+        "model_loaded": True,
+        "schema_loaded": _schema is not None,
+    }
 
 
 @app.get("/version")
@@ -167,6 +199,7 @@ def version() -> dict:
         "model_path": str(MODEL_PATH.resolve()),
         "schema_path": str(SCHEMA_PATH.resolve()) if SCHEMA_PATH.is_file() else None,
         "serving": "fastapi",
+        "rate_limit_predict": _PREDICT_RATE,
     }
     return out
 
@@ -196,7 +229,9 @@ def _expected_columns() -> list[str] | None:
 
 
 @app.post("/predict")
-def predict(
+@limiter.limit(_PREDICT_RATE)
+async def predict(
+    request: Request,
     body: PredictRequest,
     _: None = Depends(require_predict_key),
 ) -> dict:

@@ -4,6 +4,18 @@
 
 ---
 
+## 2026-04-07 — Serving CI + readiness + rate limit
+
+**Approved (technical)**
+
+- **`docker-build.yml`:** train → **`docker build`** → **`serving-image.tar`** artefact — **illustrative** reproducible image; **not** a regulated release pipeline.
+- **`/health` vs `/ready`**, **`slowapi`** rate limit on **`/predict`** — demo-grade; thesis must **not** claim bank-grade availability or DDoS protection.
+- **[RUNBOOK.md](deployment/RUNBOOK.md)** — operational clarity; no change to Sub-RQ evidence.
+
+**Verdict:** Proceed. Keep **§5.4** limitations language aligned.
+
+---
+
 ## 2026-04-07 — Serving extensions (Tier A + B4 + B6)
 
 **Approved (technical scope)**

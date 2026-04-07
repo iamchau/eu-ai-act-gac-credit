@@ -15,3 +15,5 @@ services:
       # MAX_BODY_BYTES: "1048576"
       # JSON access logs to stdout: 1 | 0
       # LOG_JSON_ACCESS: "1"
+      # Rate limit for POST /predict (slowapi); "off" = effectively unlimited
+      # RATE_LIMIT_PREDICT: "120/minute"

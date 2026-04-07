@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Smoke test for the scoring API: GET /health, GET /version, POST /predict.
+Smoke test for the scoring API: GET /health, GET /ready, GET /version, POST /predict.
 Requires trained artifacts (model.joblib; feature_schema.json recommended).
 
 Usage (from repo root, API running on 8080):
@@ -47,6 +47,11 @@ def main() -> int:
     h_code, h_body = _req("GET", f"{base}/health")
     print("GET /health", h_code, h_body.decode()[:200])
     if h_code != 200:
+        return 1
+
+    r_code, r_body = _req("GET", f"{base}/ready")
+    print("GET /ready", r_code, r_body.decode()[:300])
+    if r_code != 200:
         return 1
 
     v_code, v_body = _req("GET", f"{base}/version")

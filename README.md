@@ -63,7 +63,7 @@ Illustrative **scoring API** for CV/thesis discussion; not bank production. **`a
 2. **Install serving deps** (local run without Docker): `pip install -r requirements-serving.txt`
 3. **Run API:** `docker compose up --build` from the repo root (port **8080**), **or** `uvicorn serving.app:app --host 127.0.0.1 --port 8080` from repo root with `PYTHONPATH=.`
 
-**Endpoints:** `GET /health` · `GET /version` · `POST /predict` with body `{"records": [ { "<feature>": <value>, ... } ]}` (columns must match `feature_schema.json`).
+**Endpoints:** `GET /health` (liveness) · `GET /ready` (readiness) · `GET /version` · `POST /predict` with body `{"records": [ { "<feature>": <value>, ... } ]}` (columns must match `feature_schema.json`).
 
 **Operational knobs (environment):**
 
@@ -71,12 +71,15 @@ Illustrative **scoring API** for CV/thesis discussion; not bank production. **`a
 |----------|------|
 | `SERVING_API_KEY` | If set, `POST /predict` requires header `X-API-Key` (same value). `/health` and `/version` stay open. |
 | `MAX_BODY_BYTES` | Max `Content-Length` for `POST /predict` (default **1048576**). **413** if larger. |
+| `RATE_LIMIT_PREDICT` | Per-IP limit for `POST /predict` (default **`120/minute`**; **`off`** = effectively unlimited). |
 | `LOG_JSON_ACCESS` | `1` (default): one JSON access log line per request to stdout (no request body logged). Set `0` to disable. |
 | `MODEL_PATH` / `SCHEMA_PATH` | Override paths to model and schema (defaults under `artifacts/`). |
 
-**Smoke test** (API must be running): `python scripts/smoke_serving.py` — optional `SERVING_API_KEY` in the environment. Options: `--base-url`, `--artifacts`.
+**Smoke test** (API must be running): `python scripts/smoke_serving.py` — optional `SERVING_API_KEY`. Options: `--base-url`, `--artifacts`.
 
-**Reference docs:** [docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md) (catalog of implemented + backlog items) · [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) (analysis, §8 career note).
+**CI:** [`.github/workflows/docker-build.yml`](.github/workflows/docker-build.yml) — after each push/PR to `main`, **train → Docker build → upload `serving-image.tar`** (download from **Actions** → workflow run → **Artifacts**). No registry push.
+
+**Reference docs:** [docs/deployment/TECHNICAL_EXTENSIONS.md](docs/deployment/TECHNICAL_EXTENSIONS.md) · [docs/deployment/RUNBOOK.md](docs/deployment/RUNBOOK.md) · [docs/deployment/ML_OPS_SERVING_ANALYSIS.md](docs/deployment/ML_OPS_SERVING_ANALYSIS.md) (§8 career note).
 
 ## Rules
 

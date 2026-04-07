@@ -1,5 +1,6 @@
 # Scoring API image — thesis / portfolio slice (not bank production).
-# Model file is gitignored: use docker-compose (mount ./artifacts) or copy model.joblib into build context before `docker build`.
+# Requires build context to contain artifacts/ after `python src/train.py` (see docs/deployment/RUNBOOK.md).
+# docker-compose can still mount ./artifacts over /app/artifacts at runtime.
 FROM python:3.12-slim
 
 WORKDIR /app
@@ -13,9 +14,9 @@ COPY src/ ./src/
 COPY serving/ ./serving/
 COPY params.yaml ./params.yaml
 
-# Optional: bake model + schema into image (uncomment after train if you want a self-contained image)
-# COPY artifacts/model.joblib ./artifacts/model.joblib
-# COPY artifacts/feature_schema.json ./artifacts/feature_schema.json
+RUN mkdir -p artifacts
+COPY artifacts/model.joblib ./artifacts/model.joblib
+COPY artifacts/feature_schema.json ./artifacts/feature_schema.json
 
 EXPOSE 8080
 CMD ["uvicorn", "serving.app:app", "--host", "0.0.0.0", "--port", "8080"]

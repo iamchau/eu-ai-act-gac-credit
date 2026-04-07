@@ -14,7 +14,7 @@
 | Features         | Same as UCI raw                           | `load_xy_from_config` → feature matrix `X`                                                   |
 | Repro metadata   | `metrics/train_metrics.json`, MLflow tags | `git_commit`, `params_yaml_sha16`, `dvc_lock_sha16`                                          |
 | Params           | `params.yaml`                             | Single source for hyperparameters                                                            |
-| CI               | `.github/workflows/ci.yml`                | Train + gates; **no** image build yet                                                        |
+| CI               | `.github/workflows/ci.yml` + **`docker-build.yml`** | Train + gates; **serving import**; **train → Docker image** artefact (`serving-image.tar`) |
 
 
 **Inference rule:** `pipeline.predict` / `predict_proba` expect a **DataFrame** (or array) with **columns matching training `X`** — same names and compatible dtypes as after `load_xy_from_config`.
@@ -40,12 +40,13 @@
 |------|---------|
 | `serving/app.py` | FastAPI: `/health`, `/version`, `/predict`; optional **`SERVING_API_KEY`**, **`MAX_BODY_BYTES`**, JSON access logs — see [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) |
 | `requirements-serving.txt` | Minimal deps — **no** MLflow/DVC/SHAP in image |
-| `Dockerfile` | Serving image; model/schema via **compose volume** or optional **`COPY`** (commented) |
-| `docker-compose.yml` | Mount `./artifacts`, `MODEL_PATH`, `SCHEMA_PATH`, env template for API key / limits / logging |
-| `.dockerignore` | Smaller build context |
-| `src/train.py` | Writes **`artifacts/feature_schema.json`** after fit (feature names + dtypes + digests) for train/serve contract |
-| `scripts/smoke_serving.py` | Smoke test against running API |
-| [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) | Catalog: **implemented** (A1, A2, A3, B4, B6) + **backlog** |
+| `Dockerfile` | Serving image; **bakes** `artifacts/model.joblib` + `feature_schema.json` (requires **train before `docker build`** — [RUNBOOK.md](RUNBOOK.md)) |
+| `docker-compose.yml` | Mount `./artifacts`, `MODEL_PATH`, `SCHEMA_PATH`, env template |
+| `.github/workflows/docker-build.yml` | CI: fetch data → train → **`docker build`** → upload **`serving-image-<sha>.tar`** |
+| `src/train.py` | Writes **`artifacts/feature_schema.json`** after fit |
+| `scripts/smoke_serving.py` | Smoke: **`/health`**, **`/ready`**, **`/version`**, **`POST /predict`** |
+| [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) | Catalog: implemented + small backlog |
+| [RUNBOOK.md](RUNBOOK.md) | Operations: local, Docker, CI artefact, `docker load` |
 
 
 **Documentation wired in:** `README.md` (**Serving**), `docs/thesis/MANUSCRIPT.md` (§5.4), `docs/DOCUMENTATION_FOUNDATION.md`, `PROJECT_PLAN.md`.
@@ -87,17 +88,14 @@
 
 ## 7. Future / optional extensions (backlog)
 
-**Implemented elsewhere:** Full catalog of **Tier A + B4 + B6** (API key, smoke script, body limit, `feature_schema.json`, JSON access logs) — [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md).
+**Implemented elsewhere:** [TECHNICAL_EXTENSIONS.md](TECHNICAL_EXTENSIONS.md) (includes **B5** CI Docker, **C7** `/ready`, **C9** rate limit).
 
 **Still open (not implemented):**
 
 | Item | Notes |
 |------|--------|
-| **CI: train → Docker build** | GitHub Actions; registry or artefact upload |
-| **Rate limiting** (e.g. per-IP) | **§4** “demo” scope; library or reverse proxy |
-| **`/health` vs `/ready` split** | Liveness vs model-loaded |
-| **Minimal `/metrics`** | Not full Prometheus |
-| **Prometheus / Grafana** | Full stack — out of scope for this repo |
+| **Minimal `/metrics`** | Process stats; not full Prometheus |
+| **Container registry push** (GHCR, etc.) | Needs secrets + policy decision |
 
 **Relationship to §4:** Backlog items are **may-add**; §4 lists what we are **not** claiming as full production scope.
 
