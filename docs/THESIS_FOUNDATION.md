@@ -134,4 +134,16 @@ Use this as the **single spine** for writing. If a paragraph does not connect to
 
 ---
 
+## 10. Thesis draft materials (Dr. Voss improvements)
+
+Paste-ready text and checklists live outside this spine so the foundation stays stable:
+
+| Document | Use |
+|----------|-----|
+| [THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md) | Introduction **positioning** paragraph; **operationalization** tables; **explicit RQ answer** sketches; **single** limitations block |
+| [EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md) | **EUR-Lex** link and citation discipline for Regulation (EU) 2024/1689 |
+| [THESIS_CUT_LIST.md](THESIS_CUT_LIST.md) | What to **remove**, **tighten**, and **keep** in the main thesis text |
+
+---
+
 *Maintainer: align this file with your supervisor’s chapter template; trim or merge sections as required.*

@@ -46,3 +46,21 @@
 - **Sub-RQ2:** **One** latency number is **illustrative**; state **CI** limits in **one** explicit paragraph.
 
 **Verdict:** Thesis **spine** is now **auditable**. Writing quality is yours; **structure** is no longer hand-waving.
+
+---
+
+## 2026-04-07 — Thesis draft improvements (paste-ready pack)
+
+**Approved**
+
+- **[THESIS_DRAFT_SNIPPETS.md](THESIS_DRAFT_SNIPPETS.md)** — Introduction **positioning**; methodology **operationalization** tables; **explicit answer sketches** for Primary RQ and Sub-RQs; **single consolidated** limitations block (avoid scattering).
+- **[EU_AI_ACT_CITATIONS.md](EU_AI_ACT_CITATIONS.md)** — Primary **EUR-Lex** entry point for Regulation (EU) 2024/1689 (`CELEX:32024R1689`); citation discipline reminder.
+- **[THESIS_CUT_LIST.md](THESIS_CUT_LIST.md)** — Editorial list: trim tool fluff, generic ethics, duplicate caveats; keep RQs and contributions sharp.
+- **[THESIS_FOUNDATION.md](THESIS_FOUNDATION.md) §10** — Index of the above.
+
+**Conditions**
+
+- Replace bracketed placeholders and sample latency with **your** final run outputs.  
+- **COMPLIANCE_MATRIX.md** remains a **scaffold** until Articles are verified against EUR-Lex in the thesis body.
+
+**Verdict:** Dr. Voss structural feedback is **materialized** in-repo; drafting can proceed without re-deriving paragraphs from chat history.
